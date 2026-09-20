@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import { photos } from "../data/photos";
 
 const zones = [
   ["North-West", "Kaduna · Kano · Katsina"],
@@ -20,7 +21,7 @@ const priorities = [
 ];
 ---
 <BaseLayout title="Where We Work" description="GROWCHILD is establishing programming networks across multiple regions of Nigeria.">
-  <PageHero title="Where We Work" intro="GROWCHILD is establishing programming networks across multiple regions of Nigeria." parent="About Us" icon="Country" />
+  <PageHero title="Where We Work" intro="GROWCHILD is establishing programming networks across multiple regions of Nigeria." parent="About Us" icon="Country" photo={photos.ruralWomen} />
   <section class="section">
     <div class="container"><span class="eyebrow">Geopolitical zones &amp; states</span><h2 class="section-title">Presence across Nigeria.</h2>
       <div class="map-grid">

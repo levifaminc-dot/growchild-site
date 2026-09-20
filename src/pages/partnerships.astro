@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import { photos } from "../data/photos";
 
 const models = [
   { title: "Technical Mentorship", text: "Reciprocal capacity exchange fostering institutional maturity, knowledge transfer, and specialist advisory frameworks for sustainable field interventions.", icon: "Training" },
@@ -20,7 +21,7 @@ const contributions = [
 ];
 ---
 <BaseLayout title="Partnerships" description="Partner with GROWCHILD on inclusive, evidence-driven and locally led humanitarian and development programmes.">
-  <PageHero title="Partner With GROWCHILD" intro="GROWCHILD believes sustainable impact requires collaboration between local organizations, government institutions, international partners, communities, and technical experts." parent="Get Involved" icon="Partnership" />
+  <PageHero title="Partner With GROWCHILD" intro="GROWCHILD believes sustainable impact requires collaboration between local organizations, government institutions, international partners, communities, and technical experts." parent="Get Involved" icon="Partnership" photo={photos.womenMarket} />
   <section class="section"><div class="container"><span class="eyebrow">Collaboration models</span><h2 class="section-title">Core Value Propositions</h2><div class="models">{models.map((model,i) => <article><div class="model-mark"><HumanitarianIcon name={model.icon} /><span>0{i+1}</span></div><h3>{model.title}</h3><p>{model.text}</p></article>)}</div></div></section>
   <section class="section section-tint"><div class="container why-grid"><div><span class="eyebrow">Why partner with us?</span><h2>GROWCHILD positions itself as a reliable emerging Nigerian partner.</h2></div><ul>{reasons.map((reason) => <li>{reason}</li>)}</ul></div></section>
   <section class="section"><div class="container"><span class="eyebrow">Shared capacity</span><h2 class="section-title">What We Contribute</h2><div class="contributions">{contributions.map((item,i) => <article><div class="model-mark"><HumanitarianIcon name={item.icon} variant="compact" /><span>0{i+1}</span></div><h3>{item.title}</h3></article>)}</div></div></section>

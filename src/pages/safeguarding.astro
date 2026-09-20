@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import { photos } from "../data/photos";
 
 const zeroTolerance = [
   { title: "Sexual Exploitation & Abuse", text: "Zero tolerance across all programs, staff interactions, and operational environments.", icon: "Sexual-violence" },
@@ -18,7 +19,7 @@ const promotes = [
 ];
 ---
 <BaseLayout title="Safeguarding" description="GROWCHILD's commitment to safe, respectful and inclusive programming.">
-  <PageHero title="Safeguarding Commitment" intro="GROWCHILD is committed to ensuring safe, respectful, and inclusive programming." parent="About Us" icon="Protection" />
+  <PageHero title="Safeguarding Commitment" intro="GROWCHILD is committed to ensuring safe, respectful, and inclusive programming." parent="About Us" icon="Protection" photo={photos.schoolChildren} />
   <section class="section zero"><div class="container"><span class="eyebrow">Our commitment</span><h2 class="section-title">Zero tolerance means zero exceptions.</h2><p>The organization maintains zero tolerance for:</p><div class="zero-grid">{zeroTolerance.map((item,i) => <article><div class="zero-mark"><HumanitarianIcon name={item.icon} variant="on-dark" /><span>0{i+1}</span></div><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></div></section>
   <section class="section section-tint"><div class="container"><span class="eyebrow">Our standards</span><h2 class="section-title">What GROWCHILD promotes</h2><div class="promote-grid">{promotes.map((item) => <article class="card card-accent icon-card"><HumanitarianIcon name={item.icon} /><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></div></section>
   <section class="report"><div class="container report-grid"><div><span class="eyebrow">Report a concern</span><h2>If you have a safeguarding concern, you can report it confidentially.</h2></div><div class="channels"><p>Email reporting channel: <strong>to be confirmed</strong></p><p>Phone reporting channel: <strong>to be confirmed</strong></p><span class="button pending" aria-disabled="true">Confidential reporting channel to be confirmed</span><a href="/safeguarding/">Privacy Policy</a></div></div></section>

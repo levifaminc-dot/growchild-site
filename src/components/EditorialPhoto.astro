@@ -1,0 +1,39 @@
+---
+import PhotoAttribution from "./PhotoAttribution.astro";
+import type { LicensedPhoto } from "../data/photos";
+
+interface Props {
+  photo: LicensedPhoto;
+  ratio?: "landscape" | "portrait" | "wide";
+  eager?: boolean;
+  class?: string;
+}
+
+const { photo, ratio = "landscape", eager = false, class: className } = Astro.props;
+---
+
+<figure class:list={["editorial-photo", `editorial-photo--${ratio}`, className]}>
+  <img
+    src={photo.src}
+    alt={photo.alt}
+    loading={eager ? "eager" : "lazy"}
+    fetchpriority={eager ? "high" : "auto"}
+    decoding="async"
+  />
+  <PhotoAttribution photo={photo} />
+</figure>
+
+<style>
+  .editorial-photo {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: #dce7dd;
+    box-shadow: var(--shadow-soft);
+  }
+  .editorial-photo--landscape { aspect-ratio: 4 / 3; }
+  .editorial-photo--portrait { aspect-ratio: 4 / 5; }
+  .editorial-photo--wide { aspect-ratio: 16 / 7; }
+  img { width: 100%; height: 100%; object-fit: cover; }
+</style>

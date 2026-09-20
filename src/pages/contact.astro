@@ -2,9 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import { photos } from "../data/photos";
 ---
 <BaseLayout title="Contact Us" description="Contact GROWCHILD about partnerships, collaboration, safeguarding or general enquiries.">
-  <PageHero title="Contact Us" intro="Send us a message about partnerships, collaboration or general enquiries." icon="E-mail" />
+  <PageHero title="Contact Us" intro="Send us a message about partnerships, collaboration or general enquiries." icon="E-mail" photo={photos.boreholeWater} />
   <section class="section"><div class="container contact-grid">
     <aside><span class="eyebrow">Direct channels</span><h2>Official communication lines</h2><p>For institutional and public inquiries.</p><div class="channel"><HumanitarianIcon name="E-mail" variant="compact" /><div><span>Email</span><a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a></div></div><div class="channel"><HumanitarianIcon name="Mobile-phone" variant="compact" /><div><span>Phone</span><a href="tel:+2349134068024">+234 913 406 8024</a></div></div><div class="safeguarding-note"><HumanitarianIcon name="Protection" variant="on-dark" /><div><strong>Safeguarding concern?</strong><p>Use our confidential reporting channel when it is confirmed.</p><a href="/safeguarding/">Go to Safeguarding &amp; Reporting →</a></div></div></aside>
     <div class="form-panel"><h2>Send a Message</h2><form id="contact-form">

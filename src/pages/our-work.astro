@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import EditorialPhoto from "../components/EditorialPhoto.astro";
+import { photos } from "../data/photos";
 
 const areas = [
   { title: "Disability Inclusion and Advocacy", items: ["disability-inclusive humanitarian and development programming","community identification of persons with disabilities","disability awareness and stigma reduction","advocacy for disability rights","inclusive access to services","strengthening disability data systems"], note: "Persons with disabilities are engaged not only as beneficiaries but as active participants in programme design, implementation, monitoring and decision-making.", icon: "People-with-physical-impairments" },
@@ -13,8 +15,9 @@ const areas = [
 ];
 ---
 <BaseLayout title="Our Work" description="Explore GROWCHILD's six integrated humanitarian and development programme areas.">
-  <PageHero title="Our Core Program Areas" intro="GROWCHILD delivers integrated humanitarian and development programming through community-based, inclusive and evidence-driven approaches." icon="Humanitarian-programme-cycle" />
+  <PageHero title="Our Core Program Areas" intro="GROWCHILD delivers integrated humanitarian and development programming through community-based, inclusive and evidence-driven approaches." icon="Humanitarian-programme-cycle" photo={photos.medicalOutreach} />
   <nav class="area-nav" aria-label="Program areas"><div class="container">{areas.map((area,i) => <a href={`#area-${i+1}`}>{area.title.replace(" and ", " & ")}</a>)}</div></nav>
+  <section class="programme-gallery" aria-label="Programme photography"><div class="container"><EditorialPhoto photo={photos.schoolChildren} ratio="landscape" /><EditorialPhoto photo={photos.medicalOutreach} ratio="landscape" /><EditorialPhoto photo={photos.boreholeWater} ratio="landscape" /></div></section>
   <div class="program-list">
     {areas.map((area,i) => (
       <section id={`area-${i+1}`} class:list={["section", { "section-tint": i % 2 === 1 }]}>
@@ -32,6 +35,8 @@ const areas = [
   .area-nav .container { display: flex; gap: .25rem; overflow-x: auto; padding-block: .7rem; scrollbar-width: thin; }
   .area-nav a { flex: 0 0 auto; padding: .55rem .75rem; color: var(--deep-green); border-radius: .4rem; font: 600 .82rem Poppins,Arial,sans-serif; text-decoration: none; }
   .area-nav a:hover { background: var(--surface-tint); }
+  .programme-gallery { padding-block: 2rem; background: var(--white); }
+  .programme-gallery .container { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
   .program-grid { display: grid; grid-template-columns: 10rem 1fr; gap: clamp(2rem,7vw,6rem); }
   .program-identifier { display: grid; align-content: start; justify-items: start; gap: 1.25rem; }
   .program-number { color: #cbd9c6; font: 700 clamp(4rem,10vw,8rem)/1 Poppins,Arial,sans-serif; }
@@ -46,5 +51,5 @@ const areas = [
   .work-cta h2 { color: var(--white); }
   .work-cta p { max-width: 42rem; margin-top: .6rem; }
   .work-cta .button { color: var(--deep-blue); background: var(--white); }
-  @media (max-width: 50rem) { .program-grid { grid-template-columns: 1fr; gap: 1rem; } .program-number { font-size: 4rem; } .program-grid ul { grid-template-columns: 1fr; } .work-cta .container { align-items: flex-start; flex-direction: column; } .area-nav { top: 7rem; } }
+  @media (max-width: 50rem) { .programme-gallery .container { grid-template-columns: 1fr; } .program-grid { grid-template-columns: 1fr; gap: 1rem; } .program-number { font-size: 4rem; } .program-grid ul { grid-template-columns: 1fr; } .work-cta .container { align-items: flex-start; flex-direction: column; } .area-nav { top: 7rem; } }
 </style>

@@ -2,10 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import { photos } from "../data/photos";
 ---
 
 <BaseLayout title="News & Updates" description="Verified news, reports and stories from GROWCHILD will be published here.">
-  <PageHero title="News & Updates" intro="Verified reports, programme updates and community stories from GROWCHILD." icon="Report" />
+  <PageHero title="News & Updates" intro="Verified reports, programme updates and community stories from GROWCHILD." icon="Report" photo={photos.communityOutreach} />
   <section class="section">
     <div class="container empty-news">
       <HumanitarianIcon name="Report" />

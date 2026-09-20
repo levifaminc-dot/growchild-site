@@ -1,0 +1,33 @@
+---
+import type { LicensedPhoto } from "../data/photos";
+
+interface Props { photo: LicensedPhoto; }
+const { photo } = Astro.props;
+---
+
+<figcaption class="photo-attribution">
+  <span>Photo:</span>
+  <a href={photo.sourceUrl} target="_blank" rel="noreferrer">{photo.credit}</a>
+  <span aria-hidden="true">·</span>
+  <a href={photo.licenseUrl} target="_blank" rel="noreferrer">{photo.license}</a>
+</figcaption>
+
+<style>
+  .photo-attribution {
+    position: absolute;
+    inset: auto .7rem .7rem;
+    display: flex;
+    width: fit-content;
+    max-width: calc(100% - 1.4rem);
+    flex-wrap: wrap;
+    gap: .2rem .4rem;
+    padding: .38rem .58rem;
+    color: rgba(255,255,255,.92);
+    border-radius: .35rem;
+    background: rgba(3,24,13,.78);
+    font-size: .7rem;
+    line-height: 1.25;
+    backdrop-filter: blur(5px);
+  }
+  a { color: var(--white); text-underline-offset: .15rem; }
+</style>

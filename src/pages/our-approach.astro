@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import { photos } from "../data/photos";
 
 const advantages = [
   { title: "Strong Focus on Data, MEAL and Evidence", text: "Systematic quantitative and qualitative methodologies powering real-time adaptation, operational rigor, and defensible public accountability.", items: ["Monitoring, Evaluation, Accountability and Learning","Third-Party Monitoring (TPM)","Digital data collection & validation","Data Quality Assurance protocols","Interactive dashboards and learning products"], icon: "Data" },
@@ -23,7 +24,7 @@ const pathway = [
 ];
 ---
 <BaseLayout title="Our Approach" description="GROWCHILD uses evidence, community ownership and inclusive leadership to deliver sustainable outcomes.">
-  <PageHero title="Evidence-Driven Impact" intro="Grounded in robust evidence, community ownership, and inclusive leadership to deliver sustainable humanitarian and development outcomes." parent="About Us" icon="Analysis" />
+  <PageHero title="Evidence-Driven Impact" intro="Grounded in robust evidence, community ownership, and inclusive leadership to deliver sustainable humanitarian and development outcomes." parent="About Us" icon="Analysis" photo={photos.medicineOutreach} />
   <section class="section"><div class="container"><span class="eyebrow">Strategic advantage</span><h2 class="section-title">How we work</h2><div class="advantage-grid">{advantages.map((item,i) => <article><div class="item-mark"><HumanitarianIcon name={item.icon} /><span class="index">0{i+1}</span></div><h3>{item.title}</h3><p>{item.text}</p><ul>{item.items.map((value) => <li>{value}</li>)}</ul></article>)}</div></div></section>
   <section class="section section-tint"><div class="container"><span class="eyebrow">MEAL</span><h2 class="section-title">Monitoring, Evaluation, Accountability and Learning</h2><p class="lead">GROWCHILD considers MEAL a central component of quality programming.</p><div class="meal-grid">{meal.map((item) => <article class="card"><HumanitarianIcon name={item.icon} variant="compact" /><h3>{item.title}</h3><strong>Key activities</strong><ul>{item.activities.map((activity) => <li>{activity}</li>)}</ul><strong>Purpose</strong><p>{item.purpose}</p></article>)}</div></div></section>
   <section class="section"><div class="container pathway"><div><span class="eyebrow">Disability inclusion</span><h2>Technical Pathway</h2><p>A structured technical process ensuring dignified, accessible, and continuous support for persons with disabilities.</p></div><ol>{pathway.map((item,i) => <li><HumanitarianIcon name={item.icon} variant="compact" /><div><span class="path-index">0{i+1}</span><h3>{item.title}</h3><p>{item.text}</p></div></li>)}</ol><div class="safeguard"><strong>Guiding safeguard</strong><p>Persons with disabilities are engaged not only as beneficiaries but as active participants in programme design, implementation, monitoring and decision-making.</p></div></div></section>
