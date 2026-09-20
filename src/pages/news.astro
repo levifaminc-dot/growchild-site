@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<BaseLayout title="News & Updates" description="Verified news, reports and stories from GROWCHILD will be published here.">
+  <PageHero title="News & Updates" intro="Verified reports, programme updates and community stories from GROWCHILD." />
+  <section class="section">
+    <div class="container empty-news">
+      <span class="eyebrow">Publication pending</span>
+      <h2>News and updates coming soon</h2>
+      <p>Pending publication of verified reports and stories.</p>
+      <a class="button button-primary" href="/contact/">Contact GROWCHILD</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .empty-news { display: grid; min-height: 28rem; place-content: center; justify-items: center; gap: 1rem; text-align: center; border: 2px dashed var(--border); border-radius: .9rem; background: var(--surface-tint); }
+  .empty-news p { margin-bottom: .75rem; }
+</style>

@@ -1,50 +1,115 @@
 ---
 import LogoMark from "./LogoMark.astro";
+
 const pathname = Astro.url.pathname;
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about/", label: "About Us" },
-  { href: "/our-work/", label: "Our Work" },
-  { href: "/our-approach/", label: "Our Approach" },
-  { href: "/where-we-work/", label: "Where We Work" },
-  { href: "/contact/", label: "Contact" },
-];
 const isCurrent = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+const aboutLinks = [
+  { href: "/about/", label: "Overview" },
+  { href: "/where-we-work/", label: "Where We Work" },
+  { href: "/our-approach/", label: "Our Approach" },
+  { href: "/safeguarding/", label: "Safeguarding" },
+];
 ---
+
 <header class="site-header">
-  <div class="utility-bar"><div class="container utility-inner"><span>growchild.org@gmail.com · +234 913 406 8024</span><span>CAC RC 9704884</span></div></div>
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-contacts">
+        <a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a><span aria-hidden="true">|</span>
+        <a href="tel:+2349134068024">+234 913 406 8024</a><span aria-hidden="true">|</span>
+        <span>CAC RC 9704884</span>
+      </div>
+      <span class="trust-label">Institutional Trust &amp; Safeguarding</span>
+    </div>
+  </div>
   <div class="main-bar">
     <div class="container main-inner">
       <a class="brand-link" href="/" aria-label="GROWCHILD home"><LogoMark /></a>
       <nav class="desktop-nav" aria-label="Primary navigation">
-        {links.map((link) => <a class:list={["nav-link", { current: isCurrent(link.href) }]} href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>)}
+        <a class:list={["nav-link", { current: isCurrent("/") }]} href="/" aria-current={isCurrent("/") ? "page" : undefined}>Home</a>
+        <details class="nav-group">
+          <summary class:list={["nav-link", { current: aboutLinks.some((link) => isCurrent(link.href)) }]}>About Us <span aria-hidden="true">⌄</span></summary>
+          <div class="dropdown"><span class="dropdown-label">About Us Menu</span>{aboutLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}>{link.label}</a>)}</div>
+        </details>
+        <a class:list={["nav-link", { current: isCurrent("/our-work/") }]} href="/our-work/" aria-current={isCurrent("/our-work/") ? "page" : undefined}>Our Work</a>
+        <details class="nav-group">
+          <summary class:list={["nav-link", { current: isCurrent("/partnerships/") }]}>Get Involved <span aria-hidden="true">⌄</span></summary>
+          <div class="dropdown dropdown-wide"><span class="dropdown-label">Get Involved Menu</span><a class:list={{ current: isCurrent("/partnerships/") }} href="/partnerships/"><strong>Partnerships</strong><small>Institutional collaborations &amp; joint field action</small></a></div>
+        </details>
+        <a class:list={["nav-link", { current: isCurrent("/news/") }]} href="/news/" aria-current={isCurrent("/news/") ? "page" : undefined}>News &amp; Updates</a>
+        <a class:list={["nav-link", { current: isCurrent("/contact/") }]} href="/contact/" aria-current={isCurrent("/contact/") ? "page" : undefined}>Contact Us</a>
       </nav>
       <a class="button button-primary header-cta" href="/partnerships/">Partner With Us</a>
       <details class="mobile-menu">
-        <summary aria-label="Open navigation">Menu</summary>
+        <summary aria-label="Open navigation"><span aria-hidden="true">☰</span><span>Menu</span></summary>
         <nav aria-label="Mobile navigation">
-          {links.map((link) => <a class:list={["nav-link", { current: isCurrent(link.href) }]} href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>)}
-          <a class="button button-primary" href="/partnerships/">Partner With Us</a>
+          <a class:list={["mobile-link", { current: isCurrent("/") }]} href="/">Home</a>
+          <details class="mobile-group" open={aboutLinks.some((link) => isCurrent(link.href))}>
+            <summary>About Us <span aria-hidden="true">⌄</span></summary>
+            <div>{aboutLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}>{link.label}</a>)}</div>
+          </details>
+          <a class:list={["mobile-link", { current: isCurrent("/our-work/") }]} href="/our-work/">Our Work</a>
+          <details class="mobile-group" open={isCurrent("/partnerships/")}>
+            <summary>Get Involved <span aria-hidden="true">⌄</span></summary><div><a class:list={{ current: isCurrent("/partnerships/") }} href="/partnerships/">Partnerships</a></div>
+          </details>
+          <a class:list={["mobile-link", { current: isCurrent("/news/") }]} href="/news/">News &amp; Updates</a>
+          <a class:list={["mobile-link", { current: isCurrent("/contact/") }]} href="/contact/">Contact Us</a>
+          <a class="button button-primary mobile-cta" href="/partnerships/">Partner With Us</a>
+          <a class="mobile-email" href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a>
         </nav>
       </details>
     </div>
   </div>
 </header>
+
 <style>
   .site-header { position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 24px rgba(10,72,35,.08); }
-  .utility-bar { color: var(--white); background: var(--deep-green); font-size: .83rem; }
+  .utility-bar { color: var(--white); background: var(--deep-green); font-size: .78rem; }
   .utility-inner { display: flex; min-height: 2.25rem; align-items: center; justify-content: space-between; gap: 1rem; }
-  .main-bar { background: rgba(255,255,255,.97); backdrop-filter: blur(12px); }
-  .main-inner { display: flex; min-height: 5rem; align-items: center; gap: 1.25rem; }
+  .utility-contacts { display: flex; align-items: center; gap: .75rem; }
+  .utility-contacts a { text-decoration: none; }
+  .utility-contacts a:hover { text-decoration: underline; text-underline-offset: .18rem; }
+  .trust-label { color: rgba(255,255,255,.82); }
+  .main-bar { border-bottom: 1px solid var(--border); background: rgba(255,255,255,.98); backdrop-filter: blur(12px); }
+  .main-inner { display: flex; min-height: 5.25rem; align-items: center; gap: 1rem; }
   .brand-link { margin-right: auto; text-decoration: none; }
-  .desktop-nav { display: flex; align-items: center; gap: .2rem; }
-  .nav-link { position: relative; display: inline-flex; min-height: 2.75rem; align-items: center; padding-inline: .65rem; color: var(--deep-green); font-size: .88rem; font-weight: 600; text-decoration: none; }
-  .nav-link::after { content: ""; position: absolute; inset: auto .65rem .25rem; height: 3px; border-radius: 99px; background: var(--leaf-green); transform: scaleX(0); transform-origin: left; transition: transform 160ms ease; }
-  .nav-link:hover::after, .nav-link.current::after { transform: scaleX(1); }
+  .desktop-nav { display: flex; align-items: center; gap: .1rem; }
+  .nav-link { position: relative; display: inline-flex; min-height: 3rem; align-items: center; gap: .3rem; padding-inline: .55rem; color: var(--slate-grey); font-size: .79rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .nav-link::after { content: ""; position: absolute; inset: auto .55rem .2rem; height: 3px; border-radius: 99px; background: var(--leaf-green-dark); transform: scaleX(0); transform-origin: left; transition: transform 160ms ease; }
+  .nav-link:hover, .nav-link.current { color: var(--leaf-green-dark); }
+  .nav-link:hover::after, .nav-link.current::after, .nav-group[open] > .nav-link::after { transform: scaleX(1); }
+  .nav-group { position: relative; }
+  .nav-group > summary { cursor: pointer; list-style: none; }
+  .nav-group > summary::-webkit-details-marker { display: none; }
+  .nav-group[open] > summary span { transform: rotate(180deg); }
+  .nav-group > summary span { display: inline-block; transition: transform 160ms ease; }
+  .dropdown { position: absolute; top: calc(100% + .5rem); left: 0; display: grid; width: 14rem; padding: .55rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--white); box-shadow: var(--shadow-soft); }
+  .dropdown-wide { width: 17rem; }
+  .dropdown-label { padding: .35rem .65rem; color: #68716b; font: 700 .68rem Poppins,Arial,sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+  .dropdown a { display: grid; padding: .65rem; color: var(--deep-green); border-radius: .38rem; font: 500 .88rem Poppins,Arial,sans-serif; text-decoration: none; }
+  .dropdown a:hover, .dropdown a.current { background: var(--surface-tint); }
+  .dropdown small { margin-top: .2rem; color: var(--slate-grey); font: 400 .75rem/1.35 "Atkinson Hyperlegible",Arial,sans-serif; }
+  .header-cta { flex: 0 0 auto; font-size: .86rem; }
   .mobile-menu { display: none; position: relative; }
-  summary { min-height: 2.75rem; padding: .55rem .85rem; color: var(--deep-green); border: 2px solid var(--deep-green); border-radius: .5rem; cursor: pointer; font-family: Poppins, Arial, sans-serif; font-weight: 700; list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  .mobile-menu nav { position: absolute; top: calc(100% + .75rem); right: 0; display: grid; width: min(19rem, calc(100vw - 1.25rem)); gap: .15rem; padding: .75rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); box-shadow: var(--shadow-soft); }
-  @media (max-width: 68rem) { .desktop-nav, .header-cta { display: none; } .mobile-menu { display: block; } }
-  @media (max-width: 38rem) { .utility-inner { justify-content: center; text-align: center; } .utility-inner span:last-child { display: none; } }
+  .mobile-menu > summary { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .5rem; padding: .55rem .8rem; color: var(--deep-green); border: 2px solid var(--deep-green); border-radius: .5rem; cursor: pointer; font: 700 .9rem Poppins,Arial,sans-serif; list-style: none; }
+  .mobile-menu > summary::-webkit-details-marker { display: none; }
+  .mobile-menu > nav { position: absolute; top: calc(100% + .75rem); right: 0; display: grid; width: min(22rem, calc(100vw - 1.25rem)); gap: .3rem; padding: .85rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); box-shadow: var(--shadow-soft); max-height: calc(100vh - 9rem); overflow-y: auto; }
+  .mobile-link, .mobile-group > summary { display: flex; min-height: 2.75rem; align-items: center; justify-content: space-between; padding: .55rem .75rem; color: var(--deep-green); border-radius: .45rem; font: 600 .98rem Poppins,Arial,sans-serif; text-decoration: none; }
+  .mobile-link:hover, .mobile-link.current { background: var(--surface-tint); }
+  .mobile-group { border: 1px solid var(--border); border-radius: .5rem; overflow: hidden; }
+  .mobile-group > summary { cursor: pointer; list-style: none; background: #f8faf7; }
+  .mobile-group > summary::-webkit-details-marker { display: none; }
+  .mobile-group[open] > summary span { transform: rotate(180deg); }
+  .mobile-group > div { display: grid; gap: .15rem; padding: .45rem .65rem .65rem; border-top: 1px solid var(--border); }
+  .mobile-group a { padding: .45rem .6rem; color: var(--slate-grey); border-radius: .35rem; font-size: .92rem; text-decoration: none; }
+  .mobile-group a:hover, .mobile-group a.current { color: var(--deep-green); background: var(--white); }
+  .mobile-cta { margin-top: .45rem; }
+  .mobile-email { padding: .55rem; color: var(--slate-grey); text-align: center; font-size: .8rem; }
+  @media (max-width: 72rem) { .desktop-nav, .header-cta { display: none; } .mobile-menu { display: block; } }
+  @media (max-width: 42rem) {
+    .utility-inner { min-height: 2rem; justify-content: space-between; font-size: .72rem; }
+    .utility-contacts a:first-child, .utility-contacts span { display: none; }
+    .trust-label { order: -1; color: var(--white); }
+    .main-inner { min-height: 4.5rem; }
+  }
 </style>

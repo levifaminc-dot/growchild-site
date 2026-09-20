@@ -1,25 +1,96 @@
 ---
 import LogoMark from "./LogoMark.astro";
+
+const quickLinks = [
+  ["Home", "/"], ["About Us", "/about/"], ["Where We Work", "/where-we-work/"],
+  ["Our Approach", "/our-approach/"], ["Safeguarding", "/safeguarding/"],
+  ["Our Work", "/our-work/"], ["Partnerships", "/partnerships/"],
+  ["News & Updates", "/news/"], ["Contact Us", "/contact/"],
+];
 ---
+
 <footer class="site-footer">
+  <div class="container footer-brand"><LogoMark light /></div>
   <div class="container footer-grid">
-    <div class="footer-intro"><LogoMark light /><p>Growth and Resilience of Women and Children Empowerment Initiative. Building dignity, autonomy, and sustainable community empowerment across vulnerable populations.</p><strong>Official NGO Registry: CAC RC 9704884</strong></div>
-    <div><h2>Focus Areas</h2><ul><li>Women Economic Empowerment</li><li>Child Protection &amp; Welfare</li><li>Education &amp; Literacy Support</li><li>Maternal &amp; Community Health</li><li>Emergency Food &amp; Relief</li></ul></div>
-    <div><h2>Get Involved</h2><ul><li><a href="/partnerships/">Institutional Partnerships</a></li><li>Community Field Work</li><li>Advocacy &amp; Research</li><li>Resource Mobilization</li><li><a href="/safeguarding/">Safeguarding Council</a></li></ul></div>
-    <div><h2>Contact &amp; Legal</h2><ul><li><a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a></li><li><a href="tel:+2349134068024">+234 913 406 8024</a></li><li>Incorporation: CAC RC 9704884</li><li>Abuja &amp; Regional Operational Desks</li></ul></div>
+    <section>
+      <h2>About GROWCHILD</h2>
+      <p>GROWCHILD strengthens the resilience and empowerment of women and children through inclusive, community-led and evidence-based humanitarian and development programming across Nigeria.</p>
+    </section>
+
+    <details class="footer-links" open>
+      <summary><h2>Quick Links</h2><span aria-hidden="true">⌄</span></summary>
+      <ul>{quickLinks.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul>
+    </details>
+
+    <section>
+      <h2>Contact &amp; Legal</h2>
+      <address>
+        <a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a>
+        <a href="tel:+2349134068024">+234 913 406 8024</a>
+        <span>CAC RC 9704884</span>
+        <span>Abuja &amp; Regional Operational Desks</span>
+      </address>
+    </section>
+
+    <section>
+      <h2>Subscribe to Updates</h2>
+      <form class="subscribe-form" id="subscribe-form">
+        <label for="footer-email">Email address</label>
+        <input id="footer-email" name="email" type="email" autocomplete="email" placeholder="Enter your email" required />
+        <button type="submit">Subscribe</button>
+        <p id="subscribe-status" class="subscribe-status" aria-live="polite"></p>
+      </form>
+      <div class="social-pending"><strong>Connect with us</strong><span>Social channels to be confirmed</span></div>
+    </section>
   </div>
-  <div class="container footer-bottom"><p>© 2026 GROWCHILD. CAC RC 9704884.</p><a href="/safeguarding/">Safeguarding &amp; Privacy</a></div>
+  <div class="container footer-bottom"><p>© 2026 GROWCHILD. All rights reserved.</p><a href="/safeguarding/">Safeguarding &amp; Privacy Policy</a></div>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#subscribe-form");
+    const status = document.querySelector<HTMLElement>("#subscribe-status");
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (status) status.textContent = "Subscription service to be confirmed.";
+    });
+  </script>
 </footer>
+
 <style>
-  .site-footer { color: var(--white); background: #063719; padding-top: 4.5rem; }
-  .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(3,1fr); gap: 2rem; padding-bottom: 3.5rem; }
-  .footer-intro { display: grid; gap: 1rem; }
-  .footer-intro p { max-width: 32rem; color: rgba(255,255,255,.86); }
-  .footer-intro strong { font-size: .9rem; }
-  h2 { margin-bottom: 1rem; color: var(--white); font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; }
-  ul { display: grid; gap: .55rem; margin: 0; padding: 0; color: rgba(255,255,255,.82); font-size: .94rem; list-style: none; }
+  .site-footer { color: var(--white); background: var(--deep-green); padding-top: 3.5rem; }
+  .footer-brand { padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,.16); }
+  .footer-grid { display: grid; grid-template-columns: 1.15fr .8fr .9fr 1.05fr; gap: clamp(1.5rem,4vw,3rem); padding-block: 2.5rem 3.5rem; }
+  section > p { color: rgba(255,255,255,.8); font-size: .95rem; }
+  h2 { margin: 0 0 1rem; color: var(--white); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+  .footer-links > summary { display: flex; align-items: center; justify-content: space-between; color: var(--white); cursor: default; list-style: none; }
+  .footer-links > summary::-webkit-details-marker { display: none; }
+  .footer-links > summary span { display: none; }
+  .footer-links h2 { margin: 0 0 1rem; }
+  ul { display: grid; gap: .35rem; margin: 0; padding: 0; color: rgba(255,255,255,.8); font-size: .9rem; list-style: none; }
   a { text-underline-offset: .2rem; }
-  .footer-bottom { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.82); font-size: .88rem; }
-  @media (max-width: 56rem) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 38rem) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 1.2rem; } }
+  li a, address a { text-decoration: none; }
+  li a:hover, address a:hover { color: var(--white); text-decoration: underline; }
+  address { display: grid; gap: .7rem; color: rgba(255,255,255,.8); font-size: .9rem; font-style: normal; }
+  .subscribe-form { display: grid; gap: .55rem; }
+  .subscribe-form label { color: rgba(255,255,255,.9); font-size: .8rem; font-weight: 600; }
+  .subscribe-form input, .subscribe-form button { min-height: 3rem; border-radius: .5rem; font: inherit; }
+  .subscribe-form input { width: 100%; padding-inline: .85rem; color: var(--slate-grey); border: 1px solid var(--border); background: var(--white); }
+  .subscribe-form button { color: var(--white); border: 1px solid #8fcb62; background: var(--leaf-green-dark); font-family: Poppins,Arial,sans-serif; font-weight: 700; cursor: pointer; }
+  .subscribe-form button:hover { color: var(--deep-green); background: var(--white); }
+  .subscribe-status { min-height: 1.25rem; color: #d9ffc0; font-size: .8rem; }
+  .social-pending { display: grid; gap: .15rem; margin-top: .8rem; color: rgba(255,255,255,.75); font-size: .8rem; }
+  .social-pending strong { color: rgba(255,255,255,.9); }
+  .footer-bottom { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.72); font-size: .78rem; }
+  @media (max-width: 62rem) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 42rem) {
+    .site-footer { padding-top: 2.25rem; }
+    .footer-grid { grid-template-columns: 1fr; padding-block: 2rem; }
+    .footer-links { border: 1px solid rgba(255,255,255,.2); border-radius: .5rem; background: rgba(255,255,255,.04); }
+    .footer-links > summary { padding: .85rem; cursor: pointer; }
+    .footer-links > summary h2 { margin: 0; }
+    .footer-links > summary span { display: block; }
+    .footer-links[open] > summary span { transform: rotate(180deg); }
+    .footer-links ul { padding: .25rem 1rem 1rem; border-top: 1px solid rgba(255,255,255,.12); }
+    .footer-bottom { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 1.2rem; }
+  }
 </style>
