@@ -1,50 +1,76 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import AboutSubnav from "../components/AboutSubnav.astro";
 import { photos } from "../data/photos";
 
 const zeroTolerance = [
-  { title: "Sexual Exploitation & Abuse", text: "Zero tolerance across all programs, staff interactions, and operational environments.", icon: "Sexual-violence" },
-  { title: "Harassment", text: "Strict prohibition of any verbal, physical, or psychological harassment in all spheres.", icon: "Harassment-intimidation" },
-  { title: "Discrimination", text: "Unconditional fairness regardless of gender, status, origin, ability, or background.", icon: "Affected-population" },
-  { title: "Exploitation", text: "Absolute defense of community assets, vulnerable dignity, and essential liberties.", icon: "Protection" },
-  { title: "Abuse of Power", text: "Rigid institutional oversight preventing improper influence, coercion, or misconduct.", icon: "Safety-and-security" },
+  { title: "Sexual Exploitation & Abuse", text: "Zero tolerance across all programmes, staff interactions and operational environments." },
+  { title: "Harassment", text: "Prohibition of verbal, physical or psychological harassment in every area of our work." },
+  { title: "Discrimination", text: "Fairness regardless of gender, status, origin, ability or background." },
+  { title: "Exploitation", text: "Protection of community assets, individual dignity and essential rights." },
+  { title: "Abuse of Power", text: "Institutional oversight to prevent improper influence, coercion or misconduct." },
 ];
+
 const promotes = [
-  { title: "Safeguarding systems", text: "Rigorous organizational structures, risk mitigation protocols, and preventive safeguards embedded across all operations.", icon: "Safety-and-security" },
-  { title: "Survivor-centred approaches", text: "Prioritizing the rights, safety, dignity, and wishes of individuals throughout care and response pathways.", icon: "Protection" },
-  { title: "Confidential reporting mechanisms", text: "Secure, trusted, and barrier-free channels for safe disclosure and immediate protective response.", icon: "Checked-mail" },
-  { title: "Accountability to affected populations", text: "Open feedback loops, institutional integrity, and systematic answerability to the communities we serve.", icon: "Community-engagement" },
+  { title: "Safeguarding systems", text: "Organizational structures, risk mitigation and preventive safeguards embedded across operations." },
+  { title: "Survivor-centred approaches", text: "The rights, safety, dignity and wishes of individuals guide care and response pathways." },
+  { title: "Confidential reporting mechanisms", text: "Secure and accessible channels for disclosure and protective response." },
+  { title: "Accountability to affected populations", text: "Open feedback, institutional integrity and answerability to the communities we serve." },
 ];
 ---
+
 <BaseLayout title="Safeguarding" description="GROWCHILD's commitment to safe, respectful and inclusive programming.">
-  <PageHero title="Safeguarding Commitment" intro="GROWCHILD is committed to ensuring safe, respectful, and inclusive programming." parent="About Us" icon="Protection" photo={photos.schoolChildren} />
-  <section class="section zero"><div class="container"><span class="eyebrow">Our commitment</span><h2 class="section-title">Zero tolerance means zero exceptions.</h2><p>The organization maintains zero tolerance for:</p><div class="zero-grid">{zeroTolerance.map((item,i) => <article><div class="zero-mark"><HumanitarianIcon name={item.icon} variant="on-dark" /><span>0{i+1}</span></div><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></div></section>
-  <section class="section section-tint"><div class="container"><span class="eyebrow">Our standards</span><h2 class="section-title">What GROWCHILD promotes</h2><div class="promote-grid">{promotes.map((item) => <article class="card card-accent icon-card"><HumanitarianIcon name={item.icon} /><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></div></section>
-  <section class="report"><div class="container report-grid"><div><span class="eyebrow">Report a concern</span><h2>If you have a safeguarding concern, you can report it confidentially.</h2></div><div class="channels"><p>Email reporting channel: <strong>to be confirmed</strong></p><p>Phone reporting channel: <strong>to be confirmed</strong></p><span class="button pending" aria-disabled="true">Confidential reporting channel to be confirmed</span><a href="/safeguarding/">Privacy Policy</a></div></div></section>
+  <PageHero title="Safeguarding Commitment" intro="Everyone has the right to participate in programmes that are safe, respectful, inclusive and accountable." parent="About Us" photo={photos.schoolChildren} />
+  <AboutSubnav />
+
+  <section class="section zero">
+    <div class="container">
+      <div class="section-heading"><span class="eyebrow">Our commitment</span><h2>Zero tolerance means zero exceptions.</h2><p>GROWCHILD maintains zero tolerance for conduct that harms, exploits or discriminates against people.</p></div>
+      <div class="zero-grid">
+        {zeroTolerance.map((item,index) => <article><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="container standards-layout">
+      <div class="standards-intro"><span class="eyebrow">Our standards</span><h2>Protection is built into practice.</h2><p>Safeguarding is part of programme design, implementation, feedback and organizational accountability.</p></div>
+      <div class="promote-grid">
+        {promotes.map((item,index) => <article><span>{index + 1}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="report"><div class="container report-grid"><div><span class="eyebrow">Report a concern</span><h2>Safeguarding concerns should be handled confidentially.</h2><p>Dedicated reporting details will be published once the approved channels are confirmed.</p></div><div class="channels"><p>Email reporting channel: <strong>to be confirmed</strong></p><p>Phone reporting channel: <strong>to be confirmed</strong></p><span class="button pending" aria-disabled="true">Confidential channel to be confirmed</span><a href="/safeguarding/">Privacy Policy</a></div></div></section>
 </BaseLayout>
+
 <style>
-  .section-title { margin: .8rem 0 .75rem; }
-  .zero-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: .75rem; margin-top: 2.5rem; counter-reset: item; }
-  .zero-grid article { padding: 1.5rem; color: var(--white); border-radius: .75rem; background: var(--royal-purple); }
-  .zero-mark { display: flex; align-items: flex-start; justify-content: flex-end; gap: .75rem; margin-bottom: 1.5rem; }
-  .zero-mark > span { display: block; font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .12em; opacity: .8; }
-  .zero-grid h3 { color: var(--white); }
-  .zero-grid p { margin-top: .65rem; color: rgba(255,255,255,.88); font-size: 1rem; }
-  .promote-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 2.5rem; }
-  .promote-grid p { margin-top: .75rem; }
-  .icon-card { display: grid; grid-template-columns: 1fr; align-items: start; gap: 1.25rem; }
+  .section-heading { max-width: 52rem; margin-bottom: 2.7rem; }
+  .section-heading h2 { margin-top: .8rem; }
+  .section-heading p { margin-top: .8rem; color: var(--slate-grey); }
+  .zero-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: .8rem; }
+  .zero-grid article { min-height: 18rem; padding: 1.5rem; color: var(--white); border-radius: .75rem; background: linear-gradient(145deg,var(--royal-purple),#4d216a); }
+  .zero-grid article > span { display: block; margin-bottom: 1.6rem; font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .12em; opacity: .8; }
+  .zero-grid h3 { color: var(--white); font-size: 1.05rem; }
+  .zero-grid p { margin-top: .65rem; color: rgba(255,255,255,.88); font-size: .92rem; line-height: 1.55; }
+  .standards-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(2rem,7vw,6rem); }
+  .standards-intro { display: grid; align-content: start; gap: .9rem; }
+  .promote-grid { display: grid; gap: .85rem; }
+  .promote-grid article { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 1.35rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); }
+  .promote-grid article > span { display: grid; width: 2.6rem; aspect-ratio: 1; place-items: center; color: var(--deep-green); border-radius: 50%; background: #eaf4e5; font: 700 .88rem Poppins,Arial,sans-serif; }
+  .promote-grid p { margin-top: .45rem; color: var(--slate-grey); }
   .report { padding-block: clamp(4rem,8vw,6rem); color: var(--white); background: var(--deep-green); }
   .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .report .eyebrow, .report h2 { color: var(--white); }
+  .report .eyebrow, .report h2, .report > .container > div > p { color: var(--white); }
   .report .eyebrow::before { background: #a8f46d; }
   .report h2 { margin-top: .8rem; }
+  .report > .container > div > p { margin-top: .8rem; opacity: .84; }
   .channels { display: grid; align-content: center; justify-items: start; gap: 1rem; padding: 2rem; border: 1px solid rgba(255,255,255,.25); border-radius: .75rem; }
   .channels .button { color: var(--deep-green); background: var(--white); }
   .channels .pending { cursor: not-allowed; opacity: .72; }
   .channels > a:last-child { text-underline-offset: .2rem; }
   @media (max-width: 64rem) { .zero-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 48rem) { .report-grid, .promote-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 36rem) { .zero-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 50rem) { .standards-layout, .report-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 36rem) { .zero-grid { grid-template-columns: 1fr; } .zero-grid article { min-height: auto; } }
 </style>

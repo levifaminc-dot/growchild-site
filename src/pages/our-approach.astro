@@ -1,64 +1,96 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import HumanitarianIcon from "../components/HumanitarianIcon.astro";
+import AboutSubnav from "../components/AboutSubnav.astro";
 import { photos } from "../data/photos";
 
 const advantages = [
-  { title: "Strong Focus on Data, MEAL and Evidence", text: "Systematic quantitative and qualitative methodologies powering real-time adaptation, operational rigor, and defensible public accountability.", items: ["Monitoring, Evaluation, Accountability and Learning","Third-Party Monitoring (TPM)","Digital data collection & validation","Data Quality Assurance protocols","Interactive dashboards and learning products"], icon: "Data" },
-  { title: "Community-Based Approach", text: "Programmes architected through organic civic consultation and customary leadership, positioning local actors as primary stewards of growth.", items: ["Community participation throughout lifecycle","Local leadership ownership and stewardship","Inclusion of marginalized & vulnerable groups","Accessible feedback and accountability mechanisms"], icon: "Community-engagement" },
-  { title: "Women and Youth-Led Leadership", text: "Directly dismantling structural barriers by elevating young changemakers and women into executive decision-making and operational stewardship.", items: ["Inclusive decision-making structures","Active, meaningful youth participation","Targeted women's economic & social empowerment","Long-term community ownership and autonomy"], icon: "Leadership" },
+  { title: "Evidence-driven", text: "We use quantitative and qualitative evidence to guide decisions, adapt implementation and strengthen public accountability.", items: ["Monitoring, Evaluation, Accountability and Learning", "Third-Party Monitoring", "Digital data collection and validation", "Data quality assurance", "Learning products"] },
+  { title: "Community-based", text: "Communities and local leadership help define priorities, shape delivery and steward sustainable results.", items: ["Participation throughout the programme lifecycle", "Local ownership and stewardship", "Inclusion of marginalized groups", "Accessible feedback mechanisms"] },
+  { title: "Women and youth-led", text: "Women and young people participate meaningfully in decisions, implementation and long-term community ownership.", items: ["Inclusive decision-making", "Meaningful youth participation", "Women's social and economic empowerment", "Community ownership and autonomy"] },
 ];
 
 const meal = [
-  { title: "Monitoring", activities: ["Indicator tracking","Activity monitoring","Field verification","Third-Party Monitoring (TPM)"], purpose: "Track implementation progress, verify results and ensure programme activities meet quality and performance standards.", icon: "Monitoring" },
-  { title: "Evaluation", activities: ["Baseline assessments","Outcome measurement","Learning reviews"], purpose: "Assess programme performance, measure changes and generate evidence for decision-making and adaptation.", icon: "Assessment" },
-  { title: "Accountability", activities: ["Community feedback mechanisms","Complaints response","Beneficiary satisfaction monitoring"], purpose: "Ensure affected populations can provide feedback, raise concerns and influence programme improvement.", icon: "Community-engagement" },
-  { title: "Learning", activities: ["Evidence documentation","Lessons learned","Case studies","Knowledge products"], purpose: "Capture experience, generate organizational learning and share evidence to improve future programming.", icon: "Learning" },
+  { title: "Monitoring", activities: ["Indicator tracking", "Activity monitoring", "Field verification", "Third-Party Monitoring"], purpose: "Tracks implementation, verifies results and supports programme quality." },
+  { title: "Evaluation", activities: ["Baseline assessments", "Outcome measurement", "Learning reviews"], purpose: "Assesses performance and generates evidence for adaptation." },
+  { title: "Accountability", activities: ["Community feedback", "Complaints response", "Satisfaction monitoring"], purpose: "Ensures communities can raise concerns and influence improvement." },
+  { title: "Learning", activities: ["Evidence documentation", "Lessons learned", "Case studies", "Knowledge products"], purpose: "Turns programme experience into stronger future practice." },
 ];
 
 const pathway = [
-  { title: "Community Identification and Screening", text: "Identify and screen persons with disabilities, particularly those at risk of exclusion due to poverty, geographic location, displacement, stigma and limited availability of services.", icon: "People-with-physical-impairments" },
-  { title: "Functional Assessment and Referral", text: "Linkages with rehabilitation professionals, health facilities, disability organizations and specialized service providers.", icon: "Health" },
-  { title: "Assistive Technology and Rehabilitation Pathways", text: "A continuum of care ensuring clinical accuracy, personalized fit, and long-term device sustainability.", icon: "Information-technology" },
+  { title: "Community identification and screening", text: "Identify persons with disabilities at risk of exclusion due to poverty, location, displacement, stigma or limited services." },
+  { title: "Functional assessment and referral", text: "Build linkages with rehabilitation professionals, health facilities, disability organizations and specialized providers." },
+  { title: "Assistive technology and rehabilitation pathways", text: "Support a continuum of care focused on clinical accuracy, personalized fit and long-term sustainability." },
 ];
 ---
-<BaseLayout title="Our Approach" description="GROWCHILD uses evidence, community ownership and inclusive leadership to deliver sustainable outcomes.">
-  <PageHero title="Evidence-Driven Impact" intro="Grounded in robust evidence, community ownership, and inclusive leadership to deliver sustainable humanitarian and development outcomes." parent="About Us" icon="Analysis" photo={photos.medicineOutreach} />
-  <section class="section"><div class="container"><span class="eyebrow">Strategic advantage</span><h2 class="section-title">How we work</h2><div class="advantage-grid">{advantages.map((item,i) => <article><div class="item-mark"><HumanitarianIcon name={item.icon} /><span class="index">0{i+1}</span></div><h3>{item.title}</h3><p>{item.text}</p><ul>{item.items.map((value) => <li>{value}</li>)}</ul></article>)}</div></div></section>
-  <section class="section section-tint"><div class="container"><span class="eyebrow">MEAL</span><h2 class="section-title">Monitoring, Evaluation, Accountability and Learning</h2><p class="lead">GROWCHILD considers MEAL a central component of quality programming.</p><div class="meal-grid">{meal.map((item) => <article class="card"><HumanitarianIcon name={item.icon} variant="compact" /><h3>{item.title}</h3><strong>Key activities</strong><ul>{item.activities.map((activity) => <li>{activity}</li>)}</ul><strong>Purpose</strong><p>{item.purpose}</p></article>)}</div></div></section>
-  <section class="section"><div class="container pathway"><div><span class="eyebrow">Disability inclusion</span><h2>Technical Pathway</h2><p>A structured technical process ensuring dignified, accessible, and continuous support for persons with disabilities.</p></div><ol>{pathway.map((item,i) => <li><HumanitarianIcon name={item.icon} variant="compact" /><div><span class="path-index">0{i+1}</span><h3>{item.title}</h3><p>{item.text}</p></div></li>)}</ol><div class="safeguard"><strong>Guiding safeguard</strong><p>Persons with disabilities are engaged not only as beneficiaries but as active participants in programme design, implementation, monitoring and decision-making.</p></div></div></section>
-  <section class="approach-cta"><div class="container"><h2>Partner with us on evidence and learning</h2><a class="button" href="/partnerships/">Explore Partnerships</a></div></section>
+
+<BaseLayout title="Our Approach" description="GROWCHILD combines evidence, community ownership and inclusive leadership to deliver sustainable outcomes.">
+  <PageHero title="Our Approach" intro="Evidence, community ownership and inclusive leadership guide how we design, deliver and improve every programme." parent="About Us" photo={photos.medicineOutreach} />
+  <AboutSubnav />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading"><span class="eyebrow">How we work</span><h2>Three principles guide delivery.</h2><p>Each principle connects technical quality with local leadership and practical accountability.</p></div>
+      <div class="advantage-grid">
+        {advantages.map((item,index) => <article><span class="item-number">0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p><ul>{item.items.map((value) => <li>{value}</li>)}</ul></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="container">
+      <div class="section-heading"><span class="eyebrow">MEAL</span><h2>Monitoring, Evaluation, Accountability and Learning.</h2><p>MEAL is a central component of quality programming and responsible decision-making.</p></div>
+      <div class="meal-grid">
+        {meal.map((item,index) => <article><span class="meal-letter">{"MEAL"[index]}</span><h3>{item.title}</h3><strong>Key activities</strong><ul>{item.activities.map((activity) => <li>{activity}</li>)}</ul><strong>Purpose</strong><p>{item.purpose}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container pathway">
+      <div class="pathway-intro"><span class="eyebrow">Disability inclusion</span><h2>A dignified technical pathway.</h2><p>Our approach supports accessible and continuous services while involving persons with disabilities in decisions that affect them.</p></div>
+      <ol>
+        {pathway.map((item,index) => <li><span>0{index + 1}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></li>)}
+      </ol>
+      <div class="safeguard"><strong>Guiding safeguard</strong><p>Persons with disabilities are engaged not only as beneficiaries, but as active participants in programme design, implementation, monitoring and decision-making.</p></div>
+    </div>
+  </section>
+
+  <section class="approach-cta"><div class="container"><div><h2>Partner with us on evidence and learning.</h2><p>Collaborate on accountable, locally led programming.</p></div><a class="button" href="/partnerships/">Explore Partnerships</a></div></section>
 </BaseLayout>
+
 <style>
-  .section-title { margin-top: .8rem; }
-  .advantage-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 3rem; }
-  .advantage-grid article { padding: 2rem; border: 1px solid var(--border); border-radius: .85rem; }
-  .item-mark { display: flex; align-items: flex-start; justify-content: flex-end; gap: 1rem; margin-bottom: 1.5rem; }
-  .index { display: inline-block; color: var(--royal-purple); font: 700 .85rem Poppins,Arial,sans-serif; letter-spacing: .12em; }
-  .advantage-grid p { margin-top: 1rem; }
-  .advantage-grid ul, .meal-grid ul { display: grid; gap: .55rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
-  .advantage-grid li, .meal-grid li { position: relative; padding-left: 1.5rem; font-size: 1rem; }
+  .section-heading { max-width: 52rem; margin-bottom: 2.8rem; }
+  .section-heading h2 { margin-top: .8rem; }
+  .section-heading p { margin-top: .8rem; color: var(--slate-grey); }
+  .advantage-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .advantage-grid article { padding: 2rem; border: 1px solid var(--border); border-radius: .85rem; background: var(--white); }
+  .item-number { display: block; width: fit-content; margin-bottom: 1.3rem; padding: .3rem .6rem; color: var(--royal-purple); border-radius: 999px; background: #f4edf8; font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .1em; }
+  .advantage-grid h3 { text-transform: capitalize; }
+  .advantage-grid p { margin-top: .85rem; color: var(--slate-grey); }
+  .advantage-grid ul, .meal-grid ul { display: grid; gap: .5rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+  .advantage-grid li, .meal-grid li { position: relative; padding-left: 1.4rem; font-size: .94rem; }
   .advantage-grid li::before, .meal-grid li::before { content: "✓"; position: absolute; left: 0; color: var(--leaf-green-dark); font-weight: 700; }
-  .lead { margin-top: 1rem; }
-  .meal-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 2.5rem; }
-  .meal-grid h3 { margin-top: 1rem; }
-  .meal-grid strong { display: block; margin-top: 1.5rem; color: var(--deep-green); font-family: Poppins,Arial,sans-serif; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
-  .meal-grid p { margin-top: .5rem; }
-  .pathway { display: grid; grid-template-columns: .7fr 1.3fr; gap: 2rem 5rem; }
-  .pathway h2 { margin-top: .8rem; }
-  .pathway > div:first-child p { margin-top: 1rem; }
-  .pathway ol { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
-  .pathway li { display: grid; grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: .75rem; }
-  .path-index { display: block; margin-bottom: .35rem; color: var(--royal-purple); font: 700 .75rem Poppins,Arial,sans-serif; letter-spacing: .1em; }
-  .pathway li p { margin-top: .55rem; }
+  .meal-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+  .meal-grid article { padding: 1.6rem; border: 1px solid var(--border); border-top: 4px solid var(--deep-blue); border-radius: .75rem; background: var(--white); }
+  .meal-letter { display: grid; width: 2.7rem; aspect-ratio: 1; place-items: center; margin-bottom: 1rem; color: var(--white); border-radius: 50%; background: var(--deep-blue); font: 700 1rem Poppins,Arial,sans-serif; }
+  .meal-grid strong { display: block; margin-top: 1.3rem; color: var(--deep-green); font-family: Poppins,Arial,sans-serif; font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; }
+  .meal-grid p { margin-top: .45rem; color: var(--slate-grey); font-size: .94rem; }
+  .pathway { display: grid; grid-template-columns: .72fr 1.28fr; gap: 2rem 5rem; }
+  .pathway-intro { display: grid; align-content: start; gap: .85rem; }
+  .pathway ol { display: grid; gap: .85rem; margin: 0; padding: 0; list-style: none; }
+  .pathway li { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: .75rem; }
+  .pathway li > span { color: var(--royal-purple); font: 700 .78rem Poppins,Arial,sans-serif; letter-spacing: .1em; }
+  .pathway li p { margin-top: .55rem; color: var(--slate-grey); }
   .safeguard { grid-column: 1/-1; padding: 1.5rem; color: var(--white); border-radius: .75rem; background: var(--deep-green); }
   .safeguard strong { font-family: Poppins,Arial,sans-serif; text-transform: uppercase; letter-spacing: .08em; }
   .safeguard p { margin-top: .5rem; }
   .approach-cta { padding-block: 4rem; color: var(--white); background: var(--deep-blue); }
   .approach-cta .container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-  .approach-cta h2 { color: var(--white); }
+  .approach-cta h2, .approach-cta p { color: var(--white); }
+  .approach-cta p { margin-top: .5rem; opacity: .84; }
   .approach-cta .button { color: var(--deep-blue); background: var(--white); }
-  @media (max-width: 56rem) { .advantage-grid { grid-template-columns: 1fr; } .pathway { grid-template-columns: 1fr; } .safeguard { grid-column: auto; } }
+  @media (max-width: 64rem) { .meal-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 56rem) { .advantage-grid, .pathway { grid-template-columns: 1fr; } .safeguard { grid-column: auto; } }
   @media (max-width: 42rem) { .meal-grid { grid-template-columns: 1fr; } .approach-cta .container { align-items: flex-start; flex-direction: column; } }
 </style>

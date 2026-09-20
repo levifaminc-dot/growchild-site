@@ -1,0 +1,28 @@
+---
+const links = [
+  { href: "/about/", label: "Overview" },
+  { href: "/where-we-work/", label: "Where We Work" },
+  { href: "/our-approach/", label: "Our Approach" },
+  { href: "/safeguarding/", label: "Safeguarding" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="about-subnav" aria-label="About GROWCHILD">
+  <div class="container">
+    {links.map((link) => (
+      <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>{link.label}</a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .about-subnav { border-bottom: 1px solid var(--border); background: rgba(255,255,255,.98); }
+  .about-subnav .container { display: flex; gap: .4rem; overflow-x: auto; padding-block: .75rem; scrollbar-width: thin; }
+  .about-subnav a { position: relative; flex: 0 0 auto; padding: .6rem .85rem .7rem; color: var(--slate-grey); border: 1px solid transparent; border-radius: .45rem; font: 600 .88rem Poppins,Arial,sans-serif; text-decoration: none; transition: color 180ms ease,background-color 180ms ease,border-color 180ms ease,transform 180ms ease; }
+  .about-subnav a::after { content: ""; position: absolute; inset: auto .8rem .3rem; height: 3px; border-radius: 999px; background: var(--leaf-green-dark); transform: scaleX(0); transform-origin: left; transition: transform 180ms ease; }
+  .about-subnav a:hover, .about-subnav a:focus-visible, .about-subnav a[aria-current="page"] { color: var(--deep-green); border-color: #d2e1d2; background: #f4f8f2; transform: translateY(-1px); }
+  .about-subnav a:hover::after, .about-subnav a:focus-visible::after, .about-subnav a[aria-current="page"]::after { transform: scaleX(1); }
+  @media (prefers-reduced-motion: reduce) { .about-subnav a:hover, .about-subnav a:focus-visible { transform: none; } }
+</style>
