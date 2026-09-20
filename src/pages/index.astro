@@ -101,13 +101,13 @@ const approaches = [
   .focus-card:hover, .focus-card:focus-visible { border-color: var(--sdg-color); box-shadow: 0 18px 38px color-mix(in srgb, var(--sdg-color) 18%, transparent); transform: translateY(-6px); }
   .focus-card:hover::after, .focus-card:focus-visible::after { transform: scale(1); }
   .focus-card h3, .focus-card-top, .focus-link { position: relative; z-index: 1; }
-  .focus-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .focus-card-top { display: flex; align-items: flex-start; justify-content: flex-end; gap: 1rem; }
   .focus-card-top > span { display: grid; justify-items: end; color: var(--sdg-color); font-family: Poppins,Arial,sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: .12em; }
   .sdg-label { font-size: .68rem; letter-spacing: .08em; }
   .focus-link { display: inline-flex; align-items: center; gap: .45rem; color: var(--sdg-color); font-family: Poppins,Arial,sans-serif; font-size: .92rem; font-weight: 700; }
   .focus-link span { transition: transform 180ms ease; }
   .focus-card:hover .focus-link span, .focus-card:focus-visible .focus-link span { transform: translateX(.3rem); }
-  .icon-card { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 1.25rem; }
+  .icon-card { display: grid; grid-template-columns: 1fr; align-items: start; gap: 1.25rem; }
   .approach-wrap { display: grid; }
   .card p { margin-top: .85rem; }
   .approach-link { margin-top: 2rem; justify-self: start; }
