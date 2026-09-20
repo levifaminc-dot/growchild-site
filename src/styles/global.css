@@ -99,10 +99,11 @@ img, svg { display: block; max-width: 100%; }
 .button-primary:hover { background: var(--deep-green); }
 .button-secondary { color: var(--deep-green); border-color: var(--deep-green); background: transparent; }
 .button-secondary:hover { color: var(--white); background: var(--deep-green); }
-.text-link { color: var(--leaf-green-dark); font-family: Poppins, Arial, sans-serif; font-weight: 700; text-underline-offset: 0.25rem; }
-.text-link:hover { text-decoration-thickness: 2px; }
+.text-link { color: var(--leaf-green-dark); font-family: Poppins, Arial, sans-serif; font-weight: 700; text-underline-offset: 0.25rem; transition: color 160ms ease, text-decoration-color 160ms ease; }
+.text-link:hover, .text-link:focus-visible { color: var(--deep-green); text-decoration-thickness: 2px; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-.card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--white); padding: clamp(1.5rem, 3vw, 2rem); }
+.card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--white); padding: clamp(1.5rem, 3vw, 2rem); box-shadow: 0 8px 22px rgba(10,72,35,.035); transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease; }
+.card:hover { border-color: #bdd0bd; box-shadow: 0 16px 32px rgba(10,72,35,.1); transform: translateY(-4px); }
 .card-accent { border-top: 4px solid var(--leaf-green); }
 .page-hero {
   padding-block: clamp(4rem, 9vw, 7rem);
@@ -121,4 +122,5 @@ img, svg { display: block; max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  .button:hover, .card:hover { transform: none; }
 }

@@ -86,23 +86,23 @@ const aboutLinks = [
   .dropdown { position: absolute; top: calc(100% + .5rem); left: 0; display: grid; width: 14rem; padding: .55rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--white); box-shadow: var(--shadow-soft); }
   .dropdown-wide { width: 17rem; }
   .dropdown-label { padding: .35rem .65rem; color: #68716b; font: 700 .68rem Poppins,Arial,sans-serif; letter-spacing: .09em; text-transform: uppercase; }
-  .dropdown a { display: grid; padding: .65rem; color: var(--deep-green); border-radius: .38rem; font: 500 .88rem Poppins,Arial,sans-serif; text-decoration: none; }
-  .dropdown a:hover, .dropdown a.current { background: var(--surface-tint); }
+  .dropdown a { display: grid; padding: .65rem; color: var(--deep-green); border-radius: .38rem; font: 500 .88rem Poppins,Arial,sans-serif; text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
+  .dropdown a:hover, .dropdown a:focus-visible, .dropdown a.current { color: var(--leaf-green-dark); background: var(--surface-tint); transform: translateX(.2rem); }
   .dropdown small { margin-top: .2rem; color: var(--slate-grey); font: 400 .75rem/1.35 "Atkinson Hyperlegible",Arial,sans-serif; }
   .header-cta { flex: 0 0 auto; font-size: .86rem; }
   .mobile-menu { display: none; position: relative; }
   .mobile-menu > summary { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .5rem; padding: .55rem .8rem; color: var(--deep-green); border: 2px solid var(--deep-green); border-radius: .5rem; cursor: pointer; font: 700 .9rem Poppins,Arial,sans-serif; list-style: none; }
   .mobile-menu > summary::-webkit-details-marker { display: none; }
   .mobile-menu > nav { position: absolute; top: calc(100% + .75rem); right: 0; display: grid; width: min(22rem, calc(100vw - 1.25rem)); gap: .3rem; padding: .85rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); box-shadow: var(--shadow-soft); max-height: calc(100vh - 9rem); overflow-y: auto; }
-  .mobile-link, .mobile-group > summary { display: flex; min-height: 2.75rem; align-items: center; justify-content: space-between; padding: .55rem .75rem; color: var(--deep-green); border-radius: .45rem; font: 600 .98rem Poppins,Arial,sans-serif; text-decoration: none; }
-  .mobile-link:hover, .mobile-link.current { background: var(--surface-tint); }
+  .mobile-link, .mobile-group > summary { display: flex; min-height: 2.75rem; align-items: center; justify-content: space-between; padding: .55rem .75rem; color: var(--deep-green); border-radius: .45rem; font: 600 .98rem Poppins,Arial,sans-serif; text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
+  .mobile-link:hover, .mobile-link:focus-visible, .mobile-link.current { background: var(--surface-tint); transform: translateX(.18rem); }
   .mobile-group { border: 1px solid var(--border); border-radius: .5rem; overflow: hidden; }
   .mobile-group > summary { cursor: pointer; list-style: none; background: #f8faf7; }
   .mobile-group > summary::-webkit-details-marker { display: none; }
   .mobile-group[open] > summary span { transform: rotate(180deg); }
   .mobile-group > div { display: grid; gap: .15rem; padding: .45rem .65rem .65rem; border-top: 1px solid var(--border); }
-  .mobile-group a { padding: .45rem .6rem; color: var(--slate-grey); border-radius: .35rem; font-size: .92rem; text-decoration: none; }
-  .mobile-group a:hover, .mobile-group a.current { color: var(--deep-green); background: var(--white); }
+  .mobile-group a { padding: .45rem .6rem; color: var(--slate-grey); border-radius: .35rem; font-size: .92rem; text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
+  .mobile-group a:hover, .mobile-group a:focus-visible, .mobile-group a.current { color: var(--deep-green); background: var(--white); transform: translateX(.18rem); }
   .mobile-cta { margin-top: .45rem; }
   .mobile-email { padding: .55rem; color: var(--slate-grey); text-align: center; font-size: .8rem; }
   @media (max-width: 72rem) { .desktop-nav, .header-cta { display: none; } .mobile-menu { display: block; } }
