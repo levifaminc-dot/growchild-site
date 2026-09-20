@@ -1,0 +1,206 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import EditorialPhoto from "../components/EditorialPhoto.astro";
+import { photos } from "../data/photos";
+
+const resources = [
+  { title: "GROWCHILD Institutional Profile", category: "organization", label: "Organization", description: "Our history, mission, vision, values, governance and institutional commitments.", href: "/about/", action: "View profile", color: "#0A4823" },
+  { title: "Programme Areas Overview", category: "programme", label: "Programme guide", description: "Explore six connected areas of humanitarian and development action.", href: "/our-work/", action: "Explore programmes", color: "#00609D" },
+  { title: "Evidence and MEAL Approach", category: "learning", label: "Research & learning", description: "How monitoring, evaluation, accountability and learning guide programme quality.", href: "/our-approach/", action: "Read the approach", color: "#2C6510" },
+  { title: "Disability Inclusion Technical Pathway", category: "programme", label: "Programme guide", description: "Our pathway for identification, referral, assistive technology and meaningful participation.", href: "/our-approach/", action: "View the pathway", color: "#DD1367" },
+  { title: "Safeguarding Commitment", category: "policy", label: "Policy & guidance", description: "Our zero-tolerance commitments, safeguarding standards and reporting information.", href: "/safeguarding/", action: "Read our commitment", color: "#622B86" },
+  { title: "Geographic Reach and Priorities", category: "organization", label: "Organization", description: "Our 15-state operational reach, North-East focus and priority populations.", href: "/where-we-work/", action: "Explore our reach", color: "#E56A18" },
+];
+
+const programmes = [
+  { title: "Disability Inclusion & Advocacy", href: "/our-work/#area-1", color: "#DD1367" },
+  { title: "Education & Child Protection", href: "/our-work/#area-2", color: "#C5192D" },
+  { title: "Health & Community Wellbeing", href: "/our-work/#area-3", color: "#4C9F38" },
+  { title: "Livelihoods & Women's Empowerment", href: "/our-work/#area-4", color: "#FF3A21" },
+  { title: "Water, Sanitation & Hygiene", href: "/our-work/#area-5", color: "#26BDE2" },
+  { title: "Emergency Response", href: "/our-work/#area-6", color: "#FD9D24" },
+];
+
+const learningSteps = ["Identify needs", "Design together", "Implement", "Monitor", "Document & learn"];
+---
+
+<BaseLayout title="Resources & Knowledge" description="Explore verified programme guidance, institutional information and learning resources from GROWCHILD.">
+  <PageHero
+    title="Resources & Knowledge"
+    intro="Evidence, learning and practical guidance that strengthen programmes, partnerships and community impact."
+    parent="Get Involved"
+    photo={photos.schoolChildren}
+    primaryHref="#resource-library"
+    primaryLabel="Explore Our Resources"
+  />
+
+  <section class="section featured-section">
+    <div class="container featured-grid">
+      <EditorialPhoto photo={photos.communityOutreach} ratio="landscape" class="featured-photo" />
+      <div class="featured-copy">
+        <span class="resource-label">Featured resource</span>
+        <h2>GROWCHILD Institutional Profile</h2>
+        <p>Understand our journey, mission, governance, values and the institutional commitments that guide our work across Nigeria.</p>
+        <div class="featured-meta"><span>Verified organizational information</span><span>Web resource</span></div>
+        <a class="button button-primary" href="/about/">View Institutional Profile</a>
+      </div>
+      <aside class="latest-panel">
+        <h2>Knowledge highlights</h2>
+        <a href="/our-approach/">Evidence and MEAL Approach <span aria-hidden="true">→</span></a>
+        <a href="/safeguarding/">Safeguarding Commitment <span aria-hidden="true">→</span></a>
+        <a href="/our-work/">Programme Areas Overview <span aria-hidden="true">→</span></a>
+        <a href="/where-we-work/">Geographic Reach <span aria-hidden="true">→</span></a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section library-section" id="resource-library">
+    <div class="container">
+      <div class="library-heading">
+        <div><span class="eyebrow">Resource library</span><h2>Browse verified resources.</h2><p>Search institutional information, programme guidance, learning and safeguarding material.</p></div>
+        <label class="search-field" for="resource-search"><span>Search resources</span><input id="resource-search" type="search" placeholder="Search by title or topic" autocomplete="off" /></label>
+      </div>
+      <div class="filter-row" role="group" aria-label="Filter resources">
+        <button type="button" data-filter="all" aria-pressed="true">All resources</button>
+        <button type="button" data-filter="organization" aria-pressed="false">Organization</button>
+        <button type="button" data-filter="programme" aria-pressed="false">Programme guides</button>
+        <button type="button" data-filter="learning" aria-pressed="false">Research & learning</button>
+        <button type="button" data-filter="policy" aria-pressed="false">Policies & guidance</button>
+      </div>
+      <p class="result-count" id="resource-count" aria-live="polite">Showing {resources.length} resources</p>
+      <div class="resource-grid">
+        {resources.map((resource) => (
+          <article class="resource-card" data-category={resource.category} data-search={`${resource.title} ${resource.label} ${resource.description}`.toLowerCase()} style={`--resource-color:${resource.color}`}>
+            <div class="card-band"><span>{resource.label}</span></div>
+            <div class="card-copy"><h3>{resource.title}</h3><p>{resource.description}</p><a href={resource.href}>{resource.action} <span aria-hidden="true">→</span></a></div>
+          </article>
+        ))}
+      </div>
+      <div class="empty-state" id="resource-empty" hidden><h3>No matching resources</h3><p>Try another search term or choose a different category.</p></div>
+    </div>
+  </section>
+
+  <section class="section programme-resources">
+    <div class="container">
+      <div class="section-heading"><span class="eyebrow">Programme resources</span><h2>Find resources by programme.</h2><p>Start with the programme area most relevant to your work or community.</p></div>
+      <div class="programme-grid">
+        {programmes.map((programme,index) => <a href={programme.href} style={`--programme-color:${programme.color}`}><span>0{index + 1}</span><strong>{programme.title}</strong><small>Explore programme <span aria-hidden="true">→</span></small></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section learning-section">
+    <div class="container learning-layout">
+      <div><span class="eyebrow">Knowledge in action</span><h2>Learning improves every programme.</h2><p>We turn evidence and community feedback into stronger decisions, partnerships and results.</p><a class="text-link" href="/our-approach/">Explore our approach <span aria-hidden="true">→</span></a></div>
+      <ol>{learningSteps.map((step,index) => <li><span>{index + 1}</span><strong>{step}</strong></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="resource-cta"><div class="container"><div><span class="eyebrow">Need more information?</span><h2>Ask about our programmes or resources.</h2><p>Contact our team for verified organizational information and partnership enquiries.</p></div><div class="cta-actions"><a class="button primary-cta" href="/contact/">Contact Us</a><a class="button secondary-cta" href="/partnerships/">Partner With Us</a></div></div></section>
+
+  <script>
+    const searchInput = document.querySelector<HTMLInputElement>("#resource-search");
+    const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-filter]"));
+    const resourceCards = Array.from(document.querySelectorAll<HTMLElement>("[data-category]"));
+    const resultCount = document.querySelector<HTMLElement>("#resource-count");
+    const emptyState = document.querySelector<HTMLElement>("#resource-empty");
+    let activeFilter = "all";
+
+    const updateResources = () => {
+      const query = searchInput?.value.trim().toLowerCase() || "";
+      let visible = 0;
+      resourceCards.forEach((card) => {
+        const matchesCategory = activeFilter === "all" || card.dataset.category === activeFilter;
+        const matchesSearch = !query || (card.dataset.search || "").includes(query);
+        card.hidden = !(matchesCategory && matchesSearch);
+        if (!card.hidden) visible += 1;
+      });
+      if (resultCount) resultCount.textContent = `Showing ${visible} ${visible === 1 ? "resource" : "resources"}`;
+      if (emptyState) emptyState.hidden = visible !== 0;
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter || "all";
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        updateResources();
+      });
+    });
+    searchInput?.addEventListener("input", updateResources);
+  </script>
+</BaseLayout>
+
+<style>
+  .featured-section { background: linear-gradient(110deg,#f1fbf4,#eef7fc); }
+  .featured-grid { display: grid; grid-template-columns: .78fr 1.05fr .82fr; gap: 1.25rem; align-items: stretch; }
+  :global(.featured-photo) { min-height: 22rem; }
+  .featured-copy, .latest-panel { padding: clamp(1.6rem,4vw,2.5rem); border: 1px solid var(--border); border-radius: .9rem; background: rgba(255,255,255,.9); }
+  .featured-copy { display: grid; align-content: center; justify-items: start; gap: 1rem; }
+  .resource-label { color: var(--royal-purple); font: 700 .78rem Poppins,Arial,sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+  .featured-copy h2 { font-size: clamp(1.75rem,3vw,2.5rem); }
+  .featured-copy p { color: var(--slate-grey); }
+  .featured-meta { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .featured-meta span { padding: .3rem .55rem; color: var(--deep-green); border-radius: 999px; background: #e9f5e6; font-size: .78rem; font-weight: 700; }
+  .latest-panel { display: grid; align-content: center; gap: .2rem; }
+  .latest-panel h2 { margin-bottom: .8rem; font-size: 1.1rem; }
+  .latest-panel a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .75rem; color: var(--deep-green); border-bottom: 1px solid var(--border); font-size: .92rem; font-weight: 700; text-decoration: none; }
+  .latest-panel a:last-child { border-bottom: 0; }
+  .latest-panel a span { transition: transform 180ms ease; }
+  .latest-panel a:hover span, .latest-panel a:focus-visible span { transform: translateX(.25rem); }
+
+  .library-section { scroll-margin-top: 7rem; }
+  .library-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+  .library-heading h2 { margin-top: .8rem; }
+  .library-heading p { max-width: 44rem; margin-top: .75rem; color: var(--slate-grey); }
+  .search-field { display: grid; flex: 0 1 24rem; gap: .35rem; color: var(--deep-green); font-size: .82rem; font-weight: 700; }
+  .search-field input { width: 100%; min-height: 3rem; padding: .7rem .85rem; color: var(--slate-grey); border: 1.5px solid #7d877f; border-radius: .5rem; background: var(--white); font: inherit; }
+  .filter-row { display: flex; gap: .55rem; overflow-x: auto; margin-top: 2rem; padding-bottom: .3rem; scrollbar-width: thin; }
+  .filter-row button { flex: 0 0 auto; min-height: 2.8rem; padding: .55rem .9rem; color: var(--deep-green); border: 1px solid var(--border); border-radius: .5rem; background: var(--white); cursor: pointer; font: 700 .82rem Poppins,Arial,sans-serif; transition: color 160ms ease,background-color 160ms ease,border-color 160ms ease,transform 160ms ease; }
+  .filter-row button:hover, .filter-row button:focus-visible, .filter-row button[aria-pressed="true"] { color: var(--white); border-color: var(--deep-green); background: var(--deep-green); transform: translateY(-2px); }
+  .result-count { margin-top: 1rem; color: var(--slate-grey); font-size: .9rem; }
+  .resource-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 1.3rem; }
+  .resource-card { overflow: hidden; border: 1px solid var(--border); border-radius: .8rem; background: var(--white); box-shadow: 0 8px 22px rgba(10,72,35,.05); transition: transform 180ms ease,box-shadow 180ms ease; }
+  .resource-card:hover { box-shadow: 0 16px 34px rgba(10,72,35,.11); transform: translateY(-4px); }
+  .card-band { min-height: 5.5rem; display: flex; align-items: end; padding: 1rem; background: linear-gradient(135deg,color-mix(in srgb,var(--resource-color) 16%,white),color-mix(in srgb,var(--resource-color) 5%,white)); border-top: 5px solid var(--resource-color); }
+  .card-band span { padding: .3rem .55rem; color: var(--white); border-radius: .3rem; background: var(--resource-color); font: 700 .72rem Poppins,Arial,sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+  .card-copy { display: grid; min-height: 17rem; align-content: start; gap: .8rem; padding: 1.4rem; }
+  .card-copy h3 { font-size: 1.08rem; }
+  .card-copy p { color: var(--slate-grey); font-size: .94rem; }
+  .card-copy a { align-self: end; margin-top: auto; color: var(--resource-color); font: 700 .88rem Poppins,Arial,sans-serif; text-underline-offset: .2rem; }
+  .empty-state { margin-top: 1.3rem; padding: 3rem; text-align: center; border: 2px dashed var(--border); border-radius: .8rem; background: var(--surface-tint); }
+  .empty-state p { margin-top: .5rem; }
+
+  .programme-resources { background: linear-gradient(110deg,#eef8fb,#f5f2fa); }
+  .section-heading { max-width: 48rem; margin-bottom: 2.5rem; }
+  .section-heading h2 { margin-top: .8rem; }
+  .section-heading p { margin-top: .75rem; color: var(--slate-grey); }
+  .programme-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
+  .programme-grid a { display: grid; min-height: 12rem; align-content: space-between; gap: 1rem; padding: 1.4rem; color: var(--deep-green); border: 1px solid var(--border); border-top: 5px solid var(--programme-color); border-radius: .75rem; background: var(--white); text-decoration: none; transition: transform 180ms ease,box-shadow 180ms ease; }
+  .programme-grid a:hover, .programme-grid a:focus-visible { box-shadow: 0 14px 28px color-mix(in srgb,var(--programme-color) 15%,transparent); transform: translateY(-4px); }
+  .programme-grid a > span { color: var(--programme-color); font: 700 .78rem Poppins,Arial,sans-serif; letter-spacing: .1em; }
+  .programme-grid strong { font-family: Poppins,Arial,sans-serif; }
+  .programme-grid small { color: var(--programme-color); font-size: .78rem; font-weight: 700; }
+
+  .learning-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(2rem,7vw,6rem); align-items: center; }
+  .learning-layout > div { display: grid; justify-items: start; gap: .9rem; }
+  .learning-layout ol { position: relative; display: grid; grid-template-columns: repeat(5,1fr); gap: .8rem; margin: 0; padding: 0; list-style: none; }
+  .learning-layout ol::before { content: ""; position: absolute; top: 1.5rem; right: 8%; left: 8%; height: 2px; background: #cfe1d0; }
+  .learning-layout li { position: relative; z-index: 1; display: grid; justify-items: center; gap: .65rem; text-align: center; }
+  .learning-layout li > span { display: grid; width: 3rem; aspect-ratio: 1; place-items: center; color: var(--deep-green); border: 2px solid #b9d6b8; border-radius: 50%; background: var(--white); font: 700 .9rem Poppins,Arial,sans-serif; }
+  .learning-layout li strong { font: 700 .78rem/1.35 Poppins,Arial,sans-serif; }
+
+  .resource-cta { padding-block: 4rem; color: var(--white); background: linear-gradient(100deg,var(--deep-green),var(--deep-blue)); }
+  .resource-cta .container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .resource-cta .eyebrow, .resource-cta h2, .resource-cta p { color: var(--white); }
+  .resource-cta .eyebrow::before { background: var(--white); }
+  .resource-cta h2 { margin-top: .7rem; }
+  .resource-cta p { margin-top: .55rem; opacity: .84; }
+  .cta-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: .7rem; }
+  .primary-cta { color: var(--deep-green); background: var(--white); }
+  .secondary-cta { color: var(--white); border-color: rgba(255,255,255,.65); background: transparent; }
+
+  @media (max-width: 64rem) { .featured-grid { grid-template-columns: 1fr 1fr; } .latest-panel { grid-column: 1/-1; } .resource-grid, .programme-grid { grid-template-columns: repeat(2,1fr); } .learning-layout { grid-template-columns: 1fr; } }
+  @media (max-width: 48rem) { .featured-grid, .resource-grid, .programme-grid { grid-template-columns: 1fr; } .latest-panel { grid-column: auto; } .library-heading, .resource-cta .container { align-items: flex-start; flex-direction: column; } .search-field { width: 100%; flex-basis: auto; } .learning-layout ol { grid-template-columns: 1fr; } .learning-layout ol::before { display: none; } .learning-layout li { grid-template-columns: auto 1fr; justify-items: start; align-items: center; text-align: left; } }
+  @media (prefers-reduced-motion: reduce) { .resource-card:hover, .filter-row button:hover, .programme-grid a:hover, .programme-grid a:focus-visible { transform: none; } }
+</style>

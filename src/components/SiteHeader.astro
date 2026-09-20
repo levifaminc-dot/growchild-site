@@ -9,6 +9,10 @@ const aboutLinks = [
   { href: "/our-approach/", label: "Our Approach" },
   { href: "/safeguarding/", label: "Safeguarding" },
 ];
+const involvedLinks = [
+  { href: "/partnerships/", label: "Partnerships", description: "Institutional collaborations & joint field action" },
+  { href: "/resources/", label: "Resources & Knowledge", description: "Programme guidance, learning and institutional resources" },
+];
 ---
 
 <header class="site-header">
@@ -33,8 +37,8 @@ const aboutLinks = [
         </details>
         <a class:list={["nav-link", { current: isCurrent("/our-work/") }]} href="/our-work/" aria-current={isCurrent("/our-work/") ? "page" : undefined}>Our Work</a>
         <details class="nav-group">
-          <summary class:list={["nav-link", { current: isCurrent("/partnerships/") }]}>Get Involved <span aria-hidden="true">⌄</span></summary>
-          <div class="dropdown dropdown-wide"><span class="dropdown-label">Get Involved Menu</span><a class:list={{ current: isCurrent("/partnerships/") }} href="/partnerships/"><strong>Partnerships</strong><small>Institutional collaborations &amp; joint field action</small></a></div>
+          <summary class:list={["nav-link", { current: involvedLinks.some((link) => isCurrent(link.href)) }]}>Get Involved <span aria-hidden="true">⌄</span></summary>
+          <div class="dropdown dropdown-wide"><span class="dropdown-label">Get Involved Menu</span>{involvedLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}><strong>{link.label}</strong><small>{link.description}</small></a>)}</div>
         </details>
         <a class:list={["nav-link", { current: isCurrent("/news/") }]} href="/news/" aria-current={isCurrent("/news/") ? "page" : undefined}>News &amp; Updates</a>
         <a class:list={["nav-link", { current: isCurrent("/contact/") }]} href="/contact/" aria-current={isCurrent("/contact/") ? "page" : undefined}>Contact Us</a>
@@ -49,8 +53,8 @@ const aboutLinks = [
             <div>{aboutLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}>{link.label}</a>)}</div>
           </details>
           <a class:list={["mobile-link", { current: isCurrent("/our-work/") }]} href="/our-work/">Our Work</a>
-          <details class="mobile-group" open={isCurrent("/partnerships/")}>
-            <summary>Get Involved <span aria-hidden="true">⌄</span></summary><div><a class:list={{ current: isCurrent("/partnerships/") }} href="/partnerships/">Partnerships</a></div>
+          <details class="mobile-group" open={involvedLinks.some((link) => isCurrent(link.href))}>
+            <summary>Get Involved <span aria-hidden="true">⌄</span></summary><div>{involvedLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}>{link.label}</a>)}</div>
           </details>
           <a class:list={["mobile-link", { current: isCurrent("/news/") }]} href="/news/">News &amp; Updates</a>
           <a class:list={["mobile-link", { current: isCurrent("/contact/") }]} href="/contact/">Contact Us</a>
