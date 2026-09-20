@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Page Not Found" description="The requested GROWCHILD page could not be found.">
+  <section class="missing"><div class="container"><span class="eyebrow">Page not found</span><h1>We couldn't find that page.</h1><p>The page may have moved or the address may be incomplete.</p><a class="button button-primary" href="/">Return home</a></div></section>
+</BaseLayout>
+<style>
+  .missing { min-height: 60vh; display: grid; place-items: center; padding-block: 5rem; text-align: center; }
+  .missing .container { display: grid; justify-items: center; gap: 1.25rem; }
+</style>

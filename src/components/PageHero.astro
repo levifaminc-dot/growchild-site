@@ -1,0 +1,15 @@
+---
+interface Props { title: string; intro: string; parent?: string; }
+const { title, intro, parent } = Astro.props;
+---
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      {parent && <><span>{parent}</span><span aria-hidden="true">/</span></>}
+      <span aria-current="page">{title}</span>
+    </nav>
+    <h1>{title}</h1>
+    <p>{intro}</p>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+<BaseLayout title="Contact Us" description="Contact GROWCHILD about partnerships, collaboration, safeguarding or general enquiries.">
+  <PageHero title="Contact Us" intro="Send us a message about partnerships, collaboration or general enquiries." />
+  <section class="section"><div class="container contact-grid">
+    <aside><span class="eyebrow">Direct channels</span><h2>Official communication lines</h2><p>For institutional and public inquiries.</p><div class="channel"><span>Email</span><a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a></div><div class="channel"><span>Phone</span><a href="tel:+2349134068024">+234 913 406 8024</a></div><div class="safeguarding-note"><strong>Safeguarding concern?</strong><p>Use our confidential reporting channel when it is confirmed.</p><a href="/safeguarding/">Go to Safeguarding &amp; Reporting →</a></div></aside>
+    <div class="form-panel"><h2>Send a Message</h2><form id="contact-form">
+      <label for="full-name">Full Name <span aria-hidden="true">*</span></label><input id="full-name" name="full-name" autocomplete="name" required />
+      <label for="organization">Organization / Entity Name</label><input id="organization" name="organization" autocomplete="organization" />
+      <label for="email">Email Address <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required />
+      <label for="interest">Subject / Interest Area <span aria-hidden="true">*</span></label><select id="interest" name="interest" required><option value="">Select an interest area</option><option>Partnership</option><option>General Inquiry</option><option>MEAL Collaboration</option><option>Safeguarding Concern</option></select>
+      <label for="message">Message <span aria-hidden="true">*</span></label><textarea id="message" name="message" rows="6" required></textarea>
+      <button class="button button-primary" type="submit">Send Message</button><p class="form-help">This opens your email application with the message ready to send. Your information is handled in line with our Privacy Policy.</p><p id="form-status" class="status" aria-live="polite"></p>
+    </form></div>
+  </div></section>
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
+    const status = document.querySelector<HTMLElement>("#form-status");
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const data = new FormData(form);
+      const subject = String(data.get("interest") || "Website enquiry");
+      const body = [`Full name: ${data.get("full-name")}`, `Organization: ${data.get("organization") || "Not provided"}`, `Email: ${data.get("email")}`, "", String(data.get("message") || "")].join("\n");
+      if (status) status.textContent = "Opening your email application…";
+      window.location.href = `mailto:growchild.org@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</BaseLayout>
+<style>
+  .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem,7vw,6rem); align-items: start; }
+  aside h2 { margin-top: .8rem; }
+  aside > p { margin-top: .7rem; }
+  .channel { display: grid; gap: .25rem; margin-top: 1.5rem; padding: 1.25rem; border: 1px solid var(--border); border-radius: .65rem; }
+  .channel span { color: var(--slate-grey); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  .channel a { color: var(--leaf-green-dark); font-weight: 700; }
+  .safeguarding-note { margin-top: 1.5rem; padding: 1.5rem; color: var(--white); border-radius: .75rem; background: var(--royal-purple); }
+  .safeguarding-note p { margin-top: .4rem; }
+  .safeguarding-note a { display: inline-block; margin-top: .8rem; font-weight: 700; text-underline-offset: .2rem; }
+  .form-panel { padding: clamp(1.5rem,4vw,3rem); border: 1px solid var(--border); border-radius: .9rem; box-shadow: var(--shadow-soft); }
+  form { display: grid; gap: .55rem; margin-top: 1.5rem; }
+  label { margin-top: .75rem; color: var(--deep-green); font-size: .95rem; font-weight: 600; }
+  input, select, textarea { width: 100%; min-height: 3rem; padding: .75rem .85rem; color: var(--slate-grey); border: 1.5px solid #747d77; border-radius: .5rem; background: var(--white); font: inherit; }
+  textarea { resize: vertical; }
+  form .button { justify-self: start; margin-top: 1rem; cursor: pointer; }
+  .form-help { margin-top: .6rem; font-size: .9rem; }
+  .status { min-height: 1.5rem; color: var(--leaf-green-dark); font-weight: 700; }
+  @media (max-width: 50rem) { .contact-grid { grid-template-columns: 1fr; } }
+</style>

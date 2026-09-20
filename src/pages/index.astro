@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const focusAreas = [
+  "Disability Inclusion & Advocacy",
+  "Education & Child Protection",
+  "Health & Community Wellbeing",
+  "Livelihoods & Women's Empowerment",
+  "Water, Sanitation & Hygiene (WASH)",
+  "Emergency Response",
+];
+
+const approaches = [
+  { title: "MEAL & Evidence-Driven", text: "Strengthens how programmes generate, manage, analyze and use evidence." },
+  { title: "Community-Based", text: "Programmes grounded in community realities and local ownership." },
+  { title: "Women & Youth-Led", text: "Inclusive decision-making, youth participation and community ownership." },
+];
+---
+
+<BaseLayout title="Inclusion, Dignity and Resilience" description="GROWCHILD is a Nigerian women and youth-led humanitarian and development organization advancing inclusion, dignity and resilience.">
+  <section class="home-hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Inclusion · Dignity · Resilience</span>
+        <h1>Empowering women and children across Nigeria.</h1>
+        <p>Community-driven, evidence-based programmes that advance wellbeing, protection, inclusion and resilience.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="/partnerships/">Get Involved</a>
+          <a class="button button-secondary" href="/our-work/">Explore Our Work</a>
+        </div>
+      </div>
+      <div class="photo-placeholder" role="img" aria-label="Community photo to be supplied">
+        <span>Community photo to be supplied</span>
+        <small>Dignified humanitarian field activity</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container story-grid">
+      <div><span class="eyebrow">Who we are</span><h2>A locally led organization built around dignity.</h2></div>
+      <div class="story-copy">
+        <p>GROWCHILD is a Nigerian women and youth-led humanitarian and development organization committed to improving the wellbeing, dignity, protection, inclusion and resilience of vulnerable populations.</p>
+        <p>Conceptualized in 2017 as a grassroots response to challenges facing women, children and vulnerable households in crisis-affected communities, it was formally registered with the Corporate Affairs Commission in 2026 (RC 9704884).</p>
+        <a class="text-link" href="/about/">Read our story →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="container">
+      <div class="section-heading"><span class="eyebrow">What we do</span><h2>Six connected areas of action.</h2></div>
+      <div class="focus-grid">
+        {focusAreas.map((area, index) => (
+          <article class="focus-card">
+            <span aria-hidden="true">0{index + 1}</span>
+            <h3>{area}</h3>
+            <a class="text-link" href={`/our-work/#area-${index + 1}`}>Learn more →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container approach-wrap">
+      <div class="section-heading"><span class="eyebrow">Our approach</span><h2>Evidence and local ownership guide every programme.</h2></div>
+      <div class="cards">
+        {approaches.map((approach) => <article class="card card-accent"><h3>{approach.title}</h3><p>{approach.text}</p></article>)}
+      </div>
+      <a class="text-link approach-link" href="/our-approach/">See how we work →</a>
+    </div>
+  </section>
+
+  <section class="partnership-banner">
+    <div class="container banner-inner">
+      <div><span class="eyebrow">Work with us</span><h2>Partner with us to build resilient communities.</h2></div>
+      <a class="button banner-button" href="/partnerships/">Become a Partner</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-hero { overflow: hidden; padding-block: clamp(4rem,8vw,7.5rem); background: radial-gradient(circle at 16% 20%,rgba(83,152,25,.14),transparent 24rem), linear-gradient(180deg,#f7faf5,#fff); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(2.5rem,7vw,6.5rem); }
+  .hero-copy { display: grid; justify-items: start; gap: 1.45rem; }
+  .hero-copy h1 { max-width: 12ch; }
+  .hero-copy p { max-width: 38rem; color: var(--slate-grey); font-size: clamp(1.15rem,2vw,1.4rem); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .photo-placeholder { position: relative; display: grid; min-height: 31rem; place-content: end start; overflow: hidden; padding: 2rem; color: var(--deep-green); border: 2px dashed #aebdaa; border-radius: 1.1rem; background: linear-gradient(140deg,transparent 40%,rgba(98,43,134,.1)), repeating-linear-gradient(-35deg,#edf3e9 0 16px,#f7faf5 16px 32px); box-shadow: var(--shadow-soft); }
+  .photo-placeholder::before { content: ""; position: absolute; inset: 2rem 2rem auto auto; width: 7rem; aspect-ratio: 1; border: 1.1rem solid rgba(83,152,25,.18); border-radius: 50%; }
+  .photo-placeholder span { font-family: Poppins,Arial,sans-serif; font-weight: 700; }
+  .photo-placeholder small { font-size: .9rem; }
+  .story-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem,7vw,6rem); }
+  .story-grid h2, .section-heading h2 { margin-top: 1rem; }
+  .story-copy { display: grid; gap: 1.25rem; }
+  .section-heading { max-width: 47rem; margin-bottom: 2.5rem; }
+  .focus-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+  .focus-card { display: grid; min-height: 15rem; align-content: space-between; gap: 1rem; padding: 1.75rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); }
+  .focus-card > span { color: var(--royal-purple); font-family: Poppins,Arial,sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: .12em; }
+  .focus-card .text-link { font-size: .92rem; }
+  .approach-wrap { display: grid; }
+  .card p { margin-top: .85rem; }
+  .approach-link { margin-top: 2rem; justify-self: start; }
+  .partnership-banner { padding-block: 4.5rem; color: var(--white); background: var(--deep-blue); }
+  .banner-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .partnership-banner .eyebrow, .partnership-banner h2 { color: var(--white); }
+  .partnership-banner .eyebrow::before { background: var(--white); }
+  .partnership-banner h2 { max-width: 20ch; margin-top: .75rem; }
+  .banner-button { flex: 0 0 auto; color: var(--deep-blue); background: var(--white); }
+  @media (max-width: 56rem) { .hero-grid, .story-grid { grid-template-columns: 1fr; } .photo-placeholder { min-height: 23rem; } .focus-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 42rem) { .focus-grid { grid-template-columns: 1fr; } .focus-card { min-height: 12rem; } .banner-inner { align-items: flex-start; flex-direction: column; } }
+</style>

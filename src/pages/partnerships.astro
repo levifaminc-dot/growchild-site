@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const models = [
+  ["Technical Mentorship", "Reciprocal capacity exchange fostering institutional maturity, knowledge transfer, and specialist advisory frameworks for sustainable field interventions."],
+  ["Institutional Strengthening", "Consolidating governance, internal compliance, risk management systems, and transparent operational protocols aligned with global statutory standards."],
+  ["Joint Learning", "Structured peer dialogues, shared reviews, and cross-organizational learning agendas that iteratively refine frontline intervention methodologies."],
+  ["Programme Collaboration", "Co-designed and co-delivered programmatic architectures delivering dignified health, protection, and economic security to women and vulnerable youth."],
+  ["Evidence Generation", "Rigorously measured empirical research, field data aggregation, and community-led documentation shaping policy, accountability, and discourse."],
+];
+const reasons = ["Nigerian community understanding","Women and youth-led leadership","Disability inclusion commitment","Advocacy and community engagement capacity","Assistive technology interest and fabrication support capacity","Strong MEAL, TPM, and data systems orientation","Commitment to evidence-driven programming"];
+const contributions = ["Local knowledge","Community access","Inclusion expertise","Data and MEAL capacity","Commitment to locally led solutions"];
+---
+<BaseLayout title="Partnerships" description="Partner with GROWCHILD on inclusive, evidence-driven and locally led humanitarian and development programmes.">
+  <PageHero title="Partner With GROWCHILD" intro="GROWCHILD believes sustainable impact requires collaboration between local organizations, government institutions, international partners, communities, and technical experts." parent="Get Involved" />
+  <section class="section"><div class="container"><span class="eyebrow">Collaboration models</span><h2 class="section-title">Core Value Propositions</h2><div class="models">{models.map(([title,text],i) => <article><span>0{i+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+  <section class="section section-tint"><div class="container why-grid"><div><span class="eyebrow">Why partner with us?</span><h2>GROWCHILD positions itself as a reliable emerging Nigerian partner.</h2></div><ul>{reasons.map((reason) => <li>{reason}</li>)}</ul></div></section>
+  <section class="section"><div class="container"><span class="eyebrow">Shared capacity</span><h2 class="section-title">What We Contribute</h2><div class="contributions">{contributions.map((item,i) => <article><span>0{i+1}</span><h3>{item}</h3></article>)}</div></div></section>
+  <section class="partner-cta"><div class="container"><div><h2>Let's build something together</h2><p>Reach out to our partnership and safeguarding team to explore collaborative structures and local impact initiatives.</p></div><a class="button" href="/contact/">Contact Us</a></div></section>
+</BaseLayout>
+<style>
+  .section-title { margin-top: .8rem; }
+  .models { display: grid; grid-template-columns: repeat(6,1fr); gap: 1rem; margin-top: 3rem; }
+  .models article { grid-column: span 2; padding: 2rem; border: 1px solid var(--border); border-radius: .75rem; }
+  .models article:nth-child(4) { grid-column: 2/span 2; }
+  .models > article > span, .contributions span { display: block; margin-bottom: 2.5rem; color: var(--royal-purple); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .12em; }
+  .models p { margin-top: .75rem; }
+  .why-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem,7vw,6rem); }
+  .why-grid h2 { margin-top: .8rem; }
+  .why-grid ul { display: grid; gap: .65rem; margin: 0; padding: 0; list-style: none; }
+  .why-grid li { position: relative; padding: 1rem 1rem 1rem 3rem; border: 1px solid var(--border); border-radius: .65rem; background: var(--white); }
+  .why-grid li::before { content: "✓"; position: absolute; left: 1rem; color: var(--leaf-green-dark); font-weight: 700; }
+  .contributions { display: grid; grid-template-columns: repeat(5,1fr); gap: .75rem; margin-top: 2.5rem; }
+  .contributions article { min-height: 12rem; padding: 1.5rem; border-top: 4px solid var(--leaf-green); border-radius: .5rem; background: var(--surface-tint); }
+  .partner-cta { padding-block: 4rem; color: var(--white); background: var(--deep-blue); }
+  .partner-cta .container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .partner-cta h2 { color: var(--white); }
+  .partner-cta p { max-width: 45rem; margin-top: .65rem; }
+  .partner-cta .button { color: var(--deep-blue); background: var(--white); }
+  @media (max-width: 62rem) { .contributions { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 50rem) { .models { grid-template-columns: 1fr; } .models article, .models article:nth-child(4) { grid-column: auto; } .why-grid { grid-template-columns: 1fr; } .partner-cta .container { align-items: flex-start; flex-direction: column; } }
+  @media (max-width: 36rem) { .contributions { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,25 @@
+---
+import LogoMark from "./LogoMark.astro";
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-intro"><LogoMark light /><p>Growth and Resilience of Women and Children Empowerment Initiative. Building dignity, autonomy, and sustainable community empowerment across vulnerable populations.</p><strong>Official NGO Registry: CAC RC 9704884</strong></div>
+    <div><h2>Focus Areas</h2><ul><li>Women Economic Empowerment</li><li>Child Protection &amp; Welfare</li><li>Education &amp; Literacy Support</li><li>Maternal &amp; Community Health</li><li>Emergency Food &amp; Relief</li></ul></div>
+    <div><h2>Get Involved</h2><ul><li><a href="/partnerships/">Institutional Partnerships</a></li><li>Community Field Work</li><li>Advocacy &amp; Research</li><li>Resource Mobilization</li><li><a href="/safeguarding/">Safeguarding Council</a></li></ul></div>
+    <div><h2>Contact &amp; Legal</h2><ul><li><a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a></li><li><a href="tel:+2349134068024">+234 913 406 8024</a></li><li>Incorporation: CAC RC 9704884</li><li>Abuja &amp; Regional Operational Desks</li></ul></div>
+  </div>
+  <div class="container footer-bottom"><p>© 2026 GROWCHILD. CAC RC 9704884.</p><a href="/safeguarding/">Safeguarding &amp; Privacy</a></div>
+</footer>
+<style>
+  .site-footer { color: var(--white); background: #063719; padding-top: 4.5rem; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(3,1fr); gap: 2rem; padding-bottom: 3.5rem; }
+  .footer-intro { display: grid; gap: 1rem; }
+  .footer-intro p { max-width: 32rem; color: rgba(255,255,255,.86); }
+  .footer-intro strong { font-size: .9rem; }
+  h2 { margin-bottom: 1rem; color: var(--white); font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; }
+  ul { display: grid; gap: .55rem; margin: 0; padding: 0; color: rgba(255,255,255,.82); font-size: .94rem; list-style: none; }
+  a { text-underline-offset: .2rem; }
+  .footer-bottom { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.82); font-size: .88rem; }
+  @media (max-width: 56rem) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 38rem) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 1.2rem; } }
+</style>

@@ -1,0 +1,50 @@
+---
+import LogoMark from "./LogoMark.astro";
+const pathname = Astro.url.pathname;
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About Us" },
+  { href: "/our-work/", label: "Our Work" },
+  { href: "/our-approach/", label: "Our Approach" },
+  { href: "/where-we-work/", label: "Where We Work" },
+  { href: "/contact/", label: "Contact" },
+];
+const isCurrent = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+<header class="site-header">
+  <div class="utility-bar"><div class="container utility-inner"><span>growchild.org@gmail.com · +234 913 406 8024</span><span>CAC RC 9704884</span></div></div>
+  <div class="main-bar">
+    <div class="container main-inner">
+      <a class="brand-link" href="/" aria-label="GROWCHILD home"><LogoMark /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        {links.map((link) => <a class:list={["nav-link", { current: isCurrent(link.href) }]} href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>)}
+      </nav>
+      <a class="button button-primary header-cta" href="/partnerships/">Partner With Us</a>
+      <details class="mobile-menu">
+        <summary aria-label="Open navigation">Menu</summary>
+        <nav aria-label="Mobile navigation">
+          {links.map((link) => <a class:list={["nav-link", { current: isCurrent(link.href) }]} href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>)}
+          <a class="button button-primary" href="/partnerships/">Partner With Us</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<style>
+  .site-header { position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 24px rgba(10,72,35,.08); }
+  .utility-bar { color: var(--white); background: var(--deep-green); font-size: .83rem; }
+  .utility-inner { display: flex; min-height: 2.25rem; align-items: center; justify-content: space-between; gap: 1rem; }
+  .main-bar { background: rgba(255,255,255,.97); backdrop-filter: blur(12px); }
+  .main-inner { display: flex; min-height: 5rem; align-items: center; gap: 1.25rem; }
+  .brand-link { margin-right: auto; text-decoration: none; }
+  .desktop-nav { display: flex; align-items: center; gap: .2rem; }
+  .nav-link { position: relative; display: inline-flex; min-height: 2.75rem; align-items: center; padding-inline: .65rem; color: var(--deep-green); font-size: .88rem; font-weight: 600; text-decoration: none; }
+  .nav-link::after { content: ""; position: absolute; inset: auto .65rem .25rem; height: 3px; border-radius: 99px; background: var(--leaf-green); transform: scaleX(0); transform-origin: left; transition: transform 160ms ease; }
+  .nav-link:hover::after, .nav-link.current::after { transform: scaleX(1); }
+  .mobile-menu { display: none; position: relative; }
+  summary { min-height: 2.75rem; padding: .55rem .85rem; color: var(--deep-green); border: 2px solid var(--deep-green); border-radius: .5rem; cursor: pointer; font-family: Poppins, Arial, sans-serif; font-weight: 700; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  .mobile-menu nav { position: absolute; top: calc(100% + .75rem); right: 0; display: grid; width: min(19rem, calc(100vw - 1.25rem)); gap: .15rem; padding: .75rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); box-shadow: var(--shadow-soft); }
+  @media (max-width: 68rem) { .desktop-nav, .header-cta { display: none; } .mobile-menu { display: block; } }
+  @media (max-width: 38rem) { .utility-inner { justify-content: center; text-align: center; } .utility-inner span:last-child { display: none; } }
+</style>

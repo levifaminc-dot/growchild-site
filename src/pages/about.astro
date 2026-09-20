@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const values = [
+  ["Inclusion", "Every individual has the right to participate meaningfully in society."],
+  ["Dignity", "Respecting the rights, choices, voices, and aspirations of individuals and communities."],
+  ["Resilience", "Strengthening the ability of individuals, households, and communities to withstand shocks and build sustainable futures."],
+  ["Accountability", "Transparency, responsible resource management, safeguarding, and accountability to affected populations."],
+  ["Evidence and Learning", "Reliable data, continuous learning, and evidence-driven decision-making."],
+];
+
+const mandate = [
+  "Improving access to essential services",
+  "Strengthening community resilience",
+  "Promoting inclusion of marginalized populations",
+  "Supporting women and children's empowerment",
+  "Advancing disability inclusion",
+  "Strengthening local systems and evidence capacity",
+];
+---
+<BaseLayout title="About Us" description="Learn about GROWCHILD's journey, vision, mission, values and organizational mandate.">
+  <PageHero title="About GROWCHILD" intro="Growth and Resilience of Women and Children Empowerment Initiative" parent="About Us" />
+  <section class="section">
+    <div class="container profile-grid">
+      <div><span class="eyebrow">Institutional profile</span><h2>Overview</h2></div>
+      <div class="prose"><p>GROWCHILD is a Nigerian women and youth-led humanitarian and development organization committed to improving the wellbeing, dignity, protection, inclusion, and resilience of vulnerable populations, particularly women, children, persons with disabilities, and underserved communities.</p></div>
+    </div>
+  </section>
+  <section class="section section-tint">
+    <div class="container">
+      <span class="eyebrow">Timeline</span><h2 class="section-title">Our Journey</h2>
+      <div class="timeline">
+        <article><strong>2017</strong><p>Conceptualized as a grassroots response to the increasing challenges affecting women, children, and vulnerable households in crisis-affected and underserved communities, particularly in Northern Nigeria.</p></article>
+        <article><strong>2026</strong><p>Formally registered with the Corporate Affairs Commission (CAC), Nigeria, under Registration Number RC: 9704884.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container vision-grid">
+      <article class="statement vision"><span>Our Vision</span><h2>A Nigeria where everyone can participate.</h2><p>A Nigeria where women, children, persons with disabilities, and vulnerable communities live with dignity, resilience, equal opportunities, and the ability to actively participate in decisions affecting their lives.</p></article>
+      <article class="statement mission"><span>Our Mission</span><h2>Strengthen capacity and resilience.</h2><p>To strengthen the capacity and resilience of vulnerable communities through inclusive humanitarian and development interventions that promote protection, empowerment, access to services, evidence-based programming, and locally led solutions.</p></article>
+    </div>
+  </section>
+  <section class="section section-tint">
+    <div class="container"><span class="eyebrow">What guides us</span><h2 class="section-title">Our Core Values</h2><div class="values-grid">{values.map(([title,text], i) => <article class="card"><span class="number">0{i+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+  </section>
+  <section class="section">
+    <div class="container mandate-grid">
+      <div><span class="eyebrow">Organizational mandate</span><h2>Our institutional commitments.</h2><p>Our core programmatic focus areas and institutional commitments.</p></div>
+      <ul>{mandate.map((item) => <li>{item}</li>)}</ul>
+    </div>
+  </section>
+  <section class="section leadership">
+    <div class="container"><span class="eyebrow">Leadership</span><h2 class="section-title">Governance and accountability.</h2><p>Structured governance and operational accountability upholding institutional standards.</p><div class="leadership-grid">{[1,2,3].map(() => <div class="profile-placeholder"><span aria-hidden="true">Person</span><strong>Leadership profile to be confirmed</strong></div>)}</div><div class="registration">Registered with the Corporate Affairs Commission, Nigeria. RC 9704884 <a href="/safeguarding/">Read our safeguarding commitment →</a></div></div>
+  </section>
+</BaseLayout>
+<style>
+  .profile-grid, .mandate-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem,7vw,6rem); }
+  .profile-grid h2, .section-title, .mandate-grid h2 { margin-top: .8rem; }
+  .prose { font-size: 1.25rem; }
+  .timeline { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .timeline::before { content: ""; position: absolute; top: 2rem; left: 1rem; right: 1rem; height: 2px; background: var(--border); }
+  .timeline article { position: relative; padding: 4rem 2rem 2rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); }
+  .timeline strong { position: absolute; top: .85rem; left: 2rem; color: var(--royal-purple); font: 700 1.45rem Poppins,Arial,sans-serif; }
+  .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .statement { padding: clamp(2rem,5vw,4rem); border-radius: 1rem; }
+  .statement span { display: block; margin-bottom: 1.5rem; font: 700 .9rem Poppins,Arial,sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+  .statement h2 { font-size: clamp(1.75rem,3vw,2.6rem); }
+  .statement p { margin-top: 1.25rem; }
+  .vision { color: var(--white); background: var(--deep-green); }
+  .vision h2 { color: var(--white); }
+  .mission { border: 1px solid var(--border); background: var(--surface-tint); }
+  .values-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; margin-top: 3rem; }
+  .number { display: block; margin-bottom: 2rem; color: var(--royal-purple); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .12em; }
+  .card p { margin-top: .75rem; font-size: 1rem; }
+  .mandate-grid > div > p { margin-top: 1rem; }
+  .mandate-grid ul { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+  .mandate-grid li { position: relative; padding: 1rem 1rem 1rem 3rem; border: 1px solid var(--border); border-radius: .6rem; }
+  .mandate-grid li::before { content: "✓"; position: absolute; left: 1rem; color: var(--leaf-green-dark); font-weight: 700; }
+  .leadership { background: #f7faf5; }
+  .leadership > .container > p { margin-top: 1rem; }
+  .leadership-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; }
+  .profile-placeholder { display: grid; min-height: 14rem; place-content: center; gap: .75rem; padding: 1.5rem; text-align: center; border: 2px dashed var(--border); border-radius: .75rem; background: var(--white); }
+  .profile-placeholder span { color: var(--royal-purple); font-size: .85rem; text-transform: uppercase; }
+  .registration { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding: 1.25rem; border-radius: .75rem; color: var(--white); background: var(--deep-green); }
+  .registration a { font-weight: 700; }
+  @media (max-width: 64rem) { .values-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 48rem) { .profile-grid, .mandate-grid, .vision-grid { grid-template-columns: 1fr; } .timeline { grid-template-columns: 1fr; } .timeline::before { display: none; } .leadership-grid { grid-template-columns: 1fr; } .registration { flex-direction: column; } }
+  @media (max-width: 38rem) { .values-grid, .mandate-grid ul { grid-template-columns: 1fr; } }
+</style>
