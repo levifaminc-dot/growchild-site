@@ -1,24 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 
 const areas = [
-  { title: "Disability Inclusion and Advocacy", items: ["disability-inclusive humanitarian and development programming","community identification of persons with disabilities","disability awareness and stigma reduction","advocacy for disability rights","inclusive access to services","strengthening disability data systems"], note: "Persons with disabilities are engaged not only as beneficiaries but as active participants in programme design, implementation, monitoring and decision-making." },
-  { title: "Education and Child Protection", items: ["inclusive education","identification of vulnerable children","child protection mainstreaming","safe learning environments","community participation","evidence-based education programming"] },
-  { title: "Health and Community Wellbeing", items: ["community health engagement","health awareness","referral pathways","access for vulnerable populations","evidence generation for health programmes"] },
-  { title: "Livelihoods and Women's Empowerment", items: ["women's empowerment","livelihood strengthening","community resilience","inclusion of vulnerable households in economic opportunities"] },
-  { title: "Water, Sanitation and Hygiene (WASH)", items: ["hygiene awareness","safe WASH practices","community participation","access to improved WASH services"] },
-  { title: "Emergency Response and Humanitarian Action", items: ["community engagement","vulnerability identification","protection-sensitive programming","accountability mechanisms","evidence-driven humanitarian response planning"] },
+  { title: "Disability Inclusion and Advocacy", items: ["disability-inclusive humanitarian and development programming","community identification of persons with disabilities","disability awareness and stigma reduction","advocacy for disability rights","inclusive access to services","strengthening disability data systems"], note: "Persons with disabilities are engaged not only as beneficiaries but as active participants in programme design, implementation, monitoring and decision-making.", icon: "People-with-physical-impairments" },
+  { title: "Education and Child Protection", items: ["inclusive education","identification of vulnerable children","child protection mainstreaming","safe learning environments","community participation","evidence-based education programming"], icon: "Child-protection" },
+  { title: "Health and Community Wellbeing", items: ["community health engagement","health awareness","referral pathways","access for vulnerable populations","evidence generation for health programmes"], icon: "Health" },
+  { title: "Livelihoods and Women's Empowerment", items: ["women's empowerment","livelihood strengthening","community resilience","inclusion of vulnerable households in economic opportunities"], icon: "Livelihood" },
+  { title: "Water, Sanitation and Hygiene (WASH)", items: ["hygiene awareness","safe WASH practices","community participation","access to improved WASH services"], icon: "Water-Sanitation-and-Hygiene" },
+  { title: "Emergency Response and Humanitarian Action", items: ["community engagement","vulnerability identification","protection-sensitive programming","accountability mechanisms","evidence-driven humanitarian response planning"], icon: "Response" },
 ];
 ---
 <BaseLayout title="Our Work" description="Explore GROWCHILD's six integrated humanitarian and development programme areas.">
-  <PageHero title="Our Core Program Areas" intro="GROWCHILD delivers integrated humanitarian and development programming through community-based, inclusive and evidence-driven approaches." />
+  <PageHero title="Our Core Program Areas" intro="GROWCHILD delivers integrated humanitarian and development programming through community-based, inclusive and evidence-driven approaches." icon="Humanitarian-programme-cycle" />
   <nav class="area-nav" aria-label="Program areas"><div class="container">{areas.map((area,i) => <a href={`#area-${i+1}`}>{area.title.replace(" and ", " & ")}</a>)}</div></nav>
   <div class="program-list">
     {areas.map((area,i) => (
       <section id={`area-${i+1}`} class:list={["section", { "section-tint": i % 2 === 1 }]}>
         <div class="container program-grid">
-          <div class="program-number">0{i+1}</div>
+          <div class="program-identifier"><HumanitarianIcon name={area.icon} /><div class="program-number">0{i+1}</div></div>
           <div><span class="eyebrow">Programme area</span><h2>{area.title}</h2><h3>Focus areas</h3><ul>{area.items.map((item) => <li>{item}</li>)}</ul>{area.note && <p class="program-note">{area.note}</p>}</div>
         </div>
       </section>
@@ -32,6 +33,7 @@ const areas = [
   .area-nav a { flex: 0 0 auto; padding: .55rem .75rem; color: var(--deep-green); border-radius: .4rem; font: 600 .82rem Poppins,Arial,sans-serif; text-decoration: none; }
   .area-nav a:hover { background: var(--surface-tint); }
   .program-grid { display: grid; grid-template-columns: 10rem 1fr; gap: clamp(2rem,7vw,6rem); }
+  .program-identifier { display: grid; align-content: start; justify-items: start; gap: 1.25rem; }
   .program-number { color: #cbd9c6; font: 700 clamp(4rem,10vw,8rem)/1 Poppins,Arial,sans-serif; }
   .program-grid h2 { margin-top: .8rem; }
   .program-grid h3 { margin-top: 2rem; font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; }

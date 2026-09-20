@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 
 const values = [
-  ["Inclusion", "Every individual has the right to participate meaningfully in society."],
-  ["Dignity", "Respecting the rights, choices, voices, and aspirations of individuals and communities."],
-  ["Resilience", "Strengthening the ability of individuals, households, and communities to withstand shocks and build sustainable futures."],
-  ["Accountability", "Transparency, responsible resource management, safeguarding, and accountability to affected populations."],
-  ["Evidence and Learning", "Reliable data, continuous learning, and evidence-driven decision-making."],
+  { title: "Inclusion", text: "Every individual has the right to participate meaningfully in society.", icon: "Affected-population" },
+  { title: "Dignity", text: "Respecting the rights, choices, voices, and aspirations of individuals and communities.", icon: "Protection" },
+  { title: "Resilience", text: "Strengthening the ability of individuals, households, and communities to withstand shocks and build sustainable futures.", icon: "Resilience" },
+  { title: "Accountability", text: "Transparency, responsible resource management, safeguarding, and accountability to affected populations.", icon: "Monitoring" },
+  { title: "Evidence and Learning", text: "Reliable data, continuous learning, and evidence-driven decision-making.", icon: "Learning" },
 ];
 
 const mandate = [
@@ -20,7 +21,7 @@ const mandate = [
 ];
 ---
 <BaseLayout title="About Us" description="Learn about GROWCHILD's journey, vision, mission, values and organizational mandate.">
-  <PageHero title="About GROWCHILD" intro="Growth and Resilience of Women and Children Empowerment Initiative" parent="About Us" />
+  <PageHero title="About GROWCHILD" intro="Growth and Resilience of Women and Children Empowerment Initiative" parent="About Us" icon="About" />
   <section class="section">
     <div class="container profile-grid">
       <div><span class="eyebrow">Institutional profile</span><h2>Overview</h2></div>
@@ -43,7 +44,7 @@ const mandate = [
     </div>
   </section>
   <section class="section section-tint">
-    <div class="container"><span class="eyebrow">What guides us</span><h2 class="section-title">Our Core Values</h2><div class="values-grid">{values.map(([title,text], i) => <article class="card"><span class="number">0{i+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+    <div class="container"><span class="eyebrow">What guides us</span><h2 class="section-title">Our Core Values</h2><div class="values-grid">{values.map((value, i) => <article class="card"><div class="value-mark"><HumanitarianIcon name={value.icon} variant="compact" /><span class="number">0{i+1}</span></div><h3>{value.title}</h3><p>{value.text}</p></article>)}</div></div>
   </section>
   <section class="section">
     <div class="container mandate-grid">
@@ -72,7 +73,8 @@ const mandate = [
   .vision h2 { color: var(--white); }
   .mission { border: 1px solid var(--border); background: var(--surface-tint); }
   .values-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; margin-top: 3rem; }
-  .number { display: block; margin-bottom: 2rem; color: var(--royal-purple); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .12em; }
+  .value-mark { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+  .number { display: block; color: var(--royal-purple); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .12em; }
   .card p { margin-top: .75rem; font-size: 1rem; }
   .mandate-grid > div > p { margin-top: 1rem; }
   .mandate-grid ul { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 0; padding: 0; list-style: none; }

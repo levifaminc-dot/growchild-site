@@ -1,15 +1,25 @@
 ---
-interface Props { title: string; intro: string; parent?: string; }
-const { title, intro, parent } = Astro.props;
+import HumanitarianIcon from "./HumanitarianIcon.astro";
+
+interface Props { title: string; intro: string; parent?: string; icon?: string; }
+const { title, intro, parent, icon } = Astro.props;
 ---
 <section class="page-hero">
-  <div class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a><span aria-hidden="true">/</span>
-      {parent && <><span>{parent}</span><span aria-hidden="true">/</span></>}
-      <span aria-current="page">{title}</span>
-    </nav>
-    <h1>{title}</h1>
-    <p>{intro}</p>
+  <div class="container page-hero-grid">
+    <div>
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span>
+        {parent && <><span>{parent}</span><span aria-hidden="true">/</span></>}
+        <span aria-current="page">{title}</span>
+      </nav>
+      <h1>{title}</h1>
+      <p>{intro}</p>
+    </div>
+    {icon && <HumanitarianIcon name={icon} variant="hero" />}
   </div>
 </section>
+
+<style>
+  .page-hero-grid { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3rem; }
+  @media (max-width: 42rem) { .page-hero-grid { grid-template-columns: 1fr; } :global(.humanitarian-icon--hero) { display: none; } }
+</style>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 
 const zones = [
   ["North-West", "Kaduna · Kano · Katsina"],
@@ -12,14 +13,14 @@ const zones = [
 ];
 
 const priorities = [
-  ["Rural populations", "Hard-to-reach agrarian and remote localities with limited access to primary services and economic infrastructure."],
-  ["Conflict-affected communities", "Localities undergoing recovery or stabilization following security disruptions, focusing on family protection."],
-  ["Displaced populations", "Internally displaced women, children, and host communities navigating relocation, welfare, and reintegration."],
-  ["Households facing multiple vulnerabilities", "Female-headed homes, orphans, and families coping with systemic poverty, health deficits, or acute distress."],
+  { title: "Rural populations", text: "Hard-to-reach agrarian and remote localities with limited access to primary services and economic infrastructure.", icon: "Rural" },
+  { title: "Conflict-affected communities", text: "Localities undergoing recovery or stabilization following security disruptions, focusing on family protection.", icon: "Conflict" },
+  { title: "Displaced populations", text: "Internally displaced women, children, and host communities navigating relocation, welfare, and reintegration.", icon: "Internally-displaced" },
+  { title: "Households facing multiple vulnerabilities", text: "Female-headed homes, orphans, and families coping with systemic poverty, health deficits, or acute distress.", icon: "People-in-need" },
 ];
 ---
 <BaseLayout title="Where We Work" description="GROWCHILD is establishing programming networks across multiple regions of Nigeria.">
-  <PageHero title="Where We Work" intro="GROWCHILD is establishing programming networks across multiple regions of Nigeria." parent="About Us" />
+  <PageHero title="Where We Work" intro="GROWCHILD is establishing programming networks across multiple regions of Nigeria." parent="About Us" icon="Country" />
   <section class="section">
     <div class="container"><span class="eyebrow">Geopolitical zones &amp; states</span><h2 class="section-title">Presence across Nigeria.</h2>
       <div class="map-grid">
@@ -38,7 +39,7 @@ const priorities = [
       <p class="coordination">Expansion is conducted in structured coordination with local administrative authorities and communal leadership.</p>
     </div>
   </section>
-  <section class="section section-tint"><div class="container"><span class="eyebrow">Our priority</span><h2 class="section-title">Who we prioritize</h2><p class="intro">GROWCHILD's approach prioritizes engagement with underserved communities, including:</p><div class="priority-grid">{priorities.map(([title,text]) => <article class="card card-accent"><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+  <section class="section section-tint"><div class="container"><span class="eyebrow">Our priority</span><h2 class="section-title">Who we prioritize</h2><p class="intro">GROWCHILD's approach prioritizes engagement with underserved communities, including:</p><div class="priority-grid">{priorities.map((priority) => <article class="card card-accent icon-card"><HumanitarianIcon name={priority.icon} /><div><h3>{priority.title}</h3><p>{priority.text}</p></div></article>)}</div></div></section>
   <section class="regional-cta"><div class="container"><h2>Interested in working with us in your region?</h2><a class="button" href="/contact/">Contact Us</a></div></section>
 </BaseLayout>
 <style>
@@ -59,6 +60,7 @@ const priorities = [
   .coverage p, .intro, .card p { margin-top: .65rem; }
   .coordination { margin-top: 1.5rem; text-align: center; font-style: italic; }
   .priority-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 2.5rem; }
+  .icon-card { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 1.25rem; }
   .regional-cta { padding-block: 4rem; color: var(--white); background: var(--deep-blue); }
   .regional-cta .container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
   .regional-cta h2 { color: var(--white); }

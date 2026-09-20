@@ -1,19 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 
 const focusAreas = [
-  "Disability Inclusion & Advocacy",
-  "Education & Child Protection",
-  "Health & Community Wellbeing",
-  "Livelihoods & Women's Empowerment",
-  "Water, Sanitation & Hygiene (WASH)",
-  "Emergency Response",
+  { title: "Disability Inclusion & Advocacy", icon: "People-with-physical-impairments" },
+  { title: "Education & Child Protection", icon: "Child-protection" },
+  { title: "Health & Community Wellbeing", icon: "Health" },
+  { title: "Livelihoods & Women's Empowerment", icon: "Livelihood" },
+  { title: "Water, Sanitation & Hygiene (WASH)", icon: "Water-Sanitation-and-Hygiene" },
+  { title: "Emergency Response", icon: "Response" },
 ];
 
 const approaches = [
-  { title: "MEAL & Evidence-Driven", text: "Strengthens how programmes generate, manage, analyze and use evidence." },
-  { title: "Community-Based", text: "Programmes grounded in community realities and local ownership." },
-  { title: "Women & Youth-Led", text: "Inclusive decision-making, youth participation and community ownership." },
+  { title: "MEAL & Evidence-Driven", text: "Strengthens how programmes generate, manage, analyze and use evidence.", icon: "Monitoring" },
+  { title: "Community-Based", text: "Programmes grounded in community realities and local ownership.", icon: "Community-engagement" },
+  { title: "Women & Youth-Led", text: "Inclusive decision-making, youth participation and community ownership.", icon: "Gender" },
 ];
 ---
 
@@ -53,8 +54,8 @@ const approaches = [
       <div class="focus-grid">
         {focusAreas.map((area, index) => (
           <article class="focus-card">
-            <span aria-hidden="true">0{index + 1}</span>
-            <h3>{area}</h3>
+            <div class="focus-card-top"><HumanitarianIcon name={area.icon} /><span aria-hidden="true">0{index + 1}</span></div>
+            <h3>{area.title}</h3>
             <a class="text-link" href={`/our-work/#area-${index + 1}`}>Learn more →</a>
           </article>
         ))}
@@ -66,7 +67,7 @@ const approaches = [
     <div class="container approach-wrap">
       <div class="section-heading"><span class="eyebrow">Our approach</span><h2>Evidence and local ownership guide every programme.</h2></div>
       <div class="cards">
-        {approaches.map((approach) => <article class="card card-accent"><h3>{approach.title}</h3><p>{approach.text}</p></article>)}
+        {approaches.map((approach) => <article class="card card-accent icon-card"><HumanitarianIcon name={approach.icon} /><div><h3>{approach.title}</h3><p>{approach.text}</p></div></article>)}
       </div>
       <a class="text-link approach-link" href="/our-approach/">See how we work →</a>
     </div>
@@ -97,8 +98,10 @@ const approaches = [
   .section-heading { max-width: 47rem; margin-bottom: 2.5rem; }
   .focus-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
   .focus-card { display: grid; min-height: 15rem; align-content: space-between; gap: 1rem; padding: 1.75rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); }
-  .focus-card > span { color: var(--royal-purple); font-family: Poppins,Arial,sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: .12em; }
+  .focus-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .focus-card-top > span { color: var(--royal-purple); font-family: Poppins,Arial,sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: .12em; }
   .focus-card .text-link { font-size: .92rem; }
+  .icon-card { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 1.25rem; }
   .approach-wrap { display: grid; }
   .card p { margin-top: .85rem; }
   .approach-link { margin-top: 2rem; justify-self: start; }
