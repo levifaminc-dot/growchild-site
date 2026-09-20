@@ -1,24 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 import { photos } from "../data/photos";
 ---
 
-<BaseLayout title="News & Updates" description="Verified news, reports and stories from GROWCHILD will be published here.">
+<BaseLayout title="News & Updates" description="Verified news, reports and stories from GROWCHILD will be published here." robots="noindex, follow">
   <PageHero title="News & Updates" intro="Verified reports, programme updates and community stories from GROWCHILD." icon="Report" photo={photos.communityOutreach} />
   <section class="section">
     <div class="container empty-news">
-      <HumanitarianIcon name="Report" />
       <span class="eyebrow">Publication pending</span>
       <h2>News and updates coming soon</h2>
-      <p>Pending publication of verified reports and stories.</p>
-      <a class="button button-primary" href="/contact/">Contact GROWCHILD</a>
+      <p>We will publish verified reports and stories here after editorial approval. In the meantime, browse the resource library or contact GROWCHILD directly.</p>
+      <div class="news-actions"><a class="button button-primary" href="/resources/">Browse Resources</a><a class="button button-secondary" href="/contact/">Contact GROWCHILD</a></div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .empty-news { display: grid; min-height: 28rem; place-content: center; justify-items: center; gap: 1rem; text-align: center; border: 2px dashed var(--border); border-radius: .9rem; background: var(--surface-tint); }
-  .empty-news p { margin-bottom: .75rem; }
+  .empty-news { display: grid; min-height: 20rem; place-content: center; justify-items: center; gap: 1rem; padding: clamp(2rem,6vw,4rem); text-align: center; border: 2px dashed var(--border); border-radius: .9rem; background: var(--surface-tint); }
+  .empty-news p { max-width: 42rem; margin-bottom: .75rem; }
+  .news-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
 </style>

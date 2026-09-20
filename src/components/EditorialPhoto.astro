@@ -13,13 +13,18 @@ const { photo, ratio = "landscape", eager = false, class: className } = Astro.pr
 ---
 
 <figure class:list={["editorial-photo", `editorial-photo--${ratio}`, className]}>
-  <img
-    src={photo.src}
-    alt={photo.alt}
-    loading={eager ? "eager" : "lazy"}
-    fetchpriority={eager ? "high" : "auto"}
-    decoding="async"
-  />
+  <picture>
+    <source type="image/webp" srcset={photo.webpSrcset} sizes="(max-width: 50rem) calc(100vw - 2rem), 50vw" />
+    <img
+      src={photo.src}
+      alt={photo.alt}
+      width={photo.width}
+      height={photo.height}
+      loading={eager ? "eager" : "lazy"}
+      fetchpriority={eager ? "high" : "auto"}
+      decoding="async"
+    />
+  </picture>
   <PhotoAttribution photo={photo} />
 </figure>
 
@@ -35,5 +40,6 @@ const { photo, ratio = "landscape", eager = false, class: className } = Astro.pr
   .editorial-photo--landscape { aspect-ratio: 4 / 3; }
   .editorial-photo--portrait { aspect-ratio: 4 / 5; }
   .editorial-photo--wide { aspect-ratio: 16 / 7; }
-  img { width: 100%; height: 100%; object-fit: cover; }
+  picture, img { width: 100%; height: 100%; }
+  img { object-fit: cover; }
 </style>

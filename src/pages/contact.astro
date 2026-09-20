@@ -1,25 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 import { photos } from "../data/photos";
 ---
 <BaseLayout title="Contact Us" description="Contact GROWCHILD about partnerships, collaboration, safeguarding or general enquiries.">
   <PageHero title="Contact Us" intro="Send us a message about partnerships, collaboration or general enquiries." icon="E-mail" photo={photos.boreholeWater} />
   <section class="section"><div class="container contact-grid">
-    <aside><span class="eyebrow">Direct channels</span><h2>Official communication lines</h2><p>For institutional and public inquiries.</p><div class="channel"><HumanitarianIcon name="E-mail" variant="compact" /><div><span>Email</span><a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a></div></div><div class="channel"><HumanitarianIcon name="Mobile-phone" variant="compact" /><div><span>Phone</span><a href="tel:+2349134068024">+234 913 406 8024</a></div></div><div class="safeguarding-note"><HumanitarianIcon name="Protection" variant="on-dark" /><div><strong>Safeguarding concern?</strong><p>Use our confidential reporting channel when it is confirmed.</p><a href="/safeguarding/">Go to Safeguarding &amp; Reporting →</a></div></div></aside>
+    <aside><span class="eyebrow">Direct channels</span><h2>Official communication lines</h2><p>For institutional and public inquiries.</p><div class="channel"><span class="channel-number" aria-hidden="true">01</span><div><span>Email</span><a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a></div></div><div class="channel"><span class="channel-number" aria-hidden="true">02</span><div><span>Phone</span><a href="tel:+2349134068024">+234 913 406 8024</a></div></div><div class="safeguarding-note"><div><strong>Safeguarding concern?</strong><p>Use the subject “Safeguarding concern – confidential” when contacting the organisation through the official email address.</p><a href="/safeguarding/">Go to Safeguarding &amp; Reporting →</a></div></div></aside>
     <div class="form-panel"><h2>Send a Message</h2><form id="contact-form">
       <label for="full-name">Full Name <span aria-hidden="true">*</span></label><input id="full-name" name="full-name" autocomplete="name" required />
       <label for="organization">Organization / Entity Name</label><input id="organization" name="organization" autocomplete="organization" />
       <label for="email">Email Address <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required />
       <label for="interest">Subject / Interest Area <span aria-hidden="true">*</span></label><select id="interest" name="interest" required><option value="">Select an interest area</option><option>Partnership</option><option>General Inquiry</option><option>MEAL Collaboration</option><option>Safeguarding Concern</option></select>
       <label for="message">Message <span aria-hidden="true">*</span></label><textarea id="message" name="message" rows="6" required></textarea>
-      <button class="button button-primary" type="submit">Send Message</button><p class="form-help">This opens your email application with the message ready to send. Your information is handled in line with our Privacy Policy.</p><p id="form-status" class="status" aria-live="polite"></p>
+      <button class="button button-primary" type="submit">Prepare Email Message</button><p class="form-help" id="contact-form-help">This form does not send information to the website. It opens your email application with a prepared message for you to review and send. Read our <a href="/privacy/">Privacy Policy</a>.</p><p id="form-status" class="status" role="status" aria-live="polite"></p>
     </form></div>
   </div></section>
   <script>
     const form = document.querySelector<HTMLFormElement>("#contact-form");
     const status = document.querySelector<HTMLElement>("#form-status");
+    const interest = document.querySelector<HTMLSelectElement>("#interest");
+    const requestedInterest = new URLSearchParams(window.location.search).get("interest");
+    if (interest && requestedInterest && Array.from(interest.options).some((option) => option.value === requestedInterest)) interest.value = requestedInterest;
     form?.addEventListener("submit", (event) => {
       event.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -33,12 +35,15 @@ import { photos } from "../data/photos";
 </BaseLayout>
 <style>
   .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem,7vw,6rem); align-items: start; }
+  .contact-grid > * { min-width: 0; }
   aside h2 { margin-top: .8rem; }
   aside > p { margin-top: .7rem; }
-  .channel { display: grid; grid-template-columns: 1fr; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.25rem; border: 1px solid var(--border); border-radius: .65rem; }
-  .channel span { color: var(--slate-grey); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  .channel { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.25rem; border: 1px solid var(--border); border-radius: .65rem; }
+  .channel-number { display: grid; width: 2.65rem; aspect-ratio: 1; place-items: center; color: var(--deep-green); border-radius: .5rem; background: #eaf4e5; font: 700 .875rem var(--font-heading); }
+  .channel div > span { color: var(--slate-grey); font: 700 .875rem var(--font-heading); letter-spacing: .08em; text-transform: uppercase; }
   .channel a { color: var(--leaf-green-dark); font-weight: 700; }
-  .safeguarding-note { display: grid; grid-template-columns: 1fr; align-items: start; gap: 1rem; margin-top: 1.5rem; padding: 1.5rem; color: var(--white); border-radius: .75rem; background: var(--royal-purple); }
+  .channel a { overflow-wrap: anywhere; }
+  .safeguarding-note { display: grid; align-items: start; gap: 1rem; margin-top: 1.5rem; padding: 1.5rem; color: var(--white); border-radius: .75rem; background: var(--royal-purple); }
   .safeguarding-note p { margin-top: .4rem; }
   .safeguarding-note a { display: inline-block; margin-top: .8rem; font-weight: 700; text-underline-offset: .2rem; }
   .form-panel { padding: clamp(1.5rem,4vw,3rem); border: 1px solid var(--border); border-radius: .9rem; box-shadow: var(--shadow-soft); }
@@ -48,6 +53,7 @@ import { photos } from "../data/photos";
   textarea { resize: vertical; }
   form .button { justify-self: start; margin-top: 1rem; cursor: pointer; }
   .form-help { margin-top: .6rem; font-size: .9rem; }
+  .form-help a { color: var(--deep-green); font-weight: 700; text-underline-offset: .2rem; }
   .status { min-height: 1.5rem; color: var(--leaf-green-dark); font-weight: 700; }
   @media (max-width: 50rem) { .contact-grid { grid-template-columns: 1fr; } }
 </style>

@@ -5,25 +5,25 @@ import EditorialPhoto from "../components/EditorialPhoto.astro";
 import { photos } from "../data/photos";
 
 const resources = [
-  { title: "GROWCHILD Annual Impact Report 2024", category: "reports", label: "Report", description: "A consolidated account of programme progress, organizational learning and results during 2024.", date: "15 March 2025", color: "#0A4823" },
-  { title: "Child Protection & Safeguarding Framework", category: "policy", label: "Policy", description: "The organizational framework for safe, protected and supported participation across programmes.", date: "10 February 2025", color: "#2C6510" },
-  { title: "Disability Inclusion Program Learning Brief", category: "learning", label: "Learning brief", description: "Key learning and recommendations from disability inclusion programming and participation.", date: "28 January 2025", color: "#00609D" },
-  { title: "WASH Community Assessment Report", category: "learning", label: "Research", description: "Findings from community water, sanitation and hygiene assessment activities.", date: "15 January 2025", color: "#26BDE2" },
-  { title: "Education Access & Child Protection Field Guide", category: "policy", label: "Field guide", description: "Practical guidance for educators, community workers and child-protection partners.", date: "5 December 2024", color: "#E56A18" },
-  { title: "Women's Livelihoods & Economic Empowerment Brief", category: "learning", label: "Programme brief", description: "Learning on women's economic opportunities, livelihoods and resilience.", date: "20 November 2024", color: "#622B86" },
-  { title: "Emergency Response Lessons Learned", category: "learning", label: "Lessons learned", description: "Key observations and learning from emergency response and recovery work.", date: "15 October 2024", color: "#C5192D" },
-  { title: "Community Resilience & Inclusion Case Study", category: "stories", label: "Case study", description: "How inclusive community approaches strengthen resilience and participation.", date: "10 September 2024", color: "#4C9F38" },
-  { title: "Research & Learning Agenda", category: "learning", label: "Learning agenda", description: "Priority learning questions and evidence needs that guide organizational research.", date: "Publication date to be confirmed", color: "#0A4823" },
-  { title: "Program Monitoring & Evaluation Toolkit", category: "tools", label: "Toolkit", description: "Practical tools for programme monitoring, evaluation, accountability and learning.", date: "Publication date to be confirmed", color: "#00609D" },
+  { title: "GROWCHILD Annual Impact Report 2024", category: "reports", label: "Report", description: "A consolidated account of programme progress, organizational learning and results during 2024.", date: "15 March 2025", color: "#0A4823", ink: "#0A4823" },
+  { title: "Child Protection & Safeguarding Framework", category: "policy", label: "Policy", description: "The organizational framework for safe, protected and supported participation across programmes.", date: "10 February 2025", color: "#2C6510", ink: "#2C6510" },
+  { title: "Disability Inclusion Program Learning Brief", category: "learning", label: "Learning brief", description: "Key learning and recommendations from disability inclusion programming and participation.", date: "28 January 2025", color: "#00609D", ink: "#00609D" },
+  { title: "WASH Community Assessment Report", category: "learning", label: "Research", description: "Findings from community water, sanitation and hygiene assessment activities.", date: "15 January 2025", color: "#26BDE2", ink: "#00609D" },
+  { title: "Education Access & Child Protection Field Guide", category: "policy", label: "Field guide", description: "Practical guidance for educators, community workers and child-protection partners.", date: "5 December 2024", color: "#E56A18", ink: "#9A3C06" },
+  { title: "Women's Livelihoods & Economic Empowerment Brief", category: "learning", label: "Programme brief", description: "Learning on women's economic opportunities, livelihoods and resilience.", date: "20 November 2024", color: "#622B86", ink: "#622B86" },
+  { title: "Emergency Response Lessons Learned", category: "learning", label: "Lessons learned", description: "Key observations and learning from emergency response and recovery work.", date: "15 October 2024", color: "#C5192D", ink: "#A41424" },
+  { title: "Community Resilience & Inclusion Case Study", category: "stories", label: "Case study", description: "How inclusive community approaches strengthen resilience and participation.", date: "10 September 2024", color: "#4C9F38", ink: "#2C6510" },
+  { title: "Research & Learning Agenda", category: "learning", label: "Learning agenda", description: "Priority learning questions and evidence needs that guide organizational research.", date: "Release date not yet published", color: "#0A4823", ink: "#0A4823" },
+  { title: "Program Monitoring & Evaluation Toolkit", category: "tools", label: "Toolkit", description: "Practical tools for programme monitoring, evaluation, accountability and learning.", date: "Release date not yet published", color: "#00609D", ink: "#00609D" },
 ];
 
 const programmes = [
-  { title: "Disability Inclusion & Advocacy", href: "/our-work/#area-1", color: "#DD1367" },
-  { title: "Education & Child Protection", href: "/our-work/#area-2", color: "#C5192D" },
-  { title: "Health & Community Wellbeing", href: "/our-work/#area-3", color: "#4C9F38" },
-  { title: "Livelihoods & Women's Empowerment", href: "/our-work/#area-4", color: "#FF3A21" },
-  { title: "Water, Sanitation & Hygiene", href: "/our-work/#area-5", color: "#26BDE2" },
-  { title: "Emergency Response", href: "/our-work/#area-6", color: "#FD9D24" },
+  { title: "Disability Inclusion & Advocacy", href: "/our-work/#area-1", color: "#DD1367", ink: "#9B124D" },
+  { title: "Education & Child Protection", href: "/our-work/#area-2", color: "#C5192D", ink: "#A41424" },
+  { title: "Health & Community Wellbeing", href: "/our-work/#area-3", color: "#4C9F38", ink: "#2C6510" },
+  { title: "Livelihoods & Women's Empowerment", href: "/our-work/#area-4", color: "#FF3A21", ink: "#A92816" },
+  { title: "Water, Sanitation & Hygiene", href: "/our-work/#area-5", color: "#26BDE2", ink: "#00609D" },
+  { title: "Emergency Response", href: "/our-work/#area-6", color: "#FD9D24", ink: "#7A4A00" },
 ];
 
 const learningSteps = ["Identify needs", "Design together", "Implement", "Monitor", "Document & learn"];
@@ -51,8 +51,8 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
       </div>
       <aside class="latest-panel">
         <h2>Latest resources</h2>
-        <button type="button" class="latest-request request-trigger" data-request-title="Research & Learning Agenda" data-request-date="Publication date to be confirmed">Research &amp; Learning Agenda <span aria-hidden="true">→</span></button>
-        <button type="button" class="latest-request request-trigger" data-request-title="Program Monitoring & Evaluation Toolkit" data-request-date="Publication date to be confirmed">Program Monitoring &amp; Evaluation Toolkit <span aria-hidden="true">→</span></button>
+        <button type="button" class="latest-request request-trigger" data-request-title="Research & Learning Agenda" data-request-date="Release date not yet published">Research &amp; Learning Agenda <span aria-hidden="true">→</span></button>
+        <button type="button" class="latest-request request-trigger" data-request-title="Program Monitoring & Evaluation Toolkit" data-request-date="Release date not yet published">Program Monitoring &amp; Evaluation Toolkit <span aria-hidden="true">→</span></button>
         <button type="button" class="latest-request request-trigger" data-request-title="Child Protection & Safeguarding Framework" data-request-date="10 February 2025">Child Protection &amp; Safeguarding Framework <span aria-hidden="true">→</span></button>
         <button type="button" class="latest-request request-trigger" data-request-title="WASH Community Assessment Report" data-request-date="15 January 2025">WASH Community Assessment Report <span aria-hidden="true">→</span></button>
       </aside>
@@ -74,9 +74,10 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
         <button type="button" data-filter="stories" aria-pressed="false">Stories & case studies</button>
       </div>
       <p class="result-count" id="resource-count" aria-live="polite">Showing {resources.length} resources</p>
+      <div class="availability-note" role="note"><strong>Resource availability</strong><p>Approved files are not yet hosted on the website. Every listed publication can be requested from GROWCHILD; no download button is shown until an approved PDF, version and file size are available.</p></div>
       <div class="resource-grid">
         {resources.map((resource) => (
-          <article class="resource-card" data-category={resource.category} data-search={`${resource.title} ${resource.label} ${resource.description} ${resource.date}`.toLowerCase()} style={`--resource-color:${resource.color}`}>
+          <article class="resource-card" data-category={resource.category} data-search={`${resource.title} ${resource.label} ${resource.description} ${resource.date}`.toLowerCase()} style={`--resource-color:${resource.color};--resource-ink:${resource.ink}`}>
             <div class="card-band"><span>{resource.label}</span></div>
             <div class="card-copy"><h3>{resource.title}</h3><p>{resource.description}</p><div class="resource-meta"><span>{resource.date}</span><span>PDF · On request</span></div><button class="request-button request-trigger" type="button" data-request-title={resource.title} data-request-date={resource.date}>Request Resource</button></div>
           </article>
@@ -90,7 +91,7 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
     <div class="container">
       <div class="section-heading"><span class="eyebrow">Programme resources</span><h2>Find resources by programme.</h2><p>Start with the programme area most relevant to your work or community.</p></div>
       <div class="programme-grid">
-        {programmes.map((programme,index) => <a href={programme.href} style={`--programme-color:${programme.color}`}><span>0{index + 1}</span><strong>{programme.title}</strong><small>Explore programme <span aria-hidden="true">→</span></small></a>)}
+        {programmes.map((programme,index) => <a href={programme.href} style={`--programme-color:${programme.color};--programme-ink:${programme.ink}`}><span>0{index + 1}</span><strong>{programme.title}</strong><small>Explore programme <span aria-hidden="true">→</span></small></a>)}
       </div>
     </div>
   </section>
@@ -104,12 +105,12 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
 
   <section class="resource-cta"><div class="container"><div><span class="eyebrow">Need more information?</span><h2>Ask about our programmes or resources.</h2><p>Contact our team for verified organizational information and partnership enquiries.</p></div><div class="cta-actions"><a class="button primary-cta" href="/contact/">Contact Us</a><a class="button secondary-cta" href="/partnerships/">Partner With Us</a></div></div></section>
 
-  <dialog id="resource-request-dialog" aria-labelledby="request-dialog-title">
+  <dialog id="resource-request-dialog" aria-labelledby="request-dialog-title" aria-describedby="request-dialog-description">
     <div class="request-dialog-content">
       <form method="dialog" class="dialog-close-form"><button type="submit" class="dialog-close" aria-label="Close request form">×</button></form>
       <span class="resource-label">Resource request</span>
       <h2 id="request-dialog-title">Request a publication</h2>
-      <p class="dialog-intro">Complete the form below. Submitting will open your email application with the request addressed to GROWCHILD.</p>
+      <p class="dialog-intro" id="request-dialog-description">Complete the form below. The website does not store or send the information; submitting opens your email application with a prepared request for you to review and send.</p>
       <form id="resource-request-form" class="request-form">
         <label for="requested-resource">Resource</label>
         <input id="requested-resource" name="resource" type="text" readonly />
@@ -121,6 +122,7 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
         <label for="request-organization">Organization <span>(optional)</span><input id="request-organization" name="organization" type="text" autocomplete="organization" /></label>
         <label for="request-purpose">How will you use this resource?<textarea id="request-purpose" name="purpose" rows="4" required></textarea></label>
         <div class="form-actions"><button class="button button-primary" type="submit">Prepare Email Request</button><button class="button button-secondary cancel-request" type="button">Cancel</button></div>
+        <p class="privacy-link">Read how this website handles information in our <a href="/privacy/">Privacy Policy</a>.</p>
         <p class="request-status" id="request-status" aria-live="polite"></p>
       </form>
     </div>
@@ -212,7 +214,7 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
   .featured-copy h2 { font-size: clamp(1.75rem,3vw,2.5rem); }
   .featured-copy p { color: var(--slate-grey); }
   .featured-meta { display: flex; flex-wrap: wrap; gap: .5rem; }
-  .featured-meta span { padding: .3rem .55rem; color: var(--deep-green); border-radius: 999px; background: #e9f5e6; font-size: .78rem; font-weight: 700; }
+  .featured-meta span { padding: .3rem .55rem; color: var(--deep-green); border-radius: 999px; background: #e9f5e6; font-size: .875rem; font-weight: 700; }
   .latest-panel { display: grid; align-content: center; gap: .2rem; }
   .latest-panel h2 { margin-bottom: .8rem; font-size: 1.1rem; }
   .latest-panel button { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 0; color: var(--deep-green); text-align: left; border: 0; border-bottom: 1px solid var(--border); background: transparent; cursor: pointer; font: 700 .92rem/1.4 "Atkinson Hyperlegible",Arial,sans-serif; }
@@ -224,24 +226,27 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
   .library-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
   .library-heading h2 { margin-top: .8rem; }
   .library-heading p { max-width: 44rem; margin-top: .75rem; color: var(--slate-grey); }
-  .search-field { display: grid; flex: 0 1 24rem; gap: .35rem; color: var(--deep-green); font-size: .82rem; font-weight: 700; }
+  .search-field { display: grid; flex: 0 1 24rem; gap: .35rem; color: var(--deep-green); font-size: .875rem; font-weight: 700; }
   .search-field input { width: 100%; min-height: 3rem; padding: .7rem .85rem; color: var(--slate-grey); border: 1.5px solid #7d877f; border-radius: .5rem; background: var(--white); font: inherit; }
   .filter-row { display: flex; gap: .55rem; overflow-x: auto; margin-top: 2rem; padding-bottom: .3rem; scrollbar-width: thin; }
-  .filter-row button { flex: 0 0 auto; min-height: 2.8rem; padding: .55rem .9rem; color: var(--deep-green); border: 1px solid var(--border); border-radius: .5rem; background: var(--white); cursor: pointer; font: 700 .82rem Poppins,Arial,sans-serif; transition: color 160ms ease,background-color 160ms ease,border-color 160ms ease,transform 160ms ease; }
+  .filter-row button { flex: 0 0 auto; min-height: 2.8rem; padding: .55rem .9rem; color: var(--deep-green); border: 1px solid var(--border); border-radius: .5rem; background: var(--white); cursor: pointer; font: 700 .875rem var(--font-heading); transition: color 160ms ease,background-color 160ms ease,border-color 160ms ease,transform 160ms ease; }
   .filter-row button:hover, .filter-row button:focus-visible, .filter-row button[aria-pressed="true"] { color: var(--white); border-color: var(--deep-green); background: var(--deep-green); transform: translateY(-2px); }
   .result-count { margin-top: 1rem; color: var(--slate-grey); font-size: .9rem; }
+  .availability-note { display: grid; grid-template-columns: auto 1fr; gap: .75rem 1rem; margin-top: 1rem; padding: 1rem 1.15rem; border: 1px solid #cbdacb; border-left: 5px solid var(--deep-blue); border-radius: .6rem; background: #f5f9fb; }
+  .availability-note strong { color: var(--deep-green); font-family: var(--font-heading); }
+  .availability-note p { font-size: .95rem; }
   .resource-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 1.3rem; }
   .resource-card { overflow: hidden; border: 1px solid var(--border); border-radius: .8rem; background: var(--white); box-shadow: 0 8px 22px rgba(10,72,35,.05); transition: transform 180ms ease,box-shadow 180ms ease; }
   .resource-card:hover { box-shadow: 0 16px 34px rgba(10,72,35,.11); transform: translateY(-4px); }
   .card-band { min-height: 5.5rem; display: flex; align-items: end; padding: 1rem; background: linear-gradient(135deg,color-mix(in srgb,var(--resource-color) 16%,white),color-mix(in srgb,var(--resource-color) 5%,white)); border-top: 5px solid var(--resource-color); }
-  .card-band span { padding: .3rem .55rem; color: var(--white); border-radius: .3rem; background: var(--resource-color); font: 700 .72rem Poppins,Arial,sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+  .card-band span { padding: .3rem .55rem; color: var(--white); border-radius: .3rem; background: var(--resource-ink); font: 700 .78rem var(--font-heading); letter-spacing: .06em; text-transform: uppercase; }
   .card-copy { display: grid; min-height: 20rem; align-content: start; gap: .8rem; padding: 1.4rem; }
   .card-copy h3 { font-size: 1.08rem; }
   .card-copy p { color: var(--slate-grey); font-size: .94rem; }
   .resource-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .2rem; }
-  .resource-meta span { padding: .3rem .5rem; color: var(--slate-grey); border-radius: .35rem; background: var(--surface-tint); font-size: .76rem; font-weight: 700; }
-  .request-button { align-self: end; min-height: 2.75rem; margin-top: auto; padding: .55rem .8rem; color: var(--resource-color); border: 1.5px solid var(--resource-color); border-radius: .45rem; background: var(--white); cursor: pointer; font: 700 .86rem Poppins,Arial,sans-serif; transition: color 160ms ease,background-color 160ms ease; }
-  .request-button:hover, .request-button:focus-visible { color: var(--white); background: var(--resource-color); }
+  .resource-meta span { padding: .3rem .5rem; color: var(--slate-grey); border-radius: .35rem; background: var(--surface-tint); font-size: .875rem; font-weight: 700; }
+  .request-button { align-self: end; min-height: 2.75rem; margin-top: auto; padding: .55rem .8rem; color: var(--resource-ink); border: 1.5px solid var(--resource-color); border-radius: .45rem; background: var(--white); cursor: pointer; font: 700 .875rem var(--font-heading); transition: color 160ms ease,background-color 160ms ease; }
+  .request-button:hover, .request-button:focus-visible { color: var(--white); border-color: var(--resource-ink); background: var(--resource-ink); }
   .empty-state { margin-top: 1.3rem; padding: 3rem; text-align: center; border: 2px dashed var(--border); border-radius: .8rem; background: var(--surface-tint); }
   .empty-state p { margin-top: .5rem; }
 
@@ -252,9 +257,9 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
   .programme-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
   .programme-grid a { display: grid; min-height: 12rem; align-content: space-between; gap: 1rem; padding: 1.4rem; color: var(--deep-green); border: 1px solid var(--border); border-top: 5px solid var(--programme-color); border-radius: .75rem; background: var(--white); text-decoration: none; transition: transform 180ms ease,box-shadow 180ms ease; }
   .programme-grid a:hover, .programme-grid a:focus-visible { box-shadow: 0 14px 28px color-mix(in srgb,var(--programme-color) 15%,transparent); transform: translateY(-4px); }
-  .programme-grid a > span { color: var(--programme-color); font: 700 .78rem Poppins,Arial,sans-serif; letter-spacing: .1em; }
-  .programme-grid strong { font-family: Poppins,Arial,sans-serif; }
-  .programme-grid small { color: var(--programme-color); font-size: .78rem; font-weight: 700; }
+  .programme-grid a > span { color: var(--programme-ink); font: 700 .8rem var(--font-heading); letter-spacing: .1em; }
+  .programme-grid strong { font-family: var(--font-heading); }
+  .programme-grid small { color: var(--programme-ink); font-size: .875rem; font-weight: 700; }
 
   .learning-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(2rem,7vw,6rem); align-items: center; }
   .learning-layout > div { display: grid; justify-items: start; gap: .9rem; }
@@ -262,7 +267,7 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
   .learning-layout ol::before { content: ""; position: absolute; top: 1.5rem; right: 8%; left: 8%; height: 2px; background: #cfe1d0; }
   .learning-layout li { position: relative; z-index: 1; display: grid; justify-items: center; gap: .65rem; text-align: center; }
   .learning-layout li > span { display: grid; width: 3rem; aspect-ratio: 1; place-items: center; color: var(--deep-green); border: 2px solid #b9d6b8; border-radius: 50%; background: var(--white); font: 700 .9rem Poppins,Arial,sans-serif; }
-  .learning-layout li strong { font: 700 .78rem/1.35 Poppins,Arial,sans-serif; }
+  .learning-layout li strong { font: 700 .875rem/1.35 var(--font-heading); }
 
   .resource-cta { padding-block: 4rem; color: var(--white); background: linear-gradient(100deg,var(--deep-green),var(--deep-blue)); }
   .resource-cta .container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
@@ -283,19 +288,21 @@ const learningSteps = ["Identify needs", "Design together", "Implement", "Monito
   .dialog-close { display: grid; width: 2.6rem; aspect-ratio: 1; place-items: center; color: var(--deep-green); border: 1px solid var(--border); border-radius: 50%; background: var(--surface-tint); cursor: pointer; font-size: 1.5rem; line-height: 1; }
   .dialog-close:hover, .dialog-close:focus-visible { color: var(--white); border-color: var(--deep-green); background: var(--deep-green); }
   .request-form { display: grid; gap: .8rem; margin-top: 1rem; }
-  .request-form > label, .form-row label { display: grid; gap: .35rem; color: var(--deep-green); font-family: Poppins,Arial,sans-serif; font-size: .88rem; font-weight: 700; }
-  .request-form label span { color: var(--slate-grey); font-family: "Atkinson Hyperlegible",Arial,sans-serif; font-weight: 400; }
+  .request-form > label, .form-row label { display: grid; gap: .35rem; color: var(--deep-green); font-family: var(--font-heading); font-size: .9rem; font-weight: 700; }
+  .request-form label span { color: var(--slate-grey); font-family: var(--font-body); font-weight: 400; }
   .request-form input, .request-form textarea { width: 100%; padding: .75rem .85rem; color: var(--slate-grey); border: 1.5px solid #747d77; border-radius: .5rem; background: var(--white); font: inherit; }
   .request-form input { min-height: 3rem; }
   .request-form input[readonly] { color: var(--deep-green); background: var(--surface-tint); font-weight: 700; }
   .request-form textarea { resize: vertical; }
-  .requested-date { margin-top: -.45rem; color: var(--slate-grey); font-size: .8rem; }
+  .requested-date { margin-top: -.45rem; color: var(--slate-grey); font-size: .875rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
   .form-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .5rem; }
   .form-actions .button { cursor: pointer; }
   .request-status { min-height: 1.5rem; color: var(--leaf-green-dark); font-size: .88rem; font-weight: 700; }
+  .privacy-link { color: var(--slate-grey); font-size: .875rem; }
+  .privacy-link a { color: var(--deep-green); font-weight: 700; text-underline-offset: .2rem; }
 
   @media (max-width: 64rem) { .featured-grid { grid-template-columns: 1fr 1fr; } .latest-panel { grid-column: 1/-1; } .resource-grid, .programme-grid { grid-template-columns: repeat(2,1fr); } .learning-layout { grid-template-columns: 1fr; } }
-  @media (max-width: 48rem) { .featured-grid, .resource-grid, .programme-grid { grid-template-columns: 1fr; } .latest-panel { grid-column: auto; } .library-heading, .resource-cta .container { align-items: flex-start; flex-direction: column; } .search-field { width: 100%; flex-basis: auto; } .learning-layout ol { grid-template-columns: 1fr; } .learning-layout ol::before { display: none; } .learning-layout li { grid-template-columns: auto 1fr; justify-items: start; align-items: center; text-align: left; } .form-row { grid-template-columns: 1fr; } }
+  @media (max-width: 48rem) { .featured-grid, .resource-grid, .programme-grid { grid-template-columns: 1fr; } :global(.featured-photo) { min-height: 0; } .latest-panel { grid-column: auto; } .library-heading, .resource-cta .container { align-items: flex-start; flex-direction: column; } .search-field { width: 100%; flex-basis: auto; } .availability-note { grid-template-columns: 1fr; } .learning-layout ol { grid-template-columns: 1fr; } .learning-layout ol::before { display: none; } .learning-layout li { grid-template-columns: auto 1fr; justify-items: start; align-items: center; text-align: left; } .form-row { grid-template-columns: 1fr; } }
   @media (prefers-reduced-motion: reduce) { .resource-card:hover, .filter-row button:hover, .programme-grid a:hover, .programme-grid a:focus-visible { transform: none; } }
 </style>

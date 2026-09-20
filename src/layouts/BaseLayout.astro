@@ -2,8 +2,21 @@
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
-interface Props { title: string; description: string; }
-const { title, description } = Astro.props;
+interface Props { title: string; description: string; robots?: string; }
+const { title, description, robots = "index, follow" } = Astro.props;
+const siteUrl = "https://growchild-initiative.ifexls.chatgpt.site";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const fullTitle = `${title} | GROWCHILD`;
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  name: "GROWCHILD",
+  alternateName: "Growth and Resilience of Women and Children Empowerment Initiative",
+  url: siteUrl,
+  email: "growchild.org@gmail.com",
+  telephone: "+2349134068024",
+  areaServed: "Nigeria",
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -12,11 +25,19 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0A4823" />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
-    <title>{title} | GROWCHILD</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GROWCHILD" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <title>{fullTitle}</title>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>

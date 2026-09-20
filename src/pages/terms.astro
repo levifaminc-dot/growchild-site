@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Terms of Use" description="Terms for using the GROWCHILD website and its published resources.">
+  <header class="legal-hero"><div class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Terms of Use</span></nav><h1>Terms of Use</h1><p>Conditions for using this website and the information published by GROWCHILD.</p></div></header>
+  <section class="section"><div class="container legal-content">
+    <p class="updated">Last reviewed: 21 September 2026</p>
+    <section><h2>Website information</h2><p>GROWCHILD provides this website for general organisational, programme, partnership and resource information. Content may be updated as approved information becomes available.</p></section>
+    <section><h2>Accuracy and verification</h2><p>GROWCHILD aims to publish accurate information. Visitors who intend to rely on a resource, date, programme location or institutional statement for formal purposes should confirm the current version with the organisation.</p></section>
+    <section><h2>Resources</h2><p>Publications marked “On request” are not available as direct website downloads. Requesting a resource does not guarantee immediate release; availability may depend on approval, safeguarding or information-management requirements.</p></section>
+    <section><h2>Acceptable use</h2><p>Do not misuse the website, attempt to disrupt its operation, misrepresent GROWCHILD or use published material in a way that harms the dignity, safety or privacy of communities and individuals.</p></section>
+    <section><h2>External services</h2><p>Links to third-party websites are provided for reference. GROWCHILD does not control those services or their availability.</p></section>
+    <section><h2>Contact</h2><p>Questions about these terms can be sent to <a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a>.</p></section>
+  </div></section>
+</BaseLayout>
+
+<style>
+  .legal-hero { padding-block: clamp(3.5rem,7vw,5.5rem); color: var(--white); background: linear-gradient(125deg,#063719,var(--deep-green)); }
+  .legal-hero h1, .legal-hero p { color: var(--white); }
+  .legal-hero p { max-width: 48rem; margin-top: 1rem; font-size: 1.15rem; }
+  .legal-content { display: grid; max-width: 52rem; gap: 2.25rem; }
+  .updated { width: fit-content; padding: .45rem .7rem; color: var(--deep-green); border: 1px solid var(--border); border-radius: .5rem; background: var(--surface-tint); font-weight: 700; }
+  .legal-content section { display: grid; gap: .75rem; }
+  .legal-content h2 { font-size: clamp(1.4rem,3vw,1.85rem); }
+  .legal-content a { color: var(--deep-green); font-weight: 700; text-underline-offset: .2rem; }
+</style>

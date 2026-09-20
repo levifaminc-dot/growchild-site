@@ -11,12 +11,12 @@ const trustPoints = [
 ];
 
 const focusAreas = [
-  { title: "Disability Inclusion & Advocacy", sdg: "SDG 10", color: "#DD1367", text: "Inclusive programming, accessibility, advocacy and meaningful participation for persons with disabilities." },
-  { title: "Education & Child Protection", sdg: "SDG 4", color: "#C5192D", text: "Inclusive and safe learning, child protection and stronger community participation in education." },
-  { title: "Health & Community Wellbeing", sdg: "SDG 3", color: "#4C9F38", text: "Health awareness, referral pathways and practical support that improves access to essential care." },
-  { title: "Livelihoods & Women's Empowerment", sdg: "SDG 5", color: "#FF3A21", text: "Women's empowerment, inclusive livelihoods and stronger household and community resilience." },
-  { title: "Water, Sanitation & Hygiene (WASH)", sdg: "SDG 6", color: "#26BDE2", text: "Hygiene awareness, safer practices and improved access to water, sanitation and hygiene." },
-  { title: "Emergency Response", sdg: "SDG 11", color: "#FD9D24", text: "Protection-sensitive, accountable and evidence-driven support for crisis-affected communities." },
+  { title: "Disability Inclusion & Advocacy", sdg: "SDG 10", color: "#DD1367", ink: "#9B124D", text: "Inclusive programming, accessibility, advocacy and meaningful participation for persons with disabilities." },
+  { title: "Education & Child Protection", sdg: "SDG 4", color: "#C5192D", ink: "#A41424", text: "Inclusive and safe learning, child protection and stronger community participation in education." },
+  { title: "Health & Community Wellbeing", sdg: "SDG 3", color: "#4C9F38", ink: "#2C6510", text: "Health awareness, referral pathways and practical support that improves access to essential care." },
+  { title: "Livelihoods & Women's Empowerment", sdg: "SDG 5", color: "#FF3A21", ink: "#A92816", text: "Women's empowerment, inclusive livelihoods and stronger household and community resilience." },
+  { title: "Water, Sanitation & Hygiene (WASH)", sdg: "SDG 6", color: "#26BDE2", ink: "#00609D", text: "Hygiene awareness, safer practices and improved access to water, sanitation and hygiene." },
+  { title: "Emergency Response", sdg: "SDG 11", color: "#FD9D24", ink: "#7A4A00", text: "Protection-sensitive, accountable and evidence-driven support for crisis-affected communities." },
 ];
 
 const approachSteps = [
@@ -74,7 +74,7 @@ const approachSteps = [
       </div>
       <div class="focus-grid">
         {focusAreas.map((area, index) => (
-          <a class="focus-card" href={`/our-work/#area-${index + 1}`} style={`--sdg-color:${area.color}`}>
+          <a class="focus-card" href={`/our-work/#area-${index + 1}`} style={`--sdg-color:${area.color};--sdg-ink:${area.ink}`}>
             <div class="focus-card-top"><span class="sdg-label">{area.sdg}</span><span class="area-number" aria-hidden="true">0{index + 1}</span></div>
             <h3>{area.title}</h3>
             <p>{area.text}</p>
@@ -145,7 +145,7 @@ const approachSteps = [
   .home-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#f7faf5 0%,#f7faf5 39%,rgba(247,250,245,.94) 48%,rgba(247,250,245,.18) 72%,rgba(247,250,245,0) 100%); pointer-events: none; }
   .hero-grid { position: relative; z-index: 1; min-height: inherit; align-items: center; display: grid; grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr); }
   .hero-copy { display: grid; max-width: 43rem; justify-items: start; gap: 1.35rem; padding-block: 5rem; }
-  .hero-copy h1 { max-width: 15ch; font-size: clamp(2.7rem,5.5vw,5.4rem); line-height: 1.02; }
+  .hero-copy h1 { max-width: 15ch; font-size: clamp(2.5rem,5vw,4rem); line-height: 1.05; }
   .hero-copy p { max-width: 38rem; color: var(--slate-grey); font-size: clamp(1.05rem,1.7vw,1.28rem); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 
@@ -153,8 +153,8 @@ const approachSteps = [
   .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); }
   .trust-item { display: grid; gap: .2rem; padding: 1.55rem 1rem; text-align: center; }
   .trust-item + .trust-item { border-left: 1px solid var(--border); }
-  .trust-item strong { color: var(--leaf-green); font-family: Poppins,Arial,sans-serif; font-size: clamp(1.4rem,2.5vw,2.05rem); line-height: 1.1; }
-  .trust-item span { color: var(--slate-grey); font-size: .83rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+  .trust-item strong { color: var(--leaf-green-dark); font-family: var(--font-heading); font-size: clamp(1.4rem,2.5vw,2.05rem); line-height: 1.1; }
+  .trust-item span { color: var(--slate-grey); font-size: .875rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
 
   .intro-section { padding-block: clamp(4.5rem,9vw,8rem); }
   .intro-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(2rem,8vw,7rem); align-items: start; }
@@ -173,12 +173,12 @@ const approachSteps = [
   .focus-card:hover, .focus-card:focus-visible { border-color: var(--sdg-color); box-shadow: 0 18px 38px color-mix(in srgb,var(--sdg-color) 18%,transparent); transform: translateY(-6px); }
   .focus-card:hover::after, .focus-card:focus-visible::after { transform: scale(1); }
   .focus-card > * { position: relative; z-index: 1; }
-  .focus-card-top { display: flex; align-items: center; justify-content: space-between; color: var(--sdg-color); font-family: Poppins,Arial,sans-serif; font-weight: 700; }
-  .sdg-label { display: inline-flex; padding: .35rem .55rem; border-radius: 999px; background: color-mix(in srgb,var(--sdg-color) 12%,white); font-size: .72rem; letter-spacing: .07em; }
+  .focus-card-top { display: flex; align-items: center; justify-content: space-between; color: var(--sdg-ink); font-family: var(--font-heading); font-weight: 700; }
+  .sdg-label { display: inline-flex; padding: .35rem .55rem; border: 1px solid color-mix(in srgb,var(--sdg-color) 38%,white); border-radius: 999px; background: color-mix(in srgb,var(--sdg-color) 12%,white); font-size: .78rem; letter-spacing: .06em; }
   .area-number { opacity: .7; font-size: .9rem; letter-spacing: .1em; }
   .focus-card h3 { color: var(--deep-green); font-size: 1.1rem; }
   .focus-card p { font-size: .92rem; line-height: 1.65; }
-  .focus-link { align-self: end; margin-top: auto; color: var(--sdg-color); font-family: Poppins,Arial,sans-serif; font-size: .88rem; font-weight: 700; }
+  .focus-link { align-self: end; margin-top: auto; color: var(--sdg-ink); font-family: var(--font-heading); font-size: .9rem; font-weight: 700; }
   .focus-link span { display: inline-block; transition: transform 180ms ease; }
   .focus-card:hover .focus-link span, .focus-card:focus-visible .focus-link span { transform: translateX(.3rem); }
 
@@ -188,7 +188,7 @@ const approachSteps = [
   .approach-steps li { position: relative; z-index: 1; display: grid; justify-items: center; align-content: start; gap: .75rem; text-align: center; }
   .step-number { display: grid; width: 4.1rem; aspect-ratio: 1; place-items: center; color: var(--deep-green); border: 2px solid #b9d6b8; border-radius: 50%; background: var(--white); box-shadow: 0 0 0 .55rem var(--white); font-family: Poppins,Arial,sans-serif; font-size: 1.2rem; font-weight: 700; }
   .approach-steps h3 { font-size: 1rem; text-transform: capitalize; }
-  .approach-steps p { color: var(--slate-grey); font-size: .86rem; line-height: 1.55; }
+  .approach-steps p { color: var(--slate-grey); font-size: .9rem; line-height: 1.55; }
   .approach-link { width: fit-content; margin: 2.25rem auto 0; }
 
   .commitments-section { background: #f7faf5; }
@@ -229,7 +229,7 @@ const approachSteps = [
     .home-hero { padding-top: 18rem; }
     .hero-media { height: 21rem; }
     .hero-copy { padding-block: 3.25rem; }
-    .hero-copy h1 { font-size: clamp(2.35rem,12vw,3.4rem); }
+    .hero-copy h1 { font-size: clamp(2.1rem,10vw,2.6rem); }
     .trust-grid { grid-template-columns: repeat(2,1fr); }
     .trust-item:nth-child(3) { border-left: 0; border-top: 1px solid var(--border); }
     .trust-item:nth-child(4) { border-top: 1px solid var(--border); }

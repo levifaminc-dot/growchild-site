@@ -22,13 +22,25 @@ const pathway = [
   { title: "Functional assessment and referral", text: "Build linkages with rehabilitation professionals, health facilities, disability organizations and specialized providers." },
   { title: "Assistive technology and rehabilitation pathways", text: "Support a continuum of care focused on clinical accuracy, personalized fit and long-term sustainability." },
 ];
+
+const processSteps = [
+  ["01", "Identify needs", "Listen to communities and understand local priorities."],
+  ["02", "Design together", "Co-create inclusive solutions with communities and partners."],
+  ["03", "Implement", "Deliver programmes with quality, safeguarding and local ownership."],
+  ["04", "Monitor", "Track progress, feedback and results throughout delivery."],
+  ["05", "Learn and adapt", "Use evidence to improve decisions and future programmes."],
+];
 ---
 
 <BaseLayout title="Our Approach" description="GROWCHILD combines evidence, community ownership and inclusive leadership to deliver sustainable outcomes.">
   <PageHero title="Our Approach" intro="Evidence, community ownership and inclusive leadership guide how we design, deliver and improve every programme." parent="About Us" photo={photos.medicineOutreach} />
   <AboutSubnav />
 
-  <section class="section">
+  <section class="process-overview" aria-labelledby="process-title">
+    <div class="container"><div class="process-heading"><span class="eyebrow">Process at a glance</span><h2 id="process-title">A clear path from listening to learning.</h2></div><ol>{processSteps.map(([number,title,text]) => <li><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></div>
+  </section>
+
+  <section class="section" id="delivery-principles">
     <div class="container">
       <div class="section-heading"><span class="eyebrow">How we work</span><h2>Three principles guide delivery.</h2><p>Each principle connects technical quality with local leadership and practical accountability.</p></div>
       <div class="advantage-grid">
@@ -37,7 +49,7 @@ const pathway = [
     </div>
   </section>
 
-  <section class="section section-tint">
+  <section class="section section-tint" id="meal">
     <div class="container">
       <div class="section-heading"><span class="eyebrow">MEAL</span><h2>Monitoring, Evaluation, Accountability and Learning.</h2><p>MEAL is a central component of quality programming and responsible decision-making.</p></div>
       <div class="meal-grid">
@@ -46,7 +58,7 @@ const pathway = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="disability-pathway">
     <div class="container pathway">
       <div class="pathway-intro"><span class="eyebrow">Disability inclusion</span><h2>A dignified technical pathway.</h2><p>Our approach supports accessible and continuous services while involving persons with disabilities in decisions that affect them.</p></div>
       <ol>
@@ -60,6 +72,17 @@ const pathway = [
 </BaseLayout>
 
 <style>
+  .process-overview { padding-block: clamp(3rem,6vw,4.5rem); border-bottom: 1px solid var(--border); background: var(--white); }
+  .process-overview .container { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(2rem,6vw,5rem); align-items: start; }
+  .process-heading { display: grid; gap: .8rem; }
+  .process-heading h2 { font-size: clamp(1.7rem,3vw,2.35rem); }
+  .process-overview ol { display: grid; gap: .7rem; margin: 0; padding: 0; list-style: none; }
+  .process-overview li { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .process-overview li:first-child { padding-top: 0; }
+  .process-overview li:last-child { border-bottom: 0; }
+  .process-overview li > span { color: var(--royal-purple); font: 700 .875rem var(--font-heading); }
+  .process-overview h3 { font-size: 1rem; }
+  .process-overview p { margin-top: .25rem; font-size: .95rem; }
   .section-heading { max-width: 52rem; margin-bottom: 2.8rem; }
   .section-heading h2 { margin-top: .8rem; }
   .section-heading p { margin-top: .8rem; color: var(--slate-grey); }
@@ -74,7 +97,7 @@ const pathway = [
   .meal-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
   .meal-grid article { padding: 1.6rem; border: 1px solid var(--border); border-top: 4px solid var(--deep-blue); border-radius: .75rem; background: var(--white); }
   .meal-letter { display: grid; width: 2.7rem; aspect-ratio: 1; place-items: center; margin-bottom: 1rem; color: var(--white); border-radius: 50%; background: var(--deep-blue); font: 700 1rem Poppins,Arial,sans-serif; }
-  .meal-grid strong { display: block; margin-top: 1.3rem; color: var(--deep-green); font-family: Poppins,Arial,sans-serif; font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; }
+  .meal-grid strong { display: block; margin-top: 1.3rem; color: var(--deep-green); font-family: var(--font-heading); font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; }
   .meal-grid p { margin-top: .45rem; color: var(--slate-grey); font-size: .94rem; }
   .pathway { display: grid; grid-template-columns: .72fr 1.28fr; gap: 2rem 5rem; }
   .pathway-intro { display: grid; align-content: start; gap: .85rem; }
@@ -91,6 +114,6 @@ const pathway = [
   .approach-cta p { margin-top: .5rem; opacity: .84; }
   .approach-cta .button { color: var(--deep-blue); background: var(--white); }
   @media (max-width: 64rem) { .meal-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 56rem) { .advantage-grid, .pathway { grid-template-columns: 1fr; } .safeguard { grid-column: auto; } }
+  @media (max-width: 56rem) { .process-overview .container, .advantage-grid, .pathway { grid-template-columns: 1fr; } .safeguard { grid-column: auto; } }
   @media (max-width: 42rem) { .meal-grid { grid-template-columns: 1fr; } .approach-cta .container { align-items: flex-start; flex-direction: column; } }
 </style>

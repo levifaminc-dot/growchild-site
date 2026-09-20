@@ -44,6 +44,7 @@ const priorities = [
           ))}
         </div>
       </div>
+      <div class="coverage-disclosure" role="note"><strong>Coverage information</strong><p>The 15-state operational reach is confirmed by the organisation. Borno, Adamawa and Yobe are the currently approved state names for public display; the complete state directory will be added after client validation.</p></div>
       <p class="coordination">Expansion and delivery are coordinated with local administrative authorities, community leadership and programme partners.</p>
     </div>
   </section>
@@ -70,16 +71,19 @@ const priorities = [
   .coverage-summary > strong { color: var(--white); font: 700 1.2rem Poppins,Arial,sans-serif; }
   .coverage-summary > p { color: rgba(255,255,255,.84); }
   .focus-note { display: grid; gap: .35rem; width: 100%; margin-top: 1.5rem; padding: 1.2rem; color: var(--deep-green); border-radius: .7rem; background: var(--white); }
-  .focus-note span { color: var(--royal-purple); font: 700 .75rem Poppins,Arial,sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+  .focus-note span { color: var(--royal-purple); font: 700 .8rem var(--font-heading); letter-spacing: .08em; text-transform: uppercase; }
   .focus-note strong { font-family: Poppins,Arial,sans-serif; }
   .focus-note p { font-size: .9rem; }
   .zone-list { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
   .zone-list article { display: flex; min-height: 10rem; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.35rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); }
-  .zone-list article > div > span { color: var(--leaf-green-dark); font: 700 .7rem Poppins,Arial,sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+  .zone-list article > div > span { color: var(--leaf-green-dark); font: 700 .78rem var(--font-heading); letter-spacing: .08em; text-transform: uppercase; }
   .zone-list h3 { margin-top: .3rem; font-size: 1.15rem; }
   .zone-list p { margin-top: .4rem; color: var(--slate-grey); font-size: .9rem; line-height: 1.5; }
   .zone-list .priority { border-color: var(--leaf-green-dark); background: #f0f8e9; }
-  .zone-list article > strong { flex: 0 0 auto; padding: .3rem .55rem; color: var(--white); border-radius: .35rem; background: var(--deep-green); font-size: .7rem; text-transform: uppercase; }
+  .zone-list article > strong { flex: 0 0 auto; padding: .3rem .55rem; color: var(--white); border-radius: .35rem; background: var(--deep-green); font-size: .78rem; text-transform: uppercase; }
+  .coverage-disclosure { display: grid; grid-template-columns: auto 1fr; gap: .75rem 1rem; max-width: 62rem; margin: 1.7rem auto 0; padding: 1.1rem 1.25rem; border: 1px solid #cad9ca; border-left: 5px solid var(--deep-blue); border-radius: .65rem; background: #f5f9fb; }
+  .coverage-disclosure strong { color: var(--deep-green); font-family: var(--font-heading); }
+  .coverage-disclosure p { font-size: .95rem; }
   .coordination { max-width: 55rem; margin: 1.7rem auto 0; color: var(--slate-grey); text-align: center; font-style: italic; }
   .priority-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
   .priority-grid article { position: relative; min-height: 14rem; padding: 1.6rem; overflow: hidden; border: 1px solid var(--border); border-radius: .8rem; background: var(--white); }
@@ -91,5 +95,5 @@ const priorities = [
   .regional-cta p { margin-top: .5rem; opacity: .84; }
   .regional-cta .button { color: var(--deep-blue); background: var(--white); }
   @media (max-width: 56rem) { .coverage-layout { grid-template-columns: 1fr; } }
-  @media (max-width: 44rem) { .zone-list, .priority-grid { grid-template-columns: 1fr; } .regional-cta .container { align-items: flex-start; flex-direction: column; } }
+  @media (max-width: 44rem) { .zone-list, .priority-grid { grid-template-columns: 1fr; } .coverage-disclosure { grid-template-columns: 1fr; } .regional-cta .container { align-items: flex-start; flex-direction: column; } }
 </style>

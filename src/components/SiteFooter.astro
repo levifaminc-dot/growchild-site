@@ -5,7 +5,7 @@ const quickLinks = [
   ["Home", "/"], ["About Us", "/about/"], ["Where We Work", "/where-we-work/"],
   ["Our Approach", "/our-approach/"], ["Safeguarding", "/safeguarding/"],
   ["Our Work", "/our-work/"], ["Partnerships", "/partnerships/"],
-  ["Resources", "/resources/"], ["News & Updates", "/news/"], ["Contact Us", "/contact/"],
+  ["Resources", "/resources/"], ["Contact Us", "/contact/"],
 ];
 ---
 
@@ -32,28 +32,13 @@ const quickLinks = [
       </address>
     </section>
 
-    <section>
-      <h2>Subscribe to Updates</h2>
-      <form class="subscribe-form" id="subscribe-form">
-        <label for="footer-email">Email address</label>
-        <input id="footer-email" name="email" type="email" autocomplete="email" placeholder="Enter your email" required />
-        <button type="submit">Subscribe</button>
-        <p id="subscribe-status" class="subscribe-status" aria-live="polite"></p>
-      </form>
-      <div class="social-pending"><strong>Connect with us</strong><span>Social channels to be confirmed</span></div>
+    <section class="footer-action">
+      <h2>Resources &amp; Enquiries</h2>
+      <p>Browse verified organisational resources or contact the team directly for programme and partnership enquiries.</p>
+      <div><a href="/resources/">Browse resources</a><a href="/contact/">Contact GROWCHILD</a></div>
     </section>
   </div>
-  <div class="container footer-bottom"><p>© 2026 GROWCHILD. All rights reserved.</p><a href="/safeguarding/">Safeguarding &amp; Privacy Policy</a></div>
-
-  <script>
-    const form = document.querySelector<HTMLFormElement>("#subscribe-form");
-    const status = document.querySelector<HTMLElement>("#subscribe-status");
-    form?.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      if (status) status.textContent = "Subscription service to be confirmed.";
-    });
-  </script>
+  <div class="container footer-bottom"><p>© 2026 GROWCHILD. All rights reserved.</p><nav aria-label="Legal information"><a href="/safeguarding/">Safeguarding</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Use</a></nav></div>
 </footer>
 
 <style>
@@ -71,16 +56,12 @@ const quickLinks = [
   li a, address a { text-decoration: none; }
   li a:hover, address a:hover { color: var(--white); text-decoration: underline; }
   address { display: grid; gap: .7rem; color: rgba(255,255,255,.8); font-size: .9rem; font-style: normal; }
-  .subscribe-form { display: grid; gap: .55rem; }
-  .subscribe-form label { color: rgba(255,255,255,.9); font-size: .8rem; font-weight: 600; }
-  .subscribe-form input, .subscribe-form button { min-height: 3rem; border-radius: .5rem; font: inherit; }
-  .subscribe-form input { width: 100%; padding-inline: .85rem; color: var(--slate-grey); border: 1px solid var(--border); background: var(--white); }
-  .subscribe-form button { color: var(--white); border: 1px solid #8fcb62; background: var(--leaf-green-dark); font-family: Poppins,Arial,sans-serif; font-weight: 700; cursor: pointer; }
-  .subscribe-form button:hover { color: var(--deep-green); background: var(--white); }
-  .subscribe-status { min-height: 1.25rem; color: #d9ffc0; font-size: .8rem; }
-  .social-pending { display: grid; gap: .15rem; margin-top: .8rem; color: rgba(255,255,255,.75); font-size: .8rem; }
-  .social-pending strong { color: rgba(255,255,255,.9); }
-  .footer-bottom { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.72); font-size: .78rem; }
+  .footer-action { display: grid; align-content: start; gap: .8rem; }
+  .footer-action > p { font-size: .9rem; }
+  .footer-action > div { display: grid; gap: .45rem; }
+  .footer-action a { width: fit-content; color: var(--white); font-weight: 700; text-underline-offset: .2rem; }
+  .footer-bottom { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.78); font-size: .875rem; }
+  .footer-bottom nav { display: flex; flex-wrap: wrap; gap: .75rem 1rem; }
   @media (max-width: 62rem) { .footer-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 42rem) {
     .site-footer { padding-top: 2.25rem; }

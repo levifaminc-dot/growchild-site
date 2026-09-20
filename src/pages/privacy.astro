@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Privacy Policy" description="How the GROWCHILD website handles personal information and external services.">
+  <header class="legal-hero"><div class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Privacy Policy</span></nav><h1>Privacy Policy</h1><p>How information is handled when you use this website or contact GROWCHILD.</p></div></header>
+  <section class="section"><div class="container legal-content">
+    <p class="updated">Last reviewed: 21 September 2026</p>
+    <section><h2>Information you choose to provide</h2><p>The contact and resource-request forms prepare a message in your own email application. The website does not automatically transmit or store the information entered into those forms. Information is sent only when you review and send the resulting email.</p></section>
+    <section><h2>Direct communication</h2><p>If you email or telephone GROWCHILD, the organisation receives the information you choose to provide and uses it to respond to your enquiry, resource request, partnership discussion or safeguarding concern.</p></section>
+    <section><h2>Cookies and analytics</h2><p>This version of the website does not use visitor accounts, advertising cookies or analytics tracking. Essential browser functions may still be used to display and operate the website.</p></section>
+    <section><h2>External links</h2><p>The website links to third-party pages, including photography sources and licence information. Those services have their own privacy practices. Review their policies before providing information.</p></section>
+    <section><h2>Safeguarding information</h2><p>Do not include unnecessary sensitive personal details in an initial safeguarding email. Use the subject “Safeguarding concern – confidential” so the nature of the message is clear.</p><a class="text-link" href="/safeguarding/#report-a-concern">Read the safeguarding reporting guidance →</a></section>
+    <section><h2>Contact</h2><p>Questions about this policy can be sent to <a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a> or raised by telephone on <a href="tel:+2349134068024">+234 913 406 8024</a>.</p></section>
+  </div></section>
+</BaseLayout>
+
+<style>
+  .legal-hero { padding-block: clamp(3.5rem,7vw,5.5rem); color: var(--white); background: linear-gradient(125deg,#063719,var(--deep-green)); }
+  .legal-hero h1, .legal-hero p { color: var(--white); }
+  .legal-hero p { max-width: 48rem; margin-top: 1rem; font-size: 1.15rem; }
+  .legal-content { display: grid; max-width: 52rem; gap: 2.25rem; }
+  .updated { width: fit-content; padding: .45rem .7rem; color: var(--deep-green); border: 1px solid var(--border); border-radius: .5rem; background: var(--surface-tint); font-weight: 700; }
+  .legal-content section { display: grid; gap: .75rem; }
+  .legal-content h2 { font-size: clamp(1.4rem,3vw,1.85rem); }
+  .legal-content a { color: var(--deep-green); font-weight: 700; text-underline-offset: .2rem; }
+</style>

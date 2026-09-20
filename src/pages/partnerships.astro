@@ -1,39 +1,38 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 import { photos } from "../data/photos";
 
 const models = [
-  { title: "Technical Mentorship", text: "Reciprocal capacity exchange fostering institutional maturity, knowledge transfer, and specialist advisory frameworks for sustainable field interventions.", icon: "Training" },
-  { title: "Institutional Strengthening", text: "Consolidating governance, internal compliance, risk management systems, and transparent operational protocols aligned with global statutory standards.", icon: "NGO-office" },
-  { title: "Joint Learning", text: "Structured peer dialogues, shared reviews, and cross-organizational learning agendas that iteratively refine frontline intervention methodologies.", icon: "Learning" },
-  { title: "Programme Collaboration", text: "Co-designed and co-delivered programmatic architectures delivering dignified health, protection, and economic security to women and vulnerable youth.", icon: "Partnership" },
-  { title: "Evidence Generation", text: "Rigorously measured empirical research, field data aggregation, and community-led documentation shaping policy, accountability, and discourse.", icon: "Data" },
+  { title: "Technical Mentorship", text: "Exchange practical skills, specialist advice and field experience that strengthen programme delivery." },
+  { title: "Institutional Strengthening", text: "Improve governance, compliance, risk management and transparent operating systems together." },
+  { title: "Joint Learning", text: "Share reviews, lessons and tools that help partners improve frontline practice." },
+  { title: "Programme Collaboration", text: "Co-design and deliver inclusive health, protection and livelihoods programmes with communities." },
+  { title: "Evidence Generation", text: "Collect and use credible field evidence to support learning, accountability and better decisions." },
 ];
 const reasons = ["Nigerian community understanding","Women and youth-led leadership","Disability inclusion commitment","Advocacy and community engagement capacity","Assistive technology interest and fabrication support capacity","Strong MEAL, TPM, and data systems orientation","Commitment to evidence-driven programming"];
 const contributions = [
-  { title: "Local knowledge", icon: "Country" },
-  { title: "Community access", icon: "Community-engagement" },
-  { title: "Inclusion expertise", icon: "Affected-population" },
-  { title: "Data and MEAL capacity", icon: "Monitoring" },
-  { title: "Commitment to locally led solutions", icon: "Leadership" },
+  { title: "Local knowledge" },
+  { title: "Community access" },
+  { title: "Inclusion expertise" },
+  { title: "Data and MEAL capacity" },
+  { title: "Commitment to locally led solutions" },
 ];
 ---
 <BaseLayout title="Partnerships" description="Partner with GROWCHILD on inclusive, evidence-driven and locally led humanitarian and development programmes.">
   <PageHero title="Partner With GROWCHILD" intro="GROWCHILD believes sustainable impact requires collaboration between local organizations, government institutions, international partners, communities, and technical experts." parent="Get Involved" icon="Partnership" photo={photos.womenMarket} />
-  <section class="section"><div class="container"><span class="eyebrow">Collaboration models</span><h2 class="section-title">Core Value Propositions</h2><div class="models">{models.map((model,i) => <article><div class="model-mark"><HumanitarianIcon name={model.icon} /><span>0{i+1}</span></div><h3>{model.title}</h3><p>{model.text}</p></article>)}</div></div></section>
+  <section class="section"><div class="container"><span class="eyebrow">Ways to collaborate</span><h2 class="section-title">Practical partnership models</h2><div class="models">{models.map((model,i) => <article><div class="model-mark"><span>0{i+1}</span></div><h3>{model.title}</h3><p>{model.text}</p></article>)}</div></div></section>
   <section class="section section-tint"><div class="container why-grid"><div><span class="eyebrow">Why partner with us?</span><h2>GROWCHILD positions itself as a reliable emerging Nigerian partner.</h2></div><ul>{reasons.map((reason) => <li>{reason}</li>)}</ul></div></section>
-  <section class="section"><div class="container"><span class="eyebrow">Shared capacity</span><h2 class="section-title">What We Contribute</h2><div class="contributions">{contributions.map((item,i) => <article><div class="model-mark"><HumanitarianIcon name={item.icon} variant="compact" /><span>0{i+1}</span></div><h3>{item.title}</h3></article>)}</div></div></section>
-  <section class="partner-cta"><div class="container"><div><h2>Let's build something together</h2><p>Reach out to our partnership and safeguarding team to explore collaborative structures and local impact initiatives.</p></div><a class="button" href="/contact/">Contact Us</a></div></section>
+  <section class="section"><div class="container"><span class="eyebrow">Shared capacity</span><h2 class="section-title">What We Contribute</h2><div class="contributions">{contributions.map((item,i) => <article><div class="model-mark"><span>0{i+1}</span></div><h3>{item.title}</h3></article>)}</div></div></section>
+  <section class="partner-cta"><div class="container"><div><h2>Let's build something together</h2><p>Tell us about the community, programme area and type of partnership you would like to explore.</p></div><a class="button" href="/contact/?interest=Partnership">Start a Partnership Enquiry</a></div></section>
 </BaseLayout>
 <style>
   .section-title { margin-top: .8rem; }
   .models { display: grid; grid-template-columns: repeat(6,1fr); gap: 1rem; margin-top: 3rem; }
   .models article { grid-column: span 2; padding: 2rem; border: 1px solid var(--border); border-radius: .75rem; }
   .models article:nth-child(4) { grid-column: 2/span 2; }
-  .model-mark { display: flex; align-items: flex-start; justify-content: flex-end; gap: .75rem; margin-bottom: 1.5rem; }
-  .model-mark > span { display: block; color: var(--royal-purple); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .12em; }
+  .model-mark { display: flex; align-items: flex-start; justify-content: flex-start; gap: .75rem; margin-bottom: 1.5rem; }
+  .model-mark > span { display: block; color: var(--royal-purple); font: 700 .875rem var(--font-heading); letter-spacing: .1em; }
   .models p { margin-top: .75rem; }
   .why-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem,7vw,6rem); }
   .why-grid h2 { margin-top: .8rem; }

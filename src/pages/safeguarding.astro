@@ -42,7 +42,7 @@ const promotes = [
     </div>
   </section>
 
-  <section class="report"><div class="container report-grid"><div><span class="eyebrow">Report a concern</span><h2>Safeguarding concerns should be handled confidentially.</h2><p>Dedicated reporting details will be published once the approved channels are confirmed.</p></div><div class="channels"><p>Email reporting channel: <strong>to be confirmed</strong></p><p>Phone reporting channel: <strong>to be confirmed</strong></p><span class="button pending" aria-disabled="true">Confidential channel to be confirmed</span><a href="/safeguarding/">Privacy Policy</a></div></div></section>
+  <section class="report" id="report-a-concern"><div class="container report-grid"><div><span class="eyebrow">Report a concern</span><h2>Safeguarding concerns should be handled carefully.</h2><p>Until a dedicated reporting channel is approved, concerns can be raised through GROWCHILD’s official contact details. Use the subject “Safeguarding concern – confidential” and avoid including sensitive personal details beyond what is needed for the organisation to contact you.</p><p class="urgent-note"><strong>Immediate danger:</strong> contact the appropriate local emergency or protection service first.</p></div><div class="channels"><div><span>Email</span><a href="mailto:growchild.org@gmail.com?subject=Safeguarding%20concern%20%E2%80%93%20confidential">growchild.org@gmail.com</a></div><div><span>Phone</span><a href="tel:+2349134068024">+234 913 406 8024</a></div><a class="button" href="mailto:growchild.org@gmail.com?subject=Safeguarding%20concern%20%E2%80%93%20confidential">Prepare Confidential Email</a><a href="/privacy/">Read our Privacy Policy</a></div></div></section>
 </BaseLayout>
 
 <style>
@@ -66,9 +66,12 @@ const promotes = [
   .report .eyebrow::before { background: #a8f46d; }
   .report h2 { margin-top: .8rem; }
   .report > .container > div > p { margin-top: .8rem; opacity: .84; }
+  .urgent-note { padding: 1rem; border-left: 4px solid #a8f46d; background: rgba(255,255,255,.08); }
   .channels { display: grid; align-content: center; justify-items: start; gap: 1rem; padding: 2rem; border: 1px solid rgba(255,255,255,.25); border-radius: .75rem; }
+  .channels > div { display: grid; gap: .15rem; }
+  .channels > div span { color: rgba(255,255,255,.78); font-size: .875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+  .channels > div a { color: var(--white); font-size: 1.05rem; font-weight: 700; text-underline-offset: .2rem; }
   .channels .button { color: var(--deep-green); background: var(--white); }
-  .channels .pending { cursor: not-allowed; opacity: .72; }
   .channels > a:last-child { text-underline-offset: .2rem; }
   @media (max-width: 64rem) { .zero-grid { grid-template-columns: repeat(2,1fr); } }
   @media (max-width: 50rem) { .standards-layout, .report-grid { grid-template-columns: 1fr; } }

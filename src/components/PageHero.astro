@@ -2,15 +2,16 @@
 import PhotoAttribution from "./PhotoAttribution.astro";
 import type { LicensedPhoto } from "../data/photos";
 
-interface Props { title: string; intro: string; parent?: string; icon?: string; photo: LicensedPhoto; primaryHref?: string; primaryLabel?: string; }
-const { title, intro, parent, photo, primaryHref, primaryLabel } = Astro.props;
+interface Props { title: string; intro: string; parent?: string; parentHref?: string; icon?: string; photo: LicensedPhoto; primaryHref?: string; primaryLabel?: string; }
+const { title, intro, parent, parentHref, photo, primaryHref, primaryLabel } = Astro.props;
+const resolvedParentHref = parentHref || (parent === "About Us" ? "/about/" : parent === "Get Involved" ? "/partnerships/" : undefined);
 ---
 <section class="page-hero">
   <div class="container page-hero-grid">
     <div>
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <a href="/">Home</a><span aria-hidden="true">/</span>
-        {parent && <><span>{parent}</span><span aria-hidden="true">/</span></>}
+        {parent && <>{resolvedParentHref ? <a href={resolvedParentHref}>{parent}</a> : <span>{parent}</span>}<span aria-hidden="true">/</span></>}
         <span aria-current="page">{title}</span>
       </nav>
       <h1>{title}</h1>
@@ -18,7 +19,10 @@ const { title, intro, parent, photo, primaryHref, primaryLabel } = Astro.props;
       {primaryHref && primaryLabel && <a class="button hero-button" href={primaryHref}>{primaryLabel}</a>}
     </div>
     <figure class="page-hero-photo">
-      <img src={photo.src} alt={photo.alt} loading="eager" fetchpriority="high" decoding="async" />
+      <picture>
+        <source type="image/webp" srcset={photo.webpSrcset} sizes="(max-width: 50rem) calc(100vw - 2rem), 42vw" />
+        <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
       <PhotoAttribution photo={photo} />
     </figure>
   </div>
@@ -28,9 +32,10 @@ const { title, intro, parent, photo, primaryHref, primaryLabel } = Astro.props;
   .page-hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(2rem,6vw,5rem); }
   .page-hero-photo { position: relative; min-height: 20rem; aspect-ratio: 4 / 3; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.35); border-radius: 1rem; box-shadow: 0 1.5rem 4rem rgba(0,0,0,.2); }
   .page-hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 50%,rgba(1,22,10,.28)); pointer-events: none; }
-  .page-hero-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .page-hero-photo > picture, .page-hero-photo > picture > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .page-hero-photo > picture > img { object-fit: cover; }
   :global(.page-hero-photo .photo-attribution) { z-index: 2; }
   .hero-button { margin-top: 1.5rem; color: var(--deep-green); background: var(--white); }
   .hero-button:hover, .hero-button:focus-visible { color: var(--white); background: var(--royal-purple); }
-  @media (max-width: 50rem) { .page-hero-grid { grid-template-columns: 1fr; } .page-hero-photo { min-height: 16rem; } }
+  @media (max-width: 50rem) { .page-hero-grid { grid-template-columns: 1fr; } .page-hero-photo { width: 100%; min-height: 0; } }
 </style>

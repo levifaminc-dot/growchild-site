@@ -1,47 +1,60 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import HumanitarianIcon from "../components/HumanitarianIcon.astro";
 import EditorialPhoto from "../components/EditorialPhoto.astro";
 import { photos } from "../data/photos";
 
 const areas = [
-  { title: "Disability Inclusion and Advocacy", items: ["disability-inclusive humanitarian and development programming","community identification of persons with disabilities","disability awareness and stigma reduction","advocacy for disability rights","inclusive access to services","strengthening disability data systems"], note: "Persons with disabilities are engaged not only as beneficiaries but as active participants in programme design, implementation, monitoring and decision-making.", icon: "People-with-physical-impairments", color: "#DD1367" },
-  { title: "Education and Child Protection", items: ["inclusive education","identification of vulnerable children","child protection mainstreaming","safe learning environments","community participation","evidence-based education programming"], icon: "Child-protection", color: "#C5192D" },
-  { title: "Health and Community Wellbeing", items: ["community health engagement","health awareness","referral pathways","access for vulnerable populations","evidence generation for health programmes"], icon: "Health", color: "#4C9F38" },
-  { title: "Livelihoods and Women's Empowerment", items: ["women's empowerment","livelihood strengthening","community resilience","inclusion of vulnerable households in economic opportunities"], icon: "Livelihood", color: "#FF3A21" },
-  { title: "Water, Sanitation and Hygiene (WASH)", items: ["hygiene awareness","safe WASH practices","community participation","access to improved WASH services"], icon: "Water-Sanitation-and-Hygiene", color: "#26BDE2" },
-  { title: "Emergency Response and Humanitarian Action", items: ["community engagement","vulnerability identification","protection-sensitive programming","accountability mechanisms","evidence-driven humanitarian response planning"], icon: "Response", color: "#FD9D24" },
+  { title: "Disability Inclusion and Advocacy", items: ["disability-inclusive humanitarian and development programming","community identification of persons with disabilities","disability awareness and stigma reduction","advocacy for disability rights","inclusive access to services","strengthening disability data systems"], note: "Persons with disabilities are engaged not only as beneficiaries but as active participants in programme design, implementation, monitoring and decision-making.", color: "#DD1367", ink: "#9B124D" },
+  { title: "Education and Child Protection", items: ["inclusive education","identification of vulnerable children","child protection mainstreaming","safe learning environments","community participation","evidence-based education programming"], color: "#C5192D", ink: "#A41424" },
+  { title: "Health and Community Wellbeing", items: ["community health engagement","health awareness","referral pathways","access for vulnerable populations","evidence generation for health programmes"], color: "#4C9F38", ink: "#2C6510" },
+  { title: "Livelihoods and Women's Empowerment", items: ["women's empowerment","livelihood strengthening","community resilience","inclusion of vulnerable households in economic opportunities"], color: "#FF3A21", ink: "#A92816" },
+  { title: "Water, Sanitation and Hygiene (WASH)", items: ["hygiene awareness","safe WASH practices","community participation","access to improved WASH services"], color: "#26BDE2", ink: "#00609D" },
+  { title: "Emergency Response and Humanitarian Action", items: ["community engagement","vulnerability identification","protection-sensitive programming","accountability mechanisms","evidence-driven humanitarian response planning"], color: "#FD9D24", ink: "#7A4A00" },
 ];
 ---
 <BaseLayout title="Our Work" description="Explore GROWCHILD's six integrated humanitarian and development programme areas.">
   <PageHero title="Our Core Program Areas" intro="GROWCHILD delivers integrated humanitarian and development programming through community-based, inclusive and evidence-driven approaches." icon="Humanitarian-programme-cycle" photo={photos.medicalOutreach} />
-  <nav class="area-nav" aria-label="Program areas"><div class="container">{areas.map((area,i) => <a href={`#area-${i+1}`} style={`--area-color:${area.color}`}>{area.title.replace(" and ", " & ")}</a>)}</div></nav>
+  <nav class="area-nav" aria-label="Program areas"><div class="container">{areas.map((area,i) => <a href={`#area-${i+1}`} style={`--area-color:${area.color};--area-ink:${area.ink}`}>{area.title.replace(" and ", " & ")}</a>)}</div><span class="scroll-cue" aria-hidden="true">Swipe to explore →</span></nav>
   <section class="programme-gallery" aria-label="Programme photography"><div class="container"><EditorialPhoto photo={photos.schoolChildren} ratio="landscape" /><EditorialPhoto photo={photos.medicalOutreach} ratio="landscape" /><EditorialPhoto photo={photos.boreholeWater} ratio="landscape" /></div></section>
   <div class="program-list">
     {areas.map((area,i) => (
       <section id={`area-${i+1}`} class:list={["section", { "section-tint": i % 2 === 1 }]}>
         <div class="container program-grid">
-          <div class="program-identifier"><HumanitarianIcon name={area.icon} color={area.color} /><div class="program-number" style={`color:color-mix(in srgb, ${area.color} 28%, white)`}>0{i+1}</div></div>
+          <div class="program-identifier" style={`--program-color:${area.color};--program-ink:${area.ink}`}><span>Programme</span><div class="program-number">0{i+1}</div></div>
           <div><span class="eyebrow">Programme area</span><h2>{area.title}</h2><h3>Focus areas</h3><ul>{area.items.map((item) => <li>{item}</li>)}</ul>{area.note && <p class="program-note">{area.note}</p>}</div>
         </div>
       </section>
     ))}
   </div>
   <section class="work-cta"><div class="container"><div><h2>Partner with us on these initiatives</h2><p>Collaborate with GROWCHILD to advance inclusive, evidence-based development and humanitarian action.</p></div><a class="button" href="/contact/">Get in touch</a></div></section>
+  <script>
+    const areaLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".area-nav a"));
+    const areaSections = areaLinks.map((link) => document.querySelector<HTMLElement>(link.hash)).filter(Boolean) as HTMLElement[];
+    const setActiveArea = (id: string) => areaLinks.forEach((link) => link.setAttribute("aria-current", link.hash === `#${id}` ? "location" : "false"));
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target.id) setActiveArea(visible.target.id);
+    }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, .2, .5] });
+    areaSections.forEach((section) => observer.observe(section));
+  </script>
 </BaseLayout>
 <style>
   .area-nav { position: sticky; top: 7.25rem; z-index: 20; border-bottom: 1px solid var(--border); background: rgba(255,255,255,.96); backdrop-filter: blur(10px); }
+  .area-nav { position: sticky; }
   .area-nav .container { display: flex; gap: .25rem; overflow-x: auto; padding-block: .7rem; scrollbar-width: thin; }
-  .area-nav a { position: relative; flex: 0 0 auto; padding: .55rem .75rem .65rem; color: var(--deep-green); border: 1px solid transparent; border-radius: .4rem; font: 600 .82rem Poppins,Arial,sans-serif; text-decoration: none; transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+  .area-nav a { position: relative; flex: 0 0 auto; min-height: 2.75rem; padding: .55rem .75rem .65rem; color: var(--deep-green); border: 1px solid transparent; border-radius: .4rem; font: 600 .875rem var(--font-heading); text-decoration: none; transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
   .area-nav a::after { content: ""; position: absolute; inset: auto .7rem .28rem; height: 3px; border-radius: 99px; background: var(--area-color); transform: scaleX(.25); transform-origin: left; transition: transform 180ms ease; }
-  .area-nav a:hover, .area-nav a:focus-visible { color: var(--area-color); border-color: color-mix(in srgb, var(--area-color) 32%, white); background: color-mix(in srgb, var(--area-color) 8%, white); box-shadow: 0 7px 16px color-mix(in srgb, var(--area-color) 14%, transparent); transform: translateY(-2px); }
-  .area-nav a:hover::after, .area-nav a:focus-visible::after { transform: scaleX(1); }
+  .area-nav a:hover, .area-nav a:focus-visible, .area-nav a[aria-current="location"] { color: var(--area-ink); border-color: color-mix(in srgb, var(--area-color) 32%, white); background: color-mix(in srgb, var(--area-color) 8%, white); box-shadow: 0 7px 16px color-mix(in srgb, var(--area-color) 14%, transparent); transform: translateY(-2px); }
+  .area-nav a:hover::after, .area-nav a:focus-visible::after, .area-nav a[aria-current="location"]::after { transform: scaleX(1); }
+  .scroll-cue { display: none; padding: 0 .75rem .45rem; color: var(--slate-grey); font-size: .78rem; font-weight: 700; text-align: right; }
   .programme-gallery { padding-block: 2rem; background: var(--white); }
   .programme-gallery .container { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-  .program-grid { display: grid; grid-template-columns: 10rem 1fr; gap: clamp(2rem,7vw,6rem); }
+  .program-list > section { scroll-margin-top: 11rem; }
+  .program-grid { display: grid; grid-template-columns: 7rem 1fr; gap: clamp(2rem,7vw,6rem); }
   .program-identifier { display: grid; align-content: start; justify-items: start; gap: 1.25rem; }
-  .program-number { color: #cbd9c6; font: 700 clamp(4rem,10vw,8rem)/1 Poppins,Arial,sans-serif; }
+  .program-identifier > span { color: var(--program-ink); font: 700 .75rem var(--font-heading); letter-spacing: .08em; text-transform: uppercase; }
+  .program-number { color: var(--program-ink); font: 700 clamp(4rem,10vw,7rem)/1 var(--font-heading); }
   .program-grid h2 { margin-top: .8rem; }
   .program-grid h3 { margin-top: 2rem; font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; }
   .program-grid ul { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 2rem; margin: 1rem 0 0; padding: 0; list-style: none; }
@@ -53,6 +66,6 @@ const areas = [
   .work-cta h2 { color: var(--white); }
   .work-cta p { max-width: 42rem; margin-top: .6rem; }
   .work-cta .button { color: var(--deep-blue); background: var(--white); }
-  @media (max-width: 50rem) { .programme-gallery .container { grid-template-columns: 1fr; } .program-grid { grid-template-columns: 1fr; gap: 1rem; } .program-number { font-size: 4rem; } .program-grid ul { grid-template-columns: 1fr; } .work-cta .container { align-items: flex-start; flex-direction: column; } .area-nav { top: 7rem; } }
+  @media (max-width: 50rem) { .programme-gallery .container { grid-template-columns: 1fr; } .program-grid { grid-template-columns: 1fr; gap: 1rem; } .program-number { font-size: 4rem; } .program-grid ul { grid-template-columns: 1fr; } .work-cta .container { align-items: flex-start; flex-direction: column; } .area-nav { top: 6.85rem; } .scroll-cue { display: block; } .program-list > section { scroll-margin-top: 12rem; } }
   @media (prefers-reduced-motion: reduce) { .area-nav a:hover, .area-nav a:focus-visible { transform: none; } }
 </style>

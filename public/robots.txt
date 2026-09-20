@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://growchild-initiative.ifexls.chatgpt.site/sitemap.xml

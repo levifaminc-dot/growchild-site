@@ -23,7 +23,7 @@ const involvedLinks = [
         <a href="tel:+2349134068024">+234 913 406 8024</a><span aria-hidden="true">|</span>
         <span>CAC RC 9704884</span>
       </div>
-      <span class="trust-label">Institutional Trust &amp; Safeguarding</span>
+      <span class="trust-label"><span class="verified-dot" aria-hidden="true">✓</span> CAC registered · RC 9704884</span>
     </div>
   </div>
   <div class="main-bar">
@@ -33,52 +33,77 @@ const involvedLinks = [
         <a class:list={["nav-link", { current: isCurrent("/") }]} href="/" aria-current={isCurrent("/") ? "page" : undefined}>Home</a>
         <details class="nav-group">
           <summary class:list={["nav-link", { current: aboutLinks.some((link) => isCurrent(link.href)) }]}>About Us <span aria-hidden="true">⌄</span></summary>
-          <div class="dropdown"><span class="dropdown-label">About Us Menu</span>{aboutLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}>{link.label}</a>)}</div>
+          <div class="dropdown"><span class="dropdown-label">About Us Menu</span>{aboutLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>)}</div>
         </details>
         <a class:list={["nav-link", { current: isCurrent("/our-work/") }]} href="/our-work/" aria-current={isCurrent("/our-work/") ? "page" : undefined}>Our Work</a>
         <details class="nav-group">
           <summary class:list={["nav-link", { current: involvedLinks.some((link) => isCurrent(link.href)) }]}>Get Involved <span aria-hidden="true">⌄</span></summary>
-          <div class="dropdown dropdown-wide"><span class="dropdown-label">Get Involved Menu</span>{involvedLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}><strong>{link.label}</strong><small>{link.description}</small></a>)}</div>
+          <div class="dropdown dropdown-wide"><span class="dropdown-label">Get Involved Menu</span>{involvedLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}><strong>{link.label}</strong><small>{link.description}</small></a>)}</div>
         </details>
-        <a class:list={["nav-link", { current: isCurrent("/news/") }]} href="/news/" aria-current={isCurrent("/news/") ? "page" : undefined}>News &amp; Updates</a>
         <a class:list={["nav-link", { current: isCurrent("/contact/") }]} href="/contact/" aria-current={isCurrent("/contact/") ? "page" : undefined}>Contact Us</a>
       </nav>
       <a class="button button-primary header-cta" href="/partnerships/">Partner With Us</a>
       <details class="mobile-menu">
         <summary aria-label="Open navigation"><span aria-hidden="true">☰</span><span>Menu</span></summary>
         <nav aria-label="Mobile navigation">
-          <a class:list={["mobile-link", { current: isCurrent("/") }]} href="/">Home</a>
+          <a class:list={["mobile-link", { current: isCurrent("/") }]} href="/" aria-label="Home" aria-current={isCurrent("/") ? "page" : undefined}>Home</a>
           <details class="mobile-group" open={aboutLinks.some((link) => isCurrent(link.href))}>
-            <summary>About Us <span aria-hidden="true">⌄</span></summary>
-            <div>{aboutLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}>{link.label}</a>)}</div>
+            <summary aria-label="About Us menu">About Us <span aria-hidden="true">⌄</span></summary>
+            <div>{aboutLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href} aria-label={link.label} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>)}</div>
           </details>
-          <a class:list={["mobile-link", { current: isCurrent("/our-work/") }]} href="/our-work/">Our Work</a>
+          <a class:list={["mobile-link", { current: isCurrent("/our-work/") }]} href="/our-work/" aria-label="Our Work" aria-current={isCurrent("/our-work/") ? "page" : undefined}>Our Work</a>
           <details class="mobile-group" open={involvedLinks.some((link) => isCurrent(link.href))}>
-            <summary>Get Involved <span aria-hidden="true">⌄</span></summary><div>{involvedLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href}>{link.label}</a>)}</div>
+            <summary aria-label="Get Involved menu">Get Involved <span aria-hidden="true">⌄</span></summary><div>{involvedLinks.map((link) => <a class:list={{ current: isCurrent(link.href) }} href={link.href} aria-label={link.label} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</a>)}</div>
           </details>
-          <a class:list={["mobile-link", { current: isCurrent("/news/") }]} href="/news/">News &amp; Updates</a>
-          <a class:list={["mobile-link", { current: isCurrent("/contact/") }]} href="/contact/">Contact Us</a>
-          <a class="button button-primary mobile-cta" href="/partnerships/">Partner With Us</a>
-          <a class="mobile-email" href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a>
+          <a class:list={["mobile-link", { current: isCurrent("/contact/") }]} href="/contact/" aria-label="Contact Us" aria-current={isCurrent("/contact/") ? "page" : undefined}>Contact Us</a>
+          <a class="button button-primary mobile-cta" href="/partnerships/" aria-label="Partner With Us">Partner With Us</a>
+          <a class="mobile-email" href="mailto:growchild.org@gmail.com" aria-label="Email GROWCHILD">growchild.org@gmail.com</a>
         </nav>
       </details>
     </div>
   </div>
 </header>
 
+<script>
+  const navigationDetails = Array.from(document.querySelectorAll<HTMLDetailsElement>(".site-header details"));
+  navigationDetails.forEach((details) => {
+    details.addEventListener("toggle", () => {
+      if (!details.open) return;
+      navigationDetails.forEach((other) => {
+        if (other !== details && !details.contains(other) && !other.contains(details)) other.open = false;
+      });
+    });
+  });
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    navigationDetails.forEach((details) => {
+      if (details.open && !details.contains(target)) details.open = false;
+    });
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const openDetails = navigationDetails.find((details) => details.open);
+    if (!openDetails) return;
+    openDetails.open = false;
+    openDetails.querySelector<HTMLElement>("summary")?.focus();
+  });
+</script>
+
 <style>
   .site-header { position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 24px rgba(10,72,35,.08); }
-  .utility-bar { color: var(--white); background: var(--deep-green); font-size: .78rem; }
+  .utility-bar { color: var(--white); background: var(--deep-green); font-size: .875rem; }
   .utility-inner { display: flex; min-height: 2.25rem; align-items: center; justify-content: space-between; gap: 1rem; }
   .utility-contacts { display: flex; align-items: center; gap: .75rem; }
   .utility-contacts a { text-decoration: none; }
   .utility-contacts a:hover { text-decoration: underline; text-underline-offset: .18rem; }
   .trust-label { color: rgba(255,255,255,.82); }
+  .verified-dot { display: inline-grid; width: 1.35rem; aspect-ratio: 1; place-items: center; margin-right: .3rem; color: var(--deep-green); border-radius: 50%; background: var(--white); font-weight: 700; }
   .main-bar { border-bottom: 1px solid var(--border); background: rgba(255,255,255,.98); backdrop-filter: blur(12px); }
   .main-inner { display: flex; min-height: 5.25rem; align-items: center; gap: 1rem; }
   .brand-link { margin-right: auto; text-decoration: none; }
   .desktop-nav { display: flex; align-items: center; gap: .1rem; }
-  .nav-link { position: relative; display: inline-flex; min-height: 3rem; align-items: center; gap: .3rem; padding-inline: .55rem; color: var(--slate-grey); font-size: .79rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .nav-link { position: relative; display: inline-flex; min-height: 3rem; align-items: center; gap: .3rem; padding-inline: .55rem; color: var(--slate-grey); font-size: .875rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
   .nav-link::after { content: ""; position: absolute; inset: auto .55rem .2rem; height: 3px; border-radius: 99px; background: var(--leaf-green-dark); transform: scaleX(0); transform-origin: left; transition: transform 160ms ease; }
   .nav-link:hover, .nav-link.current { color: var(--leaf-green-dark); }
   .nav-link:hover::after, .nav-link.current::after, .nav-group[open] > .nav-link::after { transform: scaleX(1); }
@@ -89,16 +114,16 @@ const involvedLinks = [
   .nav-group > summary span { display: inline-block; transition: transform 160ms ease; }
   .dropdown { position: absolute; top: calc(100% + .5rem); left: 0; display: grid; width: 14rem; padding: .55rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--white); box-shadow: var(--shadow-soft); }
   .dropdown-wide { width: 17rem; }
-  .dropdown-label { padding: .35rem .65rem; color: #68716b; font: 700 .68rem Poppins,Arial,sans-serif; letter-spacing: .09em; text-transform: uppercase; }
-  .dropdown a { display: grid; padding: .65rem; color: var(--deep-green); border-radius: .38rem; font: 500 .88rem Poppins,Arial,sans-serif; text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
+  .dropdown-label { padding: .35rem .65rem; color: #68716b; font: 700 .75rem var(--font-heading); letter-spacing: .08em; text-transform: uppercase; }
+  .dropdown a { display: grid; min-height: 2.75rem; padding: .65rem; color: var(--deep-green); border-radius: .38rem; font: 500 .9rem var(--font-heading); text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
   .dropdown a:hover, .dropdown a:focus-visible, .dropdown a.current { color: var(--leaf-green-dark); background: var(--surface-tint); transform: translateX(.2rem); }
-  .dropdown small { margin-top: .2rem; color: var(--slate-grey); font: 400 .75rem/1.35 "Atkinson Hyperlegible",Arial,sans-serif; }
-  .header-cta { flex: 0 0 auto; font-size: .86rem; }
+  .dropdown small { margin-top: .2rem; color: var(--slate-grey); font: 400 .8rem/1.35 var(--font-body); }
+  .header-cta { flex: 0 0 auto; font-size: .9rem; }
   .mobile-menu { display: none; position: relative; }
-  .mobile-menu > summary { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .5rem; padding: .55rem .8rem; color: var(--deep-green); border: 2px solid var(--deep-green); border-radius: .5rem; cursor: pointer; font: 700 .9rem Poppins,Arial,sans-serif; list-style: none; }
+  .mobile-menu > summary { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .5rem; padding: .55rem .8rem; color: var(--deep-green); border: 2px solid var(--deep-green); border-radius: .5rem; cursor: pointer; font: 700 .9rem var(--font-heading); list-style: none; }
   .mobile-menu > summary::-webkit-details-marker { display: none; }
   .mobile-menu > nav { position: absolute; top: calc(100% + .75rem); right: 0; display: grid; width: min(22rem, calc(100vw - 1.25rem)); gap: .3rem; padding: .85rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); box-shadow: var(--shadow-soft); max-height: calc(100vh - 9rem); overflow-y: auto; }
-  .mobile-link, .mobile-group > summary { display: flex; min-height: 2.75rem; align-items: center; justify-content: space-between; padding: .55rem .75rem; color: var(--deep-green); border-radius: .45rem; font: 600 .98rem Poppins,Arial,sans-serif; text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
+  .mobile-link, .mobile-group > summary { display: flex; min-height: 2.75rem; align-items: center; justify-content: space-between; padding: .55rem .75rem; color: var(--deep-green); border-radius: .45rem; font: 600 .98rem var(--font-heading); text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
   .mobile-link:hover, .mobile-link:focus-visible, .mobile-link.current { background: var(--surface-tint); transform: translateX(.18rem); }
   .mobile-group { border: 1px solid var(--border); border-radius: .5rem; overflow: hidden; }
   .mobile-group > summary { cursor: pointer; list-style: none; background: #f8faf7; }
@@ -108,12 +133,15 @@ const involvedLinks = [
   .mobile-group a { padding: .45rem .6rem; color: var(--slate-grey); border-radius: .35rem; font-size: .92rem; text-decoration: none; transition: color 160ms ease, background-color 160ms ease, transform 160ms ease; }
   .mobile-group a:hover, .mobile-group a:focus-visible, .mobile-group a.current { color: var(--deep-green); background: var(--white); transform: translateX(.18rem); }
   .mobile-cta { margin-top: .45rem; }
-  .mobile-email { padding: .55rem; color: var(--slate-grey); text-align: center; font-size: .8rem; }
+  .mobile-email { padding: .55rem; color: var(--slate-grey); text-align: center; font-size: .875rem; }
   @media (max-width: 72rem) { .desktop-nav, .header-cta { display: none; } .mobile-menu { display: block; } }
   @media (max-width: 42rem) {
-    .utility-inner { min-height: 2rem; justify-content: space-between; font-size: .72rem; }
+    .utility-inner { min-height: 2.35rem; justify-content: space-between; gap: .5rem; font-size: .75rem; }
     .utility-contacts a:first-child, .utility-contacts span { display: none; }
-    .trust-label { order: -1; color: var(--white); }
+    .utility-contacts { gap: .3rem; }
+    .trust-label { order: -1; color: var(--white); white-space: nowrap; }
+    .verified-dot { width: 1.1rem; }
     .main-inner { min-height: 4.5rem; }
   }
+  @media (max-width: 25rem) { .utility-contacts { display: none; } .utility-inner { justify-content: center; } }
 </style>

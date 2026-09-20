@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/atkinson-hyperlegible-400.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/atkinson-hyperlegible-700.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/poppins-500.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/poppins-600.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/poppins-700.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
 @theme {
   --color-deep-green: #0a4823;
   --color-leaf-green: #539819;
@@ -10,7 +46,7 @@
   --color-surface-tint: #f4f7f4;
   --color-border-soft: #dce5dc;
   --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -24,15 +60,17 @@
   --border: #dce5dc;
   --white: #ffffff;
   --shadow-soft: 0 18px 48px rgba(10, 72, 35, 0.09);
+  --font-heading: "Poppins", Arial, sans-serif;
+  --font-body: "Atkinson Hyperlegible", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 10rem; }
 body {
   margin: 0;
   color: var(--slate-grey);
   background: var(--white);
-  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 1.125rem;
   line-height: 1.65;
 }
@@ -44,15 +82,18 @@ body::before {
   z-index: 100;
   background: linear-gradient(90deg, var(--leaf-green) 0 42%, var(--royal-purple) 42% 72%, var(--deep-blue) 72%);
 }
-h1, h2, h3, h4, .brand, .button, .nav-link, label { font-family: Poppins, Arial, sans-serif; }
+h1, h2, h3, h4, .brand, .button, .nav-link, label { font-family: var(--font-heading); }
 h1, h2, h3, h4 { color: var(--deep-green); line-height: 1.2; margin-block: 0; }
-h1 { font-size: clamp(2.4rem, 6vw, 4.75rem); letter-spacing: -0.035em; }
-h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.025em; }
+h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); letter-spacing: -0.035em; }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -0.025em; }
 h3 { font-size: 1.3rem; }
 p { margin-block: 0; }
 a { color: inherit; }
 img, svg { display: block; max-width: 100%; }
+:where(section, article, div)[id] { scroll-margin-top: 10rem; }
+[hidden] { display: none !important; }
 :focus-visible { outline: 3px solid var(--deep-blue); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .skip-link {
   position: fixed;
   inset: 1rem auto auto 1rem;
@@ -72,7 +113,7 @@ img, svg { display: block; max-width: 100%; }
   align-items: center;
   gap: 0.65rem;
   color: var(--leaf-green-dark);
-  font-family: Poppins, Arial, sans-serif;
+  font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -99,7 +140,7 @@ img, svg { display: block; max-width: 100%; }
 .button-primary:hover { background: var(--deep-green); }
 .button-secondary { color: var(--deep-green); border-color: var(--deep-green); background: transparent; }
 .button-secondary:hover { color: var(--white); background: var(--deep-green); }
-.text-link { color: var(--leaf-green-dark); font-family: Poppins, Arial, sans-serif; font-weight: 700; text-underline-offset: 0.25rem; transition: color 160ms ease, text-decoration-color 160ms ease; }
+.text-link { color: var(--leaf-green-dark); font-family: var(--font-heading); font-weight: 700; text-underline-offset: 0.25rem; transition: color 160ms ease, text-decoration-color 160ms ease; }
 .text-link:hover, .text-link:focus-visible { color: var(--deep-green); text-decoration-thickness: 2px; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
 .card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--white); padding: clamp(1.5rem, 3vw, 2rem); box-shadow: 0 8px 22px rgba(10,72,35,.035); transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease; }
@@ -119,6 +160,8 @@ img, svg { display: block; max-width: 100%; }
   body { font-size: 1rem; }
   .container { width: min(100% - 1.25rem, 75rem); }
   .cards { grid-template-columns: 1fr; }
+  html { scroll-padding-top: 8rem; }
+  :where(section, article, div)[id] { scroll-margin-top: 8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
