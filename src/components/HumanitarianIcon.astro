@@ -23,7 +23,9 @@ const {
   aria-hidden={label ? undefined : "true"}
   style={color ? `--icon-color:${color}` : undefined}
 >
-  <span class="humanitarian-icon-glyph" style={`--icon-url:url('/icons/ocha/${name}.svg')`}></span>
+  <span class:list={["humanitarian-icon-glyph", { "humanitarian-icon-glyph--colored": color }]}>
+    <img src={`/icons/ocha/${name}.svg`} alt="" width="48" height="48" loading="lazy" />
+  </span>
 </span>
 
 <style>
@@ -39,20 +41,24 @@ const {
     color: var(--icon-color, #009edb);
   }
   .humanitarian-icon-glyph {
+    --glyph-size: 2.45rem;
     width: 2.45rem;
     height: 2.45rem;
-    background: currentColor;
-    -webkit-mask: var(--icon-url) center / contain no-repeat;
-    mask: var(--icon-url) center / contain no-repeat;
+    overflow: hidden;
+  }
+  img { width: var(--glyph-size); height: var(--glyph-size); object-fit: contain; }
+  .humanitarian-icon-glyph--colored img {
+    filter: drop-shadow(0 var(--glyph-size) 0 var(--icon-color));
+    transform: translateY(calc(-1 * var(--glyph-size)));
   }
   .humanitarian-icon--compact { width: 3.25rem; }
-  .humanitarian-icon--compact .humanitarian-icon-glyph { width: 1.85rem; height: 1.85rem; }
+  .humanitarian-icon--compact .humanitarian-icon-glyph { --glyph-size: 1.85rem; width: 1.85rem; height: 1.85rem; }
   .humanitarian-icon--hero {
     width: clamp(7rem, 14vw, 10rem);
     border-color: rgba(255,255,255,.4);
     background: rgba(255,255,255,.95);
     box-shadow: 0 1.5rem 4rem rgba(0,0,0,.16);
   }
-  .humanitarian-icon--hero .humanitarian-icon-glyph { width: 58%; height: 58%; }
+  .humanitarian-icon--hero .humanitarian-icon-glyph { --glyph-size: clamp(4.06rem, 8.12vw, 5.8rem); width: var(--glyph-size); height: var(--glyph-size); }
   .humanitarian-icon--on-dark { border-color: rgba(255,255,255,.35); background: var(--white); }
 </style>

@@ -21,6 +21,8 @@ const mandate = [
   "Advancing disability inclusion",
   "Strengthening local systems and evidence capacity",
 ];
+
+const governanceProfiles = ["01", "02", "03"];
 ---
 <BaseLayout title="About Us" description="Learn about GROWCHILD's journey, vision, mission, values and organizational mandate.">
   <PageHero title="About GROWCHILD" intro="Growth and Resilience of Women and Children Empowerment Initiative" parent="About Us" icon="About" photo={photos.womenYouthTownhall} />
@@ -55,7 +57,7 @@ const mandate = [
     </div>
   </section>
   <section class="section leadership">
-    <div class="container"><span class="eyebrow">Leadership</span><h2 class="section-title">Governance and accountability.</h2><p>Structured governance and operational accountability upholding institutional standards.</p><div class="leadership-grid">{[1,2,3].map(() => <div class="profile-placeholder"><span aria-hidden="true">Person</span><strong>Leadership profile to be confirmed</strong></div>)}</div><div class="registration">Registered with the Corporate Affairs Commission, Nigeria. RC 9704884 <a href="/safeguarding/">Read our safeguarding commitment →</a></div></div>
+    <div class="container"><span class="eyebrow">Leadership</span><h2 class="section-title">Governance and accountability.</h2><p>Structured governance and operational accountability upholding institutional standards.</p><div class="leadership-grid">{governanceProfiles.map((number) => <article class="profile-placeholder"><div class="profile-visual"><HumanitarianIcon name="Leadership" /><span aria-hidden="true">{number}</span></div><div class="profile-copy"><span class="profile-label">Governance profile</span><h3>Name to be confirmed</h3><p>Position and professional biography will be added after formal approval.</p></div></article>)}</div><div class="registration">Registered with the Corporate Affairs Commission, Nigeria. RC 9704884 <a href="/safeguarding/">Read our safeguarding commitment →</a></div></div>
   </section>
 </BaseLayout>
 <style>
@@ -86,11 +88,18 @@ const mandate = [
   .leadership { background: #f7faf5; }
   .leadership > .container > p { margin-top: 1rem; }
   .leadership-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2.5rem; }
-  .profile-placeholder { display: grid; min-height: 14rem; place-content: center; gap: .75rem; padding: 1.5rem; text-align: center; border: 2px dashed var(--border); border-radius: .75rem; background: var(--white); }
-  .profile-placeholder span { color: var(--royal-purple); font-size: .85rem; text-transform: uppercase; }
+  .profile-placeholder { display: grid; min-height: 20rem; overflow: hidden; border: 1px solid var(--border); border-radius: .85rem; background: var(--white); box-shadow: 0 10px 28px rgba(10,72,35,.06); transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease; }
+  .profile-placeholder:hover { border-color: #b8ceb8; box-shadow: 0 18px 38px rgba(10,72,35,.11); transform: translateY(-4px); }
+  .profile-visual { position: relative; display: grid; min-height: 10rem; place-items: center; background: radial-gradient(circle at 50% 42%,rgba(255,255,255,.16),transparent 4rem), linear-gradient(135deg,var(--deep-green),var(--leaf-green-dark)); }
+  .profile-visual > span { position: absolute; inset: 1rem 1rem auto auto; color: rgba(255,255,255,.75); font: 700 .8rem Poppins,Arial,sans-serif; letter-spacing: .14em; }
+  .profile-copy { display: grid; align-content: start; gap: .55rem; padding: 1.4rem 1.5rem 1.6rem; }
+  .profile-label { color: var(--royal-purple); font: 700 .75rem Poppins,Arial,sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  .profile-copy h3 { font-size: 1.15rem; }
+  .profile-copy p { color: var(--slate-grey); font-size: .95rem; }
   .registration { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding: 1.25rem; border-radius: .75rem; color: var(--white); background: var(--deep-green); }
   .registration a { font-weight: 700; }
   @media (max-width: 64rem) { .values-grid { grid-template-columns: repeat(2,1fr); } }
   @media (max-width: 48rem) { .profile-grid, .mandate-grid, .vision-grid { grid-template-columns: 1fr; } .timeline { grid-template-columns: 1fr; } .timeline::before { display: none; } .leadership-grid { grid-template-columns: 1fr; } .registration { flex-direction: column; } }
   @media (max-width: 38rem) { .values-grid, .mandate-grid ul { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .profile-placeholder:hover { transform: none; } }
 </style>
