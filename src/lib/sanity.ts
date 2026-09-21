@@ -42,8 +42,8 @@ export interface NewsArticle {
   seo?: { title?: string; description?: string };
 }
 
-const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID?.trim();
-const dataset = import.meta.env.PUBLIC_SANITY_DATASET?.trim();
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID?.trim() || 'jxllxpyw';
+const dataset = import.meta.env.PUBLIC_SANITY_DATASET?.trim() || 'production';
 
 export const sanityConfigured = Boolean(projectId && dataset);
 
