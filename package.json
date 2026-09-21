@@ -19,6 +19,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.3",
     "astro-portabletext": "^1.0.1",
+    "d3-geo": "^3.1.1",
     "groq": "^6.15.0",
     "tailwindcss": "^4.3.3"
   },
@@ -31,6 +32,7 @@
     "@sanity/astro": "^3.5.1",
     "@sanity/icons": "^5.2.2",
     "@sanity/vision": "^6.15.0",
+    "@types/d3-geo": "^3.1.1",
     "@types/node": "^26.6.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

@@ -83,10 +83,10 @@ body::before {
   background: linear-gradient(90deg, var(--leaf-green) 0 42%, var(--royal-purple) 42% 72%, var(--deep-blue) 72%);
 }
 h1, h2, h3, h4, .brand, .button, .nav-link, label { font-family: var(--font-heading); }
-h1, h2, h3, h4 { color: var(--deep-green); line-height: 1.2; margin-block: 0; }
-h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); letter-spacing: -0.035em; }
-h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -0.025em; }
-h3 { font-size: 1.3rem; }
+h1, h2, h3, h4 { color: var(--deep-green); line-height: 1.12; margin-block: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.75rem, 6.5vw, 4.75rem); font-weight: 700; letter-spacing: -0.045em; }
+h2 { font-size: clamp(2.05rem, 4.5vw, 3.25rem); font-weight: 700; letter-spacing: -0.035em; }
+h3 { font-size: clamp(1.35rem, 2.25vw, 1.65rem); font-weight: 700; letter-spacing: -0.02em; }
 p { margin-block: 0; }
 a { color: inherit; }
 img, svg { display: block; max-width: 100%; }

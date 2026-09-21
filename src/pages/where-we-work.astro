@@ -2,16 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import AboutSubnav from "../components/AboutSubnav.astro";
+import NigeriaCoverageMap from "../components/NigeriaCoverageMap.astro";
 import { photos } from "../data/photos";
-
-const zones = [
-  ["North-East", "Borno · Adamawa · Yobe", true],
-  ["North-West", "Regional partnerships and community networks", false],
-  ["North-Central", "Regional partnerships and community networks", false],
-  ["South-West", "Regional partnerships and community networks", false],
-  ["South-East", "Regional partnerships and community networks", false],
-  ["South-South", "Regional partnerships and community networks", false],
-];
 
 const priorities = [
   { title: "Rural populations", text: "Hard-to-reach agrarian and remote communities with limited access to primary services and economic infrastructure." },
@@ -21,8 +13,8 @@ const priorities = [
 ];
 ---
 
-<BaseLayout title="Where We Work" description="GROWCHILD works across 15 Nigerian states, with a priority focus in the North-East.">
-  <PageHero title="Where We Work" intro="Our operational reach spans 15 states, with priority attention to communities facing crisis, displacement and limited access to essential services." parent="About Us" photo={photos.ruralWomen} />
+<BaseLayout title="Where We Work" description="GROWCHILD works across 18 Nigerian states, with a priority focus in the North-East.">
+  <PageHero title="Where We Work" intro="Our operational reach spans 18 states, with priority attention to communities facing crisis, displacement and limited access to essential services." parent="About Us" photo={photos.ruralWomen} />
   <AboutSubnav />
 
   <section class="section">
@@ -30,21 +22,14 @@ const priorities = [
       <div class="section-heading"><span class="eyebrow">Geographic reach</span><h2>Locally rooted across Nigeria.</h2><p>GROWCHILD works through community relationships, regional partnerships and coordination with local leadership.</p></div>
       <div class="coverage-layout">
         <aside class="coverage-summary">
-          <span class="coverage-value">15</span>
+          <span class="coverage-value">18</span>
           <strong>States of operation</strong>
           <p>Our network connects programmes and partnerships across Nigeria's geopolitical regions.</p>
           <div class="focus-note"><span>Priority focus</span><strong>Borno · Adamawa · Yobe</strong><p>Targeted multi-sector engagement in the North-East.</p></div>
         </aside>
-        <div class="zone-list">
-          {zones.map(([name, description, priority]) => (
-            <article class:list={{ priority }}>
-              <div><span>Region</span><h3>{name}</h3><p>{description}</p></div>
-              {priority && <strong>Priority focus</strong>}
-            </article>
-          ))}
-        </div>
+        <NigeriaCoverageMap />
       </div>
-      <div class="coverage-disclosure" role="note"><strong>Coverage information</strong><p>The 15-state operational reach is confirmed by the organisation. Borno, Adamawa and Yobe are the currently approved state names for public display; the complete state directory will be added after client validation.</p></div>
+      <div class="coverage-disclosure" role="note"><strong>Coverage information</strong><p>The 18 operational states are drawn from GROWCHILD's organizational profile. Borno, Adamawa and Yobe are the priority focus states.</p></div>
       <p class="coordination">Expansion and delivery are coordinated with local administrative authorities, community leadership and programme partners.</p>
     </div>
   </section>
@@ -65,8 +50,8 @@ const priorities = [
   .section-heading { max-width: 50rem; margin-bottom: 2.7rem; }
   .section-heading h2 { margin-top: .8rem; }
   .section-heading p { margin-top: .8rem; color: var(--slate-grey); }
-  .coverage-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: 1.25rem; align-items: stretch; }
-  .coverage-summary { display: grid; align-content: start; justify-items: start; gap: .65rem; padding: clamp(2rem,5vw,3.5rem); color: var(--white); border-radius: 1rem; background: linear-gradient(145deg,var(--deep-green),#0d6b31); }
+  .coverage-layout { display: grid; grid-template-columns: minmax(16rem,.38fr) minmax(0,1.62fr); gap: 1.25rem; align-items: start; }
+  .coverage-summary { position: sticky; top: 10rem; display: grid; align-content: start; justify-items: start; gap: .65rem; padding: clamp(2rem,5vw,3.5rem); color: var(--white); border-radius: 1rem; background: linear-gradient(145deg,var(--deep-green),#0d6b31); }
   .coverage-value { font: 700 clamp(4rem,10vw,8rem)/.9 Poppins,Arial,sans-serif; letter-spacing: -.06em; }
   .coverage-summary > strong { color: var(--white); font: 700 1.2rem Poppins,Arial,sans-serif; }
   .coverage-summary > p { color: rgba(255,255,255,.84); }
@@ -74,13 +59,6 @@ const priorities = [
   .focus-note span { color: var(--royal-purple); font: 700 .8rem var(--font-heading); letter-spacing: .08em; text-transform: uppercase; }
   .focus-note strong { font-family: Poppins,Arial,sans-serif; }
   .focus-note p { font-size: .9rem; }
-  .zone-list { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-  .zone-list article { display: flex; min-height: 10rem; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.35rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--white); }
-  .zone-list article > div > span { color: var(--leaf-green-dark); font: 700 .78rem var(--font-heading); letter-spacing: .08em; text-transform: uppercase; }
-  .zone-list h3 { margin-top: .3rem; font-size: 1.15rem; }
-  .zone-list p { margin-top: .4rem; color: var(--slate-grey); font-size: .9rem; line-height: 1.5; }
-  .zone-list .priority { border-color: var(--leaf-green-dark); background: #f0f8e9; }
-  .zone-list article > strong { flex: 0 0 auto; padding: .3rem .55rem; color: var(--white); border-radius: .35rem; background: var(--deep-green); font-size: .78rem; text-transform: uppercase; }
   .coverage-disclosure { display: grid; grid-template-columns: auto 1fr; gap: .75rem 1rem; max-width: 62rem; margin: 1.7rem auto 0; padding: 1.1rem 1.25rem; border: 1px solid #cad9ca; border-left: 5px solid var(--deep-blue); border-radius: .65rem; background: #f5f9fb; }
   .coverage-disclosure strong { color: var(--deep-green); font-family: var(--font-heading); }
   .coverage-disclosure p { font-size: .95rem; }
@@ -94,6 +72,6 @@ const priorities = [
   .regional-cta h2, .regional-cta p { color: var(--white); }
   .regional-cta p { margin-top: .5rem; opacity: .84; }
   .regional-cta .button { color: var(--deep-blue); background: var(--white); }
-  @media (max-width: 56rem) { .coverage-layout { grid-template-columns: 1fr; } }
-  @media (max-width: 44rem) { .zone-list, .priority-grid { grid-template-columns: 1fr; } .coverage-disclosure { grid-template-columns: 1fr; } .regional-cta .container { align-items: flex-start; flex-direction: column; } }
+  @media (max-width: 72rem) { .coverage-layout { grid-template-columns: 1fr; } .coverage-summary { position: static; grid-template-columns: auto 1fr; align-items: center; } .coverage-summary > p, .focus-note { grid-column: 1/-1; } }
+  @media (max-width: 44rem) { .coverage-summary { grid-template-columns: 1fr; } .coverage-summary > p, .focus-note { grid-column: auto; } .priority-grid { grid-template-columns: 1fr; } .coverage-disclosure { grid-template-columns: 1fr; } .regional-cta .container { align-items: flex-start; flex-direction: column; } }
 </style>
