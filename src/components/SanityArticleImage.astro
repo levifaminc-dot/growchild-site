@@ -1,0 +1,23 @@
+---
+import { getNewsImageUrl, type NewsImage } from '../lib/sanity';
+import type { TypedObjectProps } from 'astro-portabletext/types';
+
+type Props = TypedObjectProps;
+const value = Astro.props.node as NewsImage;
+const src = getNewsImageUrl(value, 1200);
+---
+
+{src && <figure class="article-image">
+  <img src={src} alt={value.alt ?? ''} width="1200" height="800" loading="lazy" decoding="async" />
+  {(value.caption || value.credit) && <figcaption>
+    {value.caption}{value.caption && value.credit && ' · '}
+    {value.credit && (value.sourceUrl ? <a href={value.sourceUrl} rel="license noopener">{value.credit}</a> : value.credit)}
+  </figcaption>}
+</figure>}
+
+<style>
+  .article-image { margin: 2.25rem 0; }
+  img { width: 100%; height: auto; max-height: 44rem; object-fit: cover; border-radius: .8rem; }
+  figcaption { margin-top: .55rem; color: #667068; font-size: .85rem; }
+  a { text-underline-offset: .15rem; }
+</style>

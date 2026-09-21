@@ -1,23 +1,56 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import NewsArticleCard from "../components/NewsArticleCard.astro";
 import { photos } from "../data/photos";
+import { getNewsArticles, sanityConfigured } from "../lib/sanity";
+
+const articles = await getNewsArticles();
+const featured = articles.find((article) => article.featured) ?? articles[0];
+const latest = articles.filter((article) => article._id !== featured?._id);
+const categories = [...new Set(articles.map((article) => article.category?.title).filter(Boolean))];
 ---
 
-<BaseLayout title="News & Updates" description="Verified news, reports and stories from GROWCHILD will be published here." robots="noindex, follow">
-  <PageHero title="News & Updates" intro="Verified reports, programme updates and community stories from GROWCHILD." icon="Report" photo={photos.communityOutreach} />
+<BaseLayout title="News & Updates" description="Read verified programme updates, community stories, announcements and learning from GROWCHILD.">
+  <PageHero title="News & Updates" intro="Verified programme updates, community stories and announcements from GROWCHILD." icon="Report" photo={photos.communityOutreach} primaryHref="#latest-news" primaryLabel="Read Latest Updates" />
   <section class="section">
-    <div class="container empty-news">
-      <span class="eyebrow">Publication pending</span>
-      <h2>News and updates coming soon</h2>
-      <p>We will publish verified reports and stories here after editorial approval. In the meantime, browse the resource library or contact GROWCHILD directly.</p>
-      <div class="news-actions"><a class="button button-primary" href="/resources/">Browse Resources</a><a class="button button-secondary" href="/contact/">Contact GROWCHILD</a></div>
+    <div class="container" id="latest-news">
+      {featured ? <>
+        <div class="section-heading">
+          <div><span class="eyebrow">Featured update</span><h2>Latest from GROWCHILD</h2></div>
+          {categories.length > 0 && <p>{categories.join(' · ')}</p>}
+        </div>
+        <NewsArticleCard article={featured} featured />
+        {latest.length > 0 && <div class="latest-heading"><span class="eyebrow">More updates</span><h2>News, stories and announcements</h2></div>}
+        <div class="news-grid">{latest.map((article) => <NewsArticleCard article={article} />)}</div>
+      </> : <div class="empty-news">
+        <span class="eyebrow">Newsroom ready</span>
+        <h2>Verified updates will appear here</h2>
+        <p>{sanityConfigured ? 'The newsroom is connected. Publish the first approved article in Sanity Studio to display it here.' : 'The News page is ready for the GROWCHILD editorial team. Once the Sanity project is connected, approved stories will publish here.'}</p>
+        <div class="news-actions"><a class="button button-primary" href="/resources/">Browse Resources</a><a class="button button-secondary" href="/contact/">Contact GROWCHILD</a></div>
+      </div>}
+    </div>
+  </section>
+  <section class="section section-tint">
+    <div class="container newsroom-note">
+      <div><span class="eyebrow">Editorial standards</span><h2>Accurate, respectful and accountable.</h2></div>
+      <p>GROWCHILD publishes verified information with informed consent, safeguarding awareness and respect for the dignity and privacy of the people and communities represented.</p>
+      <a class="button button-secondary" href="/safeguarding/">Our Safeguarding Commitment</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .empty-news { display: grid; min-height: 20rem; place-content: center; justify-items: center; gap: 1rem; padding: clamp(2rem,6vw,4rem); text-align: center; border: 2px dashed var(--border); border-radius: .9rem; background: var(--surface-tint); }
+  .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.75rem; }
+  .section-heading h2, .latest-heading h2 { margin-top: .6rem; }
+  .section-heading > p { color: #657067; font-size: .95rem; text-align: right; }
+  .latest-heading { margin: clamp(3.5rem,7vw,5rem) 0 1.5rem; }
+  .news-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.25rem; }
+  .empty-news { display: grid; min-height: 22rem; place-content: center; justify-items: center; gap: 1rem; padding: clamp(2rem,6vw,4rem); text-align: center; border: 2px dashed #bfd0c1; border-radius: .9rem; background: var(--surface-tint); }
   .empty-news p { max-width: 42rem; margin-bottom: .75rem; }
   .news-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+  .newsroom-note { display: grid; grid-template-columns: 1fr 1.2fr auto; align-items: center; gap: clamp(1.5rem,4vw,3.5rem); }
+  .newsroom-note h2 { margin-top: .6rem; }
+  @media (max-width: 62rem) { .news-grid { grid-template-columns: 1fr 1fr; } .newsroom-note { grid-template-columns: 1fr 1fr; } .newsroom-note .button { grid-column: 1 / -1; width: fit-content; } }
+  @media (max-width: 42rem) { .section-heading { align-items: start; flex-direction: column; } .section-heading > p { text-align: left; } .news-grid, .newsroom-note { grid-template-columns: 1fr; } .newsroom-note .button { grid-column: auto; } }
 </style>
