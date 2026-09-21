@@ -1,6 +1,6 @@
 # GROWCHILD Newsroom setup
 
-The website is prepared for a Sanity project and a public `production` dataset.
+The website is connected to the `GROWCHILD Newsroom` Sanity project (`jxllxpyw`) and its public `production` dataset.
 
 ## Required environment variables
 
@@ -38,4 +38,3 @@ Use a public dataset for published news. Drafts and non-published editorial stat
 ## Publishing workflow
 
 Because the website is statically generated, publishing an article in Sanity must be followed by a website build and deployment. The sitemap automatically includes every published article during that build.
-
