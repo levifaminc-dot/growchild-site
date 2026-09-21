@@ -24,7 +24,15 @@ const involvedLinks = [
         <a href="tel:+2349134068024">+234 913 406 8024</a><span aria-hidden="true">|</span>
         <span>CAC RC 9704884</span>
       </div>
-      <span class="motto-label">Inclusion · Dignity · Resilience</span>
+      <div class="utility-actions">
+        <span class="motto-label">Inclusion · Dignity · Resilience</span>
+        <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Enable dark mode">
+          <span class="theme-symbol" aria-hidden="true">☀</span>
+          <span class="theme-track" aria-hidden="true"><span class="theme-thumb"></span></span>
+          <span class="theme-symbol" aria-hidden="true">☾</span>
+          <span class="sr-only theme-toggle-label">Enable dark mode</span>
+        </button>
+      </div>
     </div>
   </div>
   <div class="main-bar">
@@ -89,6 +97,28 @@ const involvedLinks = [
     openDetails.open = false;
     openDetails.querySelector<HTMLElement>("summary")?.focus();
   });
+
+  const themeToggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  const themeToggleLabel = themeToggle?.querySelector<HTMLElement>(".theme-toggle-label");
+  const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+
+  const applyTheme = (theme: "light" | "dark", persist = false) => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    const isDark = theme === "dark";
+    const nextAction = isDark ? "Enable light mode" : "Enable dark mode";
+    themeToggle?.setAttribute("aria-checked", String(isDark));
+    themeToggle?.setAttribute("aria-label", nextAction);
+    if (themeToggleLabel) themeToggleLabel.textContent = nextAction;
+    if (themeColor) themeColor.content = isDark ? "#0C120E" : "#0A4823";
+    if (persist) localStorage.setItem("growchild-theme", theme);
+  };
+
+  const initialTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  applyTheme(initialTheme);
+  themeToggle?.addEventListener("click", () => {
+    applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true);
+  });
 </script>
 
 <style>
@@ -98,7 +128,15 @@ const involvedLinks = [
   .utility-contacts { display: flex; align-items: center; gap: .75rem; }
   .utility-contacts a { text-decoration: none; }
   .utility-contacts a:hover { text-decoration: underline; text-underline-offset: .18rem; }
+  .utility-actions { display: flex; align-items: center; gap: .75rem; }
   .motto-label { color: rgba(255,255,255,.88); font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+  .theme-toggle { display: inline-flex; min-width: 5.5rem; min-height: 2rem; align-items: center; justify-content: center; gap: .35rem; padding: .22rem .45rem; color: var(--white); border: 1px solid rgba(255,255,255,.42); border-radius: 999px; background: rgba(255,255,255,.1); cursor: pointer; transition: border-color 160ms ease, background-color 160ms ease; }
+  .theme-toggle:hover { border-color: var(--white); background: rgba(255,255,255,.17); }
+  .theme-symbol { font-size: .8rem; line-height: 1; }
+  .theme-track { position: relative; width: 2.25rem; height: 1.2rem; border-radius: 999px; background: rgba(255,255,255,.3); box-shadow: inset 0 0 0 1px rgba(255,255,255,.24); }
+  .theme-thumb { position: absolute; top: .15rem; left: .15rem; width: .9rem; aspect-ratio: 1; border-radius: 50%; background: var(--white); box-shadow: 0 1px 4px rgba(0,0,0,.28); transition: transform 180ms ease; }
+  .theme-toggle[aria-checked="true"] .theme-track { background: var(--royal-purple); }
+  .theme-toggle[aria-checked="true"] .theme-thumb { transform: translateX(1.05rem); }
   .main-bar { border-bottom: 1px solid var(--border); background: rgba(255,255,255,.98); backdrop-filter: blur(12px); }
   .main-inner { display: flex; min-height: 5.25rem; align-items: center; gap: 1rem; }
   .brand-link { margin-right: auto; text-decoration: none; }
@@ -139,8 +177,11 @@ const involvedLinks = [
     .utility-inner { min-height: 2.35rem; justify-content: space-between; gap: .5rem; font-size: .75rem; }
     .utility-contacts a:first-child, .utility-contacts span { display: none; }
     .utility-contacts { gap: .3rem; }
-    .motto-label { order: -1; color: var(--white); letter-spacing: .02em; }
+    .utility-actions { order: -1; gap: .4rem; }
+    .motto-label { color: var(--white); letter-spacing: .02em; }
+    .theme-toggle { min-width: auto; padding-inline: .35rem; }
+    .theme-symbol { display: none; }
     .main-inner { min-height: 4.5rem; }
   }
-  @media (max-width: 25rem) { .utility-contacts { display: none; } .utility-inner { justify-content: center; } }
+  @media (max-width: 25rem) { .utility-contacts { display: none; } .utility-inner { justify-content: center; } .motto-label { font-size: .68rem; } }
 </style>

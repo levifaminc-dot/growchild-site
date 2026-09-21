@@ -64,6 +64,14 @@
   --font-body: "Atkinson Hyperlegible", Arial, sans-serif;
 }
 
+html[data-theme="dark"] {
+  --slate-grey: #d1dbd4;
+  --surface-tint: #121b15;
+  --border: #35443a;
+  --shadow-soft: 0 18px 48px rgba(0, 0, 0, 0.32);
+  color-scheme: dark;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 10rem; }
 body {
@@ -166,4 +174,161 @@ img, svg { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
   .button:hover, .card:hover { transform: none; }
+}
+
+/* Sitewide dark theme */
+html[data-theme="dark"] body { color: #d1dbd4; background: #0c120e; }
+html[data-theme="dark"] body :where(h1, h2, h3, h4) { color: #e6f3e8; }
+html[data-theme="dark"] body :where(.eyebrow, .text-link) { color: #9fd878; }
+html[data-theme="dark"] :focus-visible { outline-color: #69b9ee; }
+
+html[data-theme="dark"] body :where(
+  .main-bar,
+  .about-subnav,
+  .dropdown,
+  .mobile-menu > nav,
+  .card,
+  .news-card,
+  .map-explorer,
+  .featured-copy,
+  .latest-panel,
+  .area-nav,
+  .process-overview,
+  .advantage-grid article,
+  .meal-grid article,
+  .summary-card,
+  .facts-panel,
+  .leadership-pending,
+  .trust-strip,
+  .focus-card,
+  .regional-card,
+  .why-grid li,
+  .programme-gallery,
+  .program-note,
+  .resource-card,
+  .programme-grid a,
+  .promote-grid article,
+  .priority-grid article,
+  dialog
+) { color: #d1dbd4; border-color: #35443a; background: #151e18 !important; box-shadow: var(--shadow-soft); }
+
+html[data-theme="dark"] body :where(
+  .section-tint,
+  .summary-section,
+  .strengths-section,
+  .leadership,
+  .programmes-section,
+  .commitments-section,
+  .featured-section,
+  .programme-resources
+) { background: #101813 !important; }
+
+html[data-theme="dark"] body :where(
+  .summary-card--vision,
+  .safeguarding-card,
+  .coverage-disclosure,
+  .availability-note
+) { color: #d9e2dc; border-color: #3d4b42; background: #19231d !important; }
+
+html[data-theme="dark"] body :where(
+  .nav-link,
+  .dropdown a,
+  .dropdown small,
+  .dropdown-label,
+  .mobile-link,
+  .mobile-group > summary,
+  .mobile-group a,
+  .mobile-email,
+  .section-heading p,
+  .centered-heading p,
+  .intro-copy p,
+  .focus-card,
+  .focus-card h3,
+  .regional-copy p,
+  .story-copy p,
+  .facts-panel span,
+  .strengths-grid p,
+  .leadership-heading h2,
+  .leadership-heading p,
+  .library-heading p,
+  .card-copy p,
+  .resource-meta span,
+  .programme-grid a,
+  .map-legend,
+  .map-attribution,
+  .summary-heading p,
+  .summary-card p
+) { color: #d1dbd4 !important; }
+
+html[data-theme="dark"] body :where(
+  .dropdown a:hover,
+  .dropdown a:focus-visible,
+  .dropdown a.current,
+  .mobile-link:hover,
+  .mobile-link:focus-visible,
+  .mobile-link.current,
+  .mobile-group > summary,
+  .mobile-group a:hover,
+  .mobile-group a:focus-visible,
+  .mobile-group a.current,
+  .about-subnav a:hover,
+  .about-subnav a:focus-visible,
+  .about-subnav a[aria-current="page"]
+) { color: #b6e69b; background: #202c23; }
+
+html[data-theme="dark"] body :where(
+  input,
+  select,
+  textarea,
+  .search-field input,
+  .request-form input,
+  .request-form textarea,
+  .filter-row button,
+  .region-filters button
+) { color: #e0e9e2; border-color: #58675d; background: #111913; }
+
+html[data-theme="dark"] .home-hero::after { background: linear-gradient(90deg,#0d1510 0%,#0d1510 39%,rgba(13,21,16,.94) 50%,rgba(13,21,16,.35) 76%,rgba(13,21,16,.08) 100%); }
+html[data-theme="dark"] body :where(.home-hero h1, .home-hero p) { color: #edf7ef; }
+html[data-theme="dark"] body .main-bar { background: rgba(12,18,14,.96) !important; }
+html[data-theme="dark"] body .logo-mark:not(.light) { color: #b6e69b; }
+html[data-theme="dark"] body .mobile-menu > summary { color: #d7efca !important; border-color: #7eaa70 !important; }
+html[data-theme="dark"] body .mobile-group > summary { background: #18221b !important; }
+html[data-theme="dark"] body .logo-visual { background: #fff !important; }
+html[data-theme="dark"] body .focus-note { color: #17321f; background: #e8f1e9 !important; }
+html[data-theme="dark"] body .focus-note :where(strong, p) { color: #17321f; }
+html[data-theme="dark"] body .registration-badge { color: #17321f; background: #edf4ee !important; }
+html[data-theme="dark"] body .step-number { color: #dff1e3; background: #151e18 !important; box-shadow: 0 0 0 .55rem #0c120e; }
+html[data-theme="dark"] body .button-secondary { color: #c9edb7; border-color: #9bcf83; }
+html[data-theme="dark"] body .button-secondary:hover { color: #102016; background: #b6e69b; }
+html[data-theme="dark"] body .trust-item strong { color: #a8dc86 !important; }
+html[data-theme="dark"] body :where(label, .search-field, .request-form > label, .form-row label, .form-help a, .privacy-link a, .channel a, .latest-panel button) { color: #b6e69b !important; }
+html[data-theme="dark"] body :where(.model-mark > span, .program-identifier > span, .program-number) { color: color-mix(in srgb,var(--program-color,var(--royal-purple)) 60%,white) !important; }
+html[data-theme="dark"] body .area-nav a { color: #d1dbd4 !important; }
+html[data-theme="dark"] body .area-nav a:hover,
+html[data-theme="dark"] body .area-nav a:focus-visible,
+html[data-theme="dark"] body .area-nav a[aria-current="location"] { color: #f4f8f5 !important; border-color: color-mix(in srgb,var(--area-color) 65%,#35443a); background: color-mix(in srgb,var(--area-color) 24%,#151e18); }
+html[data-theme="dark"] body .safeguarding-card :where(h2, p, li) { color: #d1dbd4 !important; }
+html[data-theme="dark"] body .safeguarding-card .eyebrow { color: #d7b3ea !important; }
+html[data-theme="dark"] body .focus-card :where(.sdg-label, .area-number, .text-link, .focus-link) { color: color-mix(in srgb,var(--sdg-color) 62%,white) !important; }
+html[data-theme="dark"] body .summary-card--mission :where(.summary-number, .summary-kicker),
+html[data-theme="dark"] body .facts-panel strong { color: #a8dc86 !important; }
+html[data-theme="dark"] body .summary-card--vision :where(.summary-number, .summary-kicker) { color: #7bc7f3 !important; }
+html[data-theme="dark"] body .registration-badge :where(strong, small) { color: #17321f !important; }
+html[data-theme="dark"] body .coverage-disclosure strong,
+html[data-theme="dark"] body :where(.map-eyebrow, .detail-label),
+html[data-theme="dark"] body .meal-grid strong,
+html[data-theme="dark"] body .availability-note strong { color: #b6e69b !important; }
+html[data-theme="dark"] body .priority-grid article > span,
+html[data-theme="dark"] body .resource-label,
+html[data-theme="dark"] body .pathway li > span { color: #d7b3ea !important; }
+html[data-theme="dark"] body .item-number { color: #d7b3ea !important; background: #2b2130 !important; }
+html[data-theme="dark"] body .process-overview li > span { color: #d7b3ea !important; }
+html[data-theme="dark"] body .programme-grid a :where(span, small) { color: color-mix(in srgb,var(--programme-color) 58%,white) !important; }
+html[data-theme="dark"] body .legal-content :where(.updated, a) { color: #b6e69b !important; }
+html[data-theme="dark"] body .map-state.is-context { fill: #2b3930; stroke: #435449; }
+html[data-theme="dark"] body .map-state.is-operational { fill: #2b92c7; }
+html[data-theme="dark"] body .map-state.is-priority { fill: #8a4db2; stroke: #f3c45a; }
+
+@media (max-width: 42rem) {
+  html[data-theme="dark"] .home-hero::after { background: linear-gradient(0deg,#0d1510 0%,#0d1510 46%,rgba(13,21,16,.86) 64%,rgba(13,21,16,.18) 84%); }
 }
