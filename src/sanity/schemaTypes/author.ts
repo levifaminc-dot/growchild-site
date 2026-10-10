@@ -8,6 +8,14 @@ export const author = defineType({
   icon: UserIcon,
   fields: [
     defineField({ name: 'name', title: 'Name', type: 'string', validation: (rule) => rule.required() }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      description: 'A stable URL-friendly identifier for this author.',
+      type: 'slug',
+      options: { source: 'name', maxLength: 80 },
+      validation: (rule) => rule.required(),
+    }),
     defineField({ name: 'role', title: 'Position', type: 'string' }),
     defineField({
       name: 'photo',
