@@ -72,7 +72,6 @@ const NEWS_FIELDS = `
 const ARTICLES_QUERY = defineQuery(`
   *[
     _type == "newsArticle" &&
-    status == "published" &&
     defined(slug.current) &&
     publishedAt <= now()
   ] | order(featured desc, publishedAt desc) {
@@ -83,7 +82,6 @@ const ARTICLES_QUERY = defineQuery(`
 const ARTICLE_QUERY = defineQuery(`
   *[
     _type == "newsArticle" &&
-    status == "published" &&
     slug.current == $slug &&
     publishedAt <= now()
   ][0] {

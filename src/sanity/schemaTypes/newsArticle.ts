@@ -66,9 +66,15 @@ export const newsArticle = defineType({
     defineField({ name: 'body', title: 'Article body', type: 'blockContent', group: 'content', validation: (rule) => rule.required() }),
     defineField({
       name: 'status',
-      title: 'Editorial status',
+      title: 'Editorial status (deprecated)',
       type: 'string',
       group: 'publishing',
+      description: 'Sanity’s Draft and Published states now control website visibility.',
+      deprecated: {
+        reason: 'Use Sanity’s Draft and Published workflow. This legacy field no longer controls website visibility.',
+      },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
       options: {
         list: [
           { title: 'Draft', value: 'draft' },
@@ -77,8 +83,7 @@ export const newsArticle = defineType({
         ],
         layout: 'radio',
       },
-      initialValue: 'draft',
-      validation: (rule) => rule.required(),
+      initialValue: undefined,
     }),
     defineField({ name: 'featured', title: 'Feature on News page', type: 'boolean', group: 'publishing', initialValue: false }),
     defineField({ name: 'publishedAt', title: 'Publication date', type: 'datetime', group: 'publishing', validation: (rule) => rule.required() }),
@@ -95,7 +100,11 @@ export const newsArticle = defineType({
   ],
   orderings: [{ title: 'Publication date, newest', name: 'publishedAtDesc', by: [{ field: 'publishedAt', direction: 'desc' }] }],
   preview: {
-    select: { title: 'title', date: 'publishedAt', status: 'status', media: 'coverImage' },
-    prepare: ({ title, date, status, media }) => ({ title, subtitle: `${status ?? 'draft'} · ${date ? new Date(date).toLocaleDateString() : 'No date'}`, media }),
+    select: { title: 'title', date: 'publishedAt', category: 'category.title', media: 'coverImage' },
+    prepare: ({ title, date, category, media }) => ({
+      title,
+      subtitle: `${category ?? 'Uncategorised'} · ${date ? new Date(date).toLocaleDateString() : 'No date'}`,
+      media,
+    }),
   },
 });
