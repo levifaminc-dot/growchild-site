@@ -1,5 +1,6 @@
 ---
 import LogoMark from "./LogoMark.astro";
+import SocialLinks from "./SocialLinks.astro";
 
 const pathname = Astro.url.pathname;
 const isCurrent = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -21,10 +22,10 @@ const involvedLinks = [
     <div class="container utility-inner">
       <div class="utility-contacts">
         <a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a><span aria-hidden="true">|</span>
-        <a href="tel:+2349134068024">+234 913 406 8024</a><span aria-hidden="true">|</span>
-        <span>CAC RC 9704884</span>
+        <a href="tel:+2349134068024">+234 913 406 8024</a>
       </div>
       <div class="utility-actions">
+        <SocialLinks variant="header" />
         <span class="motto-label">Inclusion · Dignity · Resilience</span>
         <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Enable dark mode">
           <span class="theme-symbol" aria-hidden="true">☀</span>
@@ -174,14 +175,13 @@ const involvedLinks = [
   .mobile-email { padding: .55rem; color: var(--slate-grey); text-align: center; font-size: .875rem; }
   @media (max-width: 72rem) { .desktop-nav, .header-cta { display: none; } .mobile-menu { display: block; } }
   @media (max-width: 42rem) {
-    .utility-inner { min-height: 2.35rem; justify-content: space-between; gap: .5rem; font-size: .75rem; }
-    .utility-contacts a:first-child, .utility-contacts span { display: none; }
-    .utility-contacts { gap: .3rem; }
-    .utility-actions { order: -1; gap: .4rem; }
-    .motto-label { color: var(--white); letter-spacing: .02em; }
+    .utility-inner { min-height: 2.6rem; justify-content: center; gap: .5rem; font-size: .75rem; }
+    .utility-contacts { display: none; }
+    .utility-actions { width: 100%; justify-content: space-between; gap: .35rem; }
+    .motto-label { color: var(--white); font-size: .68rem; letter-spacing: .01em; }
     .theme-toggle { min-width: auto; padding-inline: .35rem; }
     .theme-symbol { display: none; }
     .main-inner { min-height: 4.5rem; }
   }
-  @media (max-width: 25rem) { .utility-contacts { display: none; } .utility-inner { justify-content: center; } .motto-label { font-size: .68rem; } }
+  @media (max-width: 21rem) { .motto-label { display: none; } }
 </style>

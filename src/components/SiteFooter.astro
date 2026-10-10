@@ -1,5 +1,6 @@
 ---
 import LogoMark from "./LogoMark.astro";
+import SocialLinks from "./SocialLinks.astro";
 
 const quickLinks = [
   ["Home", "/"], ["About Us", "/about/"], ["Where We Work", "/where-we-work/"],
@@ -15,6 +16,7 @@ const quickLinks = [
     <section>
       <h2>About GROWCHILD</h2>
       <p>GROWCHILD strengthens the resilience and empowerment of women and children through inclusive, community-led and evidence-based humanitarian and development programming across Nigeria.</p>
+      <div class="footer-socials"><strong>Follow GROWCHILD</strong><SocialLinks variant="footer" /></div>
     </section>
 
     <details class="footer-links" open>
@@ -27,7 +29,6 @@ const quickLinks = [
       <address>
         <a href="mailto:growchild.org@gmail.com">growchild.org@gmail.com</a>
         <a href="tel:+2349134068024">+234 913 406 8024</a>
-        <span>CAC RC 9704884</span>
         <span>Abuja &amp; Regional Operational Desks</span>
       </address>
     </section>
@@ -46,6 +47,8 @@ const quickLinks = [
   .footer-brand { padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,.16); }
   .footer-grid { display: grid; grid-template-columns: 1.15fr .8fr .9fr 1.05fr; gap: clamp(1.5rem,4vw,3rem); padding-block: 2.5rem 3.5rem; }
   section > p { color: rgba(255,255,255,.8); font-size: .95rem; }
+  .footer-socials { display: grid; gap: .65rem; margin-top: 1.25rem; }
+  .footer-socials strong { color: rgba(255,255,255,.82); font-size: .82rem; letter-spacing: .05em; text-transform: uppercase; }
   h2 { margin: 0 0 1rem; color: var(--white); font-size: 1rem; letter-spacing: 0; text-transform: none; }
   .footer-links > summary { display: flex; align-items: center; justify-content: space-between; color: var(--white); cursor: default; list-style: none; }
   .footer-links > summary::-webkit-details-marker { display: none; }
